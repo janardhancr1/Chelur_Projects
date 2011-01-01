@@ -1,0 +1,94 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4A553A1B-6A2A-4E00-82DC-3FD189AC0E16}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PALibrary</RootNamespace>
+    <AssemblyName>PALibrary</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Library\Component\AccountsManager.cs" />
+    <Compile Include="Library\Component\ATKTManager.cs" />
+    <Compile Include="Library\Component\CityManager.cs" />
+    <Compile Include="Library\Component\CustomerManager.cs" />
+    <Compile Include="Library\Component\FixedDepositManager.cs" />
+    <Compile Include="Library\Component\FixedInterestManager.cs" />
+    <Compile Include="Library\Component\FixedTransManager.cs" />
+    <Compile Include="Library\Component\HundiLoanManager.cs" />
+    <Compile Include="Library\Component\LedgersManager.cs" />
+    <Compile Include="Library\Component\UsersManager.cs" />
+    <Compile Include="Library\Component\UtilManager.cs" />
+    <Compile Include="Library\Component\VouchersManager.cs" />
+    <Compile Include="Library\DAO\AccountsDAO.cs" />
+    <Compile Include="Library\DAO\ATKTDAO.cs" />
+    <Compile Include="Library\DAO\CityDAO.cs" />
+    <Compile Include="Library\DAO\CustomerDAO.cs" />
+    <Compile Include="Library\DAO\FixedDepositDAO.cs" />
+    <Compile Include="Library\DAO\FixedInterestDAO.cs" />
+    <Compile Include="Library\DAO\FixedTransDAO.cs" />
+    <Compile Include="Library\DAO\Helper\SQLHelper.cs" />
+    <Compile Include="Library\DAO\HundiLoanDAO.cs" />
+    <Compile Include="Library\DAO\LedgersDAO.cs" />
+    <Compile Include="Library\DAO\Manager\DBManager.cs" />
+    <Compile Include="Library\DAO\Manager\DBUtils.cs" />
+    <Compile Include="Library\DAO\UsersDAO.cs" />
+    <Compile Include="Library\DAO\UtilDAO.cs" />
+    <Compile Include="Library\DAO\VouchersDAO.cs" />
+    <Compile Include="Library\Exception\PAException.cs" />
+    <Compile Include="Library\Model\ATKTInfo.cs" />
+    <Compile Include="Library\Model\CityInfo.cs" />
+    <Compile Include="Library\Model\CustomerInfo.cs" />
+    <Compile Include="Library\Model\DayBookInfo.cs" />
+    <Compile Include="Library\Model\FixedInterestInfo.cs" />
+    <Compile Include="Library\Model\FixedDepositInfo.cs" />
+    <Compile Include="Library\Model\FixedTransInfo.cs" />
+    <Compile Include="Library\Model\GroupsInfo.cs" />
+    <Compile Include="Library\Model\HundiInterestInfo.cs" />
+    <Compile Include="Library\Model\HundiLoanInfo.cs" />
+    <Compile Include="Library\Model\HundiTransInfo.cs" />
+    <Compile Include="Library\Model\LedgerDate.cs" />
+    <Compile Include="Library\Model\LedgersInfo.cs" />
+    <Compile Include="Library\Model\SearchHelper.cs" />
+    <Compile Include="Library\Model\UsersInfo.cs" />
+    <Compile Include="Library\Model\VouchersInfo.cs" />
+    <Compile Include="Library\Model\VoucherTypesInfo.cs" />
+    <Compile Include="Library\Utils\AppConstants.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

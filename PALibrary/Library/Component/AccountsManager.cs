@@ -1,0 +1,515 @@
+using System;
+using System.Collections.Generic;
+
+using PALibrary.Library.DAO;
+using PALibrary.Library.Model;
+using PALibrary.Library.Utils;
+
+namespace PALibrary.Library.Component
+{
+    public class AccountsManager
+    {
+        #region Helpers
+
+        public static List<GroupsInfo> GetGroups()
+        {
+            return AccountsDAO.GetGroups();
+        }
+
+        public static List<VoucherTypesInfo> GetVoucherTypes()
+        {
+            return AccountsDAO.GetVoucherTypes();
+        }
+
+        public static int NextVoucherNo(DateTime voucherDate, int voucherType)
+        {
+            return AccountsDAO.NextVoucherNo(voucherDate, voucherType);
+        }
+
+        public static List<DayBookInfo> GetDayBook(DateTime fromDate, DateTime toDate)
+        {
+            List<DayBookInfo> dayBooks = new List<DayBookInfo>();
+
+            List<DayBookInfo> hundiLoans = LedgersDAO.GetHundiLoanLedger(fromDate, toDate, "HL", DBConstant.ACCOUNT_PERIOD);
+            foreach (DayBookInfo day in hundiLoans)
+            {
+                dayBooks.Add(day);
+            }
+
+            List<DayBookInfo> fixedDeposits = LedgersDAO.GetFixedDespositLedger(fromDate, toDate, "FD", DBConstant.ACCOUNT_PERIOD);
+            foreach (DayBookInfo day in fixedDeposits)
+            {
+                dayBooks.Add(day);
+            }
+
+            List<DayBookInfo> atktInfos = LedgersDAO.GetATKTLedger(fromDate, toDate, "ATKT", DBConstant.ACCOUNT_PERIOD);
+            foreach (DayBookInfo day in atktInfos)
+            {
+                dayBooks.Add(day);
+            }
+
+            List<DayBookInfo> vouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, 0);
+            foreach (DayBookInfo day in vouchers)
+            {
+                dayBooks.Add(day);
+            }
+            return dayBooks;
+        }
+
+        public static List<DayBookInfo> GetLedgerDetails(DateTime fromDate, DateTime toDate, int ledgerID)
+        {
+            return AccountsDAO.GetVoucherDetails(fromDate, toDate, ledgerID);
+        }
+
+        public static string GetVoucherTypeName(int voucherTypeID)
+        {
+            return AccountsDAO.GetVoucherTypeName(voucherTypeID);
+        }
+
+        #endregion
+
+        #region Opening Balance
+
+        public static DayBookInfo GetCashBookOpeningBalance(DateTime toDate)
+        {
+            return AccountsDAO.GetCashBookOpeningBalance(toDate);
+        }
+
+        public static DayBookInfo GetBankBookOpeningBalance(DateTime toDate, int ledgerID)
+        {
+            return AccountsDAO.GetBankBookOpeningBalance(toDate, ledgerID);
+        }
+
+        public static DayBookInfo GetLedgerOpeningBalance(DateTime toDate, int ledgerID)
+        {
+            return AccountsDAO.GetBankBookOpeningBalance(toDate, ledgerID);
+        }
+
+        public static DayBookInfo GetHundiLoanOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetHundiLoanOpeningBalance(toDate, ledgerName, type);
+        }
+
+        public static DayBookInfo GetFixedDepositOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetFixedDepositOpeningBalance(toDate, ledgerName, type);
+        }
+
+        public static DayBookInfo GetInterestOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetInterestOpeningBalance(toDate, ledgerName, type);
+        }
+
+        public static DayBookInfo GetInterestPaidOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetInterestPaidOpeningBalance(toDate, ledgerName, type);
+        }
+
+        public static DayBookInfo GetATKTOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetATKTOpeningBalance(toDate, ledgerName, type);
+        }
+
+        #endregion
+
+        #region Monthly Summary
+
+        public static List<DayBookInfo> GetCashMonthlySummary(DateTime fromDate, DateTime toDate, string ledgerName)
+        {
+            LedgersInfo ledger = LedgersDAO.GetLedgersInfo(DBConstant.CASH_LEDGER);
+            List<DayBookInfo> details = new List<DayBookInfo>();
+            if (ledger != null)
+            {
+                details = AccountsDAO.GetVoucherDetails(fromDate, toDate, ledger.LedgerID);
+            }
+
+            List<DayBookInfo> dayBooks = LedgersDAO.GetHundiLoanLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
+            dayBooks = LedgersDAO.GetFixedDespositLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
+            dayBooks = LedgersDAO.GetATKTLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
+            dayBooks = LedgersDAO.GetInterestLedger(fromDate, toDate);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
+            dayBooks = LedgersDAO.GetInterestPaidLedger(fromDate, toDate);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+            details.Sort(new ReportComparer());
+
+            List<DayBookInfo> monthlySummary = GetMonthlySummary(details);
+            return monthlySummary;
+        }
+
+        public static List<DayBookInfo> GetBankMonthlySummary(DateTime fromDate, DateTime toDate, int ledgerID)
+        {
+            LedgersInfo ledger = LedgersDAO.GetLedgersInfo(ledgerID);
+            List<DayBookInfo> details = AccountsDAO.GetVoucherDetails(fromDate, toDate, ledger.LedgerID);
+            foreach (DayBookInfo day in details)
+            {
+                if (day.VoucherType.Equals(GetVoucherTypeName(DBConstant.VOUCHER_CONTRA)))
+                {
+                    if (day.FromLedger.Equals(ledger.LedgerName) && LedgersDAO.GetLedgersInfo(day.ToLedger).GroupName.Equals(DBConstant.BANK_LEDGERS))
+                    {
+                        decimal temp1 = day.Credit;
+                        day.Credit = day.Debit;
+                        day.Debit = temp1;
+                    }
+                    else if (day.ToLedger.Equals(ledger.LedgerName) && LedgersDAO.GetLedgersInfo(day.FromLedger).GroupName.Equals(DBConstant.BANK_LEDGERS))
+                    {
+                        decimal temp1 = day.Credit;
+                        day.Credit = day.Debit;
+                        day.Debit = temp1;
+                    }
+                    else
+                    {
+                        decimal temp = day.Credit;
+                        day.Credit = day.Debit;
+                        day.Debit = temp;
+                    }
+                }
+            }
+            details.Sort(new ReportComparer());
+
+            List<DayBookInfo> monthlySummary = GetMonthlySummary(details);
+            return monthlySummary;
+        }
+
+        public static List<DayBookInfo> GetLedgerMonthlySummary(DateTime fromDate, DateTime toDate, int ledgerID)
+        {
+            LedgersInfo ledger = LedgersDAO.GetLedgersInfo(ledgerID);
+            List<DayBookInfo> details = AccountsDAO.GetVoucherDetails(fromDate, toDate, ledger.LedgerID);
+            foreach (DayBookInfo day in details)
+            {
+                decimal temp = day.Credit;
+                day.Credit = day.Debit;
+                day.Debit = temp;
+            }
+            details.Sort(new ReportComparer());
+
+            List<DayBookInfo> monthlySummary = GetMonthlySummary(details);
+            return monthlySummary;
+        }
+
+        public static List<DayBookInfo> GetMonthlySummary(DateTime fromDate, DateTime toDate, string ledgerName, int type, int ledger)
+        {
+            //LedgerDAO ledgerDao = new LedgerDAO();
+            //VoucherDAO voucherDao = new VoucherDAO();
+            List<DayBookInfo> details = null;
+            switch (ledger)
+            {
+                case 1:
+                    details = LedgersDAO.GetHundiLoanLedger(fromDate, toDate, ledgerName, type);
+                    break;
+                case 2:
+                    details = LedgersDAO.GetFixedDespositLedger(fromDate, toDate, ledgerName, type);
+                    break;
+                case 3:
+                    details = LedgersDAO.GetATKTLedger(fromDate, toDate, ledgerName, type);
+                    break;
+                //case 4:
+                //    details = ledgerDao.GetPronoteLoanLedger(fromDate, toDate, ledgerName, type);
+                //    break;
+                case 5:
+                    details = LedgersDAO.GetInterestLedger(fromDate, toDate);
+                    LedgersInfo interestLeger = LedgersDAO.GetLedgersInfo(ledgerName);
+                    if (interestLeger != null)
+                    {
+                        List<DayBookInfo> interestVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, interestLeger.LedgerID);
+                        foreach (DayBookInfo voucher in interestVouchers)
+                        {
+                            details.Add(voucher);
+                        }
+                    }
+                    break;
+                case 6:
+                    details = LedgersDAO.GetInterestPaidLedger(fromDate, toDate);
+                    if (type == DBConstant.ACCOUNT_OPENING)
+                        type = DBConstant.ACCOUNT_OPENING_CUSTOMER;
+                    else if (type == DBConstant.ACCOUNT_PERIOD)
+                        type = DBConstant.ACCOUNT_LEDGER;
+                    LedgersInfo interestPaidLeger = LedgersDAO.GetLedgersInfo(ledgerName);
+                    if (interestPaidLeger != null)
+                    {
+                        List<DayBookInfo> interestPaidVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, interestPaidLeger.LedgerID);
+                        foreach (DayBookInfo voucher in interestPaidVouchers)
+                        {
+                            details.Add(voucher);
+                        }
+                    }
+                    break;
+                //case 9:
+                //    details = ledgerDao.GetCustomerLedger(fromDate, toDate, ledgerName, compID);
+                //    break;
+                //case 10:
+                //    details = voucherDao.GetVoucherDetails(fromDate, toDate, ledgerName);
+                //    break;
+                //case 13:
+                //    details = ledgerDao.GetAuctionProfitLedger(fromDate, toDate);
+                //    List<DayBookInfo> auctionProfitVouchers = voucherDao.GetVoucherDetails(fromDate, toDate, DBConstant.AUCTION_PROFIT_LEDGER);
+                //    foreach (DayBookInfo voucher in auctionProfitVouchers)
+                //    {
+                //        details.Add(voucher);
+                //    }
+                //    break;
+
+            }
+            if (details != null)
+            {
+                details.Sort(new ReportComparer());
+            }
+            List<DayBookInfo> monthlySummary = GetLedgerMonthlySummary(details);
+            return monthlySummary;
+        }
+
+        private static List<DayBookInfo> GetMonthlySummary(IEnumerable<DayBookInfo> details)
+        {
+            List<DayBookInfo> monthlySummary = new List<DayBookInfo>();
+            DayBookInfo april = new DayBookInfo();
+            DayBookInfo may = new DayBookInfo();
+            DayBookInfo june = new DayBookInfo();
+            DayBookInfo july = new DayBookInfo();
+            DayBookInfo august = new DayBookInfo();
+            DayBookInfo september = new DayBookInfo();
+            DayBookInfo october = new DayBookInfo();
+            DayBookInfo november = new DayBookInfo();
+            DayBookInfo december = new DayBookInfo();
+            DayBookInfo january = new DayBookInfo();
+            DayBookInfo february = new DayBookInfo();
+            DayBookInfo march = new DayBookInfo();
+
+            if (details != null)
+            {
+                foreach (DayBookInfo day in details)
+                {
+                    switch (day.CurrentDate.Month)
+                    {
+                        case 1:
+                            january.Credit = january.Credit + day.Credit;
+                            january.Debit = january.Debit + day.Debit;
+                            break;
+                        case 2:
+                            february.Credit = february.Credit + day.Credit;
+                            february.Debit = february.Debit + day.Debit;
+                            break;
+                        case 3:
+                            march.Credit = march.Credit + day.Credit;
+                            march.Debit = march.Debit + day.Debit;
+                            break;
+                        case 4:
+                            april.Credit = april.Credit + day.Credit;
+                            april.Debit = april.Debit + day.Debit;
+                            break;
+                        case 5:
+                            may.Credit = may.Credit + day.Credit;
+                            may.Debit = may.Debit + day.Debit;
+                            break;
+                        case 6:
+                            june.Credit = june.Credit + day.Credit;
+                            june.Debit = june.Debit + day.Debit;
+                            break;
+                        case 7:
+                            july.Credit = july.Credit + day.Credit;
+                            july.Debit = july.Debit + day.Debit;
+                            break;
+                        case 8:
+                            august.Credit = august.Credit + day.Credit;
+                            august.Debit = august.Debit + day.Debit;
+                            break;
+                        case 9:
+                            september.Credit = september.Credit + day.Credit;
+                            september.Debit = september.Debit + day.Debit;
+                            break;
+                        case 10:
+                            october.Credit = october.Credit + day.Credit;
+                            october.Debit = october.Debit + day.Debit;
+                            break;
+                        case 11:
+                            november.Credit = november.Credit + day.Credit;
+                            november.Debit = november.Debit + day.Debit;
+                            break;
+                        case 12:
+                            december.Credit = december.Credit + day.Credit;
+                            december.Debit = december.Debit + day.Debit;
+                            break;
+                    }
+                }
+            }
+
+            monthlySummary.Add(april);
+            monthlySummary.Add(may);
+            monthlySummary.Add(june);
+            monthlySummary.Add(july);
+            monthlySummary.Add(august);
+            monthlySummary.Add(september);
+            monthlySummary.Add(october);
+            monthlySummary.Add(november);
+            monthlySummary.Add(december);
+            monthlySummary.Add(january);
+            monthlySummary.Add(february);
+            monthlySummary.Add(march);
+
+            return monthlySummary;
+        }
+
+        private static List<DayBookInfo> GetLedgerMonthlySummary(IEnumerable<DayBookInfo> details)
+        {
+            List<DayBookInfo> monthlySummary = new List<DayBookInfo>();
+            DayBookInfo april = new DayBookInfo();
+            DayBookInfo may = new DayBookInfo();
+            DayBookInfo june = new DayBookInfo();
+            DayBookInfo july = new DayBookInfo();
+            DayBookInfo august = new DayBookInfo();
+            DayBookInfo september = new DayBookInfo();
+            DayBookInfo october = new DayBookInfo();
+            DayBookInfo november = new DayBookInfo();
+            DayBookInfo december = new DayBookInfo();
+            DayBookInfo january = new DayBookInfo();
+            DayBookInfo february = new DayBookInfo();
+            DayBookInfo march = new DayBookInfo();
+
+            if (details != null)
+            {
+                foreach (DayBookInfo day in details)
+                {
+                    switch (day.CurrentDate.Month)
+                    {
+                        case 1:
+                            january.Credit = january.Credit + day.Debit;
+                            january.Debit = january.Debit + day.Credit;
+                            break;
+                        case 2:
+                            february.Credit = february.Credit + day.Debit;
+                            february.Debit = february.Debit + day.Credit;
+                            break;
+                        case 3:
+                            march.Credit = march.Credit + day.Debit;
+                            march.Debit = march.Debit + day.Credit;
+                            break;
+                        case 4:
+                            april.Credit = april.Credit + day.Debit;
+                            april.Debit = april.Debit + day.Credit;
+                            break;
+                        case 5:
+                            may.Credit = may.Credit + day.Debit;
+                            may.Debit = may.Debit + day.Credit;
+                            break;
+                        case 6:
+                            june.Credit = june.Credit + day.Debit;
+                            june.Debit = june.Debit + day.Credit;
+                            break;
+                        case 7:
+                            july.Credit = july.Credit + day.Debit;
+                            july.Debit = july.Debit + day.Credit;
+                            break;
+                        case 8:
+                            august.Credit = august.Credit + day.Debit;
+                            august.Debit = august.Debit + day.Credit;
+                            break;
+                        case 9:
+                            september.Credit = september.Credit + day.Debit;
+                            september.Debit = september.Debit + day.Credit;
+                            break;
+                        case 10:
+                            october.Credit = october.Credit + day.Debit;
+                            october.Debit = october.Debit + day.Credit;
+                            break;
+                        case 11:
+                            november.Credit = november.Credit + day.Debit;
+                            november.Debit = november.Debit + day.Credit;
+                            break;
+                        case 12:
+                            december.Credit = december.Credit + day.Debit;
+                            december.Debit = december.Debit + day.Credit;
+                            break;
+                    }
+                }
+            }
+
+            monthlySummary.Add(april);
+            monthlySummary.Add(may);
+            monthlySummary.Add(june);
+            monthlySummary.Add(july);
+            monthlySummary.Add(august);
+            monthlySummary.Add(september);
+            monthlySummary.Add(october);
+            monthlySummary.Add(november);
+            monthlySummary.Add(december);
+            monthlySummary.Add(january);
+            monthlySummary.Add(february);
+            monthlySummary.Add(march);
+
+            return monthlySummary;
+        }
+        #endregion
+
+        #region Profit & Loss
+
+        public static List<DayBookInfo> GetExpenses(DateTime toDate)
+        {
+            return AccountsDAO.GetExpenses(toDate);
+        }
+
+        public static List<DayBookInfo> GetIncomes(DateTime toDate)
+        {
+            return AccountsDAO.GetIncomes(toDate);
+        }
+
+        public static List<DayBookInfo> GetExpensesDetails(DateTime toDate)
+        {
+            return AccountsDAO.GetExpensesDetails(toDate);
+        }
+
+        public static List<DayBookInfo> GetIncomesDetails(DateTime toDate)
+        {
+            return AccountsDAO.GetIncomesDetails(toDate);
+        }
+
+        #endregion
+
+        #region Trial Balance
+
+        public static List<DayBookInfo> GetTrailBalance(DateTime toDate)
+        {
+            return AccountsDAO.GetTrailBalance(toDate.AddDays(1));
+        }
+
+        public static List<DayBookInfo> GetTrailBalanceDetails(DateTime toDate)
+        {
+            return AccountsDAO.GetTrailBalanceDetails(toDate.AddDays(1));
+        }
+
+        #endregion
+    }
+
+    public class ReportComparer : IComparer<DayBookInfo>
+    {
+        public int Compare(DayBookInfo ta, DayBookInfo tb)
+        {
+            int retVal = DateTime.Compare(ta.CurrentDate, tb.CurrentDate);
+            return retVal;
+        }
+    }
+}
