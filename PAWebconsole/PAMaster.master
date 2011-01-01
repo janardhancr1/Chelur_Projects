@@ -1,0 +1,112 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PAMaster.master.cs" Inherits="PAMaster" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Personal Accounting</title>
+    <link href="css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="css/CalendarControl.css" rel="stylesheet" type="text/css" />
+
+    <script src="js/CalendarControl.js" language="javascript"></script>
+
+    <script language="javascript" src="js/JsFunc.js"></script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table id="wrapper" width="970" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr class="header1">
+                <td colspan="2">
+                    <b>
+                        <asp:Label ID="CurrentDate" runat="Server"></asp:Label></b>
+                </td>
+                <td>
+                    <b>
+                        <asp:Label ID="CompanyName" runat="server" Text="Personal Account"></asp:Label></b>
+                </td>
+                <td align="right">
+                    <b>Cash:
+                        <asp:Label ID="CashInHand" runat="server"></asp:Label></b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" height="10">
+                </td>
+            </tr>
+            <tr>
+                <td width="170" valign="top">
+                    <div id="sidebar">
+                        <div class="nav_header" onmouseover="javascript:this.style.backgroundColor='#B9C4D0';"
+                            onmouseout="javascript:this.style.backgroundColor='#E7EAF5';">
+                            Master Details</div>
+                        <div class="nav_content" id="menu_general">
+                            <ul>
+                                <li><a href="HomePage.aspx">Home</a></li>
+                                <li><a href="Cities.aspx">Cities</a></li>
+                                <li><a href="Customer.aspx">Customers</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_header" onmouseover="javascript:this.style.backgroundColor='#B9C4D0';"
+                            onmouseout="javascript:this.style.backgroundColor='#E7EAF5';">
+                            Transactions</div>
+                        <div class="nav_content" id="Div3">
+                            <ul>
+                                <li><a href="HundiLoans.aspx">Hundi Loans</a></li>
+                                <li><a href="FixedDesposits.aspx">Fixed Deposits</a></li>
+                                <li><a href="Chits.aspx">Chits</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_header" onmouseover="javascript:this.style.backgroundColor='#B9C4D0';"
+                            onmouseout="javascript:this.style.backgroundColor='#E7EAF5';">
+                            A/C Entries</div>
+                        <div class="nav_content" id="Div6">
+                            <ul>
+                                <li><a href="ATKT.aspx">ATKT</a></li>
+                                <li><a href="SearchVouchers.aspx">Vouchers</a></li>
+                                <li><a href="SearchLedgers.aspx">Ledgers</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_header" onmouseover="javascript:this.style.backgroundColor='#B9C4D0';"
+                            onmouseout="javascript:this.style.backgroundColor='#E7EAF5';">
+                            Accounts</div>
+                        <div class="nav_content" id="Div2">
+                            <ul>
+                                <li><a href="Ledgers.aspx">View Ledgers</a></li>
+                                <li><a href="Groups.aspx">Groups</a></li>
+                                <li><a href="DayBook.aspx">Day Book</a></li>
+                                <li><a href="CashBook.aspx">Cash Book</a></li>
+                                <li><a href="BankBook.aspx">Bank Book</a></li>
+                                <li><a href="ProfitLoss.aspx">Profit & Loss</a></li>
+                                <li><a href="TrialBalance.aspx">Trial Balance</a></li>
+                                <li><a href="BalanceSheet.aspx">Balance Sheet</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_header" onmouseover="javascript:this.style.backgroundColor='#B9C4D0';"
+                            onmouseout="javascript:this.style.backgroundColor='#E7EAF5';">
+                            Tools</div>
+                        <div class="nav_content" id="Div5">
+                            <ul>
+                                <li><a href="ChangePassword.aspx">Change Password</a></li>
+                                <li><a href="Login.aspx">Log Off</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+                <td class="nav_header" width="1">
+                    &nbsp;</td>
+                <td colspan="2" width="799" valign="top">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    <div id="footer">
+                        ©
+                        <%= DateTime.Today.Year.ToString() %>
+                        Likhitech</div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

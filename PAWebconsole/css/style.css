@@ -1,0 +1,43 @@
+.bottomline
+{
+	BORDER-BOTTOM: #000000 1px solid;
+}
+.box
+{
+	BORDER-TOP: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid;
+	BORDER-LEFT: #000000 1px solid;
+	BORDER-RIGHT: #000000 1px solid;
+}
+.left_right
+{
+	BORDER-LEFT: #000000 1px solid;
+	BORDER-RIGHT: #000000 1px solid;
+}
+.left_bottom
+{
+	BORDER-LEFT: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid;
+}
+.left
+{
+	BORDER-LEFT: #000000 1px solid;
+}
+.right
+{
+	BORDER-RIGHT: #000000 1px solid;
+}
+.left_right_bottom
+{
+	BORDER-LEFT: #000000 1px solid;
+	BORDER-RIGHT: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid;
+}
+.top_bottom
+{
+	BORDER-TOP: #000000 1px solid;
+	BORDER-BOTTOM: #000000 1px solid;
+}
+@page { size 8.5in 11in; margin: 2cm }
+
+
