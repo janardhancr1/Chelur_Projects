@@ -236,8 +236,8 @@ namespace PALibrary.Library.DAO
             DayBookInfo atktOpening = GetATKTOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
             if (atktOpening != null)
             {
-                credit = credit + atktOpening.Debit;
-                debit = debit + atktOpening.Credit;
+                credit = credit + atktOpening.Credit;
+                debit = debit + atktOpening.Debit;
             }
 
             DayBookInfo interestOpening = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING_CASH);

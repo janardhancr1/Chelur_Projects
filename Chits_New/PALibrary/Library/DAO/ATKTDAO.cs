@@ -312,14 +312,14 @@ namespace PALibrary.Library.DAO
                 while (reader.Read())
                 {
                     openingBalance.Particulars = DBConstant.VOUCHER_ATKTPAY;
-                    openingBalance.Credit = DBUtils.ConvertDecimal(reader["Amount"]);
+                    openingBalance.Debit = DBUtils.ConvertDecimal(reader["Amount"]);
                 }
 
                 reader1 = SQLHelper.ExecuteReader(CommandType.Text, ATKTInfo.QUERY_ACCOUNT_OPENING_CREDIT, parameters);
                 while (reader1.Read())
                 {
                     openingBalance.Particulars = DBConstant.VOUCHER_ATKTRECP;
-                    openingBalance.Debit = DBUtils.ConvertDecimal(reader1["Amount"]); 
+                    openingBalance.Credit = DBUtils.ConvertDecimal(reader1["Amount"]); 
                 }
 
                 return openingBalance;
