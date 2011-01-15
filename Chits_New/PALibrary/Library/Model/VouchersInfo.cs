@@ -38,8 +38,8 @@ namespace PALibrary.Library.Model
         public const string PARAM_LEDGER = DBConstant.DB_PARAM + "ledger";
 
         public const string QUERY_SELECT_OPENING_LEDGER = "SELECT (SELECT Sum(amount) FROM " + TABLE_NAME + " WHERE voucher_date<" + PARAM_VOUCHER_DATE + " AND to_ledger=" + PARAM_LEDGER + ") AS Debit,(SELECT Sum(amount) FROM " + TABLE_NAME + " WHERE voucher_date<" + PARAM_VOUCHER_DATE + " AND from_ledger=" + PARAM_LEDGER + ") AS Crdit";
-        public const string QUERY_SELECT_PERIOD = "SELECT Voucher_ID,Voucher_Date,Voucher_Type,Voucher_No,From_Ledger,To_Ledger,Amount,Narration FROM " + TABLE_NAME + " WHERE Voucher_Date>=" + PARAM_FROM_DATE + " AND Voucher_Date<=" + PARAM_TO_DATE;
-        public const string QUERY_SELECT_LEDGER = "SELECT Voucher_ID,Voucher_Date,Voucher_Type,Voucher_No,From_Ledger,To_Ledger,Amount,Narration FROM " + TABLE_NAME + " WHERE Voucher_Date>=" + PARAM_FROM_DATE + " AND Voucher_Date<=" + PARAM_TO_DATE + " AND (from_ledger=" + PARAM_LEDGER + " OR to_ledger=" + PARAM_LEDGER + ")";
+        public const string QUERY_SELECT_PERIOD = "SELECT Voucher_ID,Voucher_Date,Voucher_Type,Voucher_No,From_Ledger,To_Ledger,Amount,Narration,(SELECT VoucherType_Name FROM voucher_types WHERE VoucherType_ID = Voucher_Type) AS VoucherType_Name, (SELECT Ledger_Name FROM ledgers WHERE Ledger_ID = From_Ledger) AS From_Ledger_Name, (SELECT Ledger_Name FROM ledgers WHERE Ledger_ID = To_Ledger) AS To_Ledger_Name FROM " + TABLE_NAME + " WHERE Voucher_Date>=" + PARAM_FROM_DATE + " AND Voucher_Date<=" + PARAM_TO_DATE;
+        public const string QUERY_SELECT_LEDGER = "SELECT Voucher_ID,Voucher_Date,Voucher_Type,Voucher_No,From_Ledger,To_Ledger,Amount,Narration,(SELECT VoucherType_Name FROM voucher_types WHERE VoucherType_ID = Voucher_Type) AS VoucherType_Name, (SELECT Ledger_Name FROM ledgers WHERE Ledger_ID = From_Ledger) AS From_Ledger_Name, (SELECT Ledger_Name FROM ledgers WHERE Ledger_ID = To_Ledger) AS To_Ledger_Name FROM " + TABLE_NAME + " WHERE Voucher_Date>=" + PARAM_FROM_DATE + " AND Voucher_Date<=" + PARAM_TO_DATE + " AND (from_ledger=" + PARAM_LEDGER + " OR to_ledger=" + PARAM_LEDGER + ")";
         
 
         private int voucherID;
@@ -166,6 +166,15 @@ namespace PALibrary.Library.Model
                         break;
                     case "Narration":
                         narration = DBUtils.ConvertString(reader["Narration"]);
+                        break;
+                    case "VoucherType_Name":
+                        voucherTypeName = DBUtils.ConvertString(reader["VoucherType_Name"]);
+                        break;
+                    case "From_Ledger_Name":
+                        fromLedgerName = DBUtils.ConvertString(reader["From_Ledger_Name"]);
+                        break;
+                    case "To_Ledger_Name":
+                        toLedgerName = DBUtils.ConvertString(reader["To_Ledger_Name"]);
                         break;
 
                 }
