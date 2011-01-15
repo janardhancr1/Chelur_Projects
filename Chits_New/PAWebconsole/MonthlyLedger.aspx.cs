@@ -65,7 +65,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
                     case "6":
                         LedgerName.Text = "Interest Paid Ledger";
                         openingBalance = AccountsManager.GetInterestPaidOpeningBalance(appConstants.FinYearStart, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_OPENING);
-                        monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_PERIOD, 8);
+                        monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_PERIOD, 6);
                         break;
                     case "7":
                         LedgerName.Text = "Interest Collected Ledger";
