@@ -267,6 +267,43 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static List<ATKTInfo> GetATKTInfos(DateTime fromDate, DateTime toDate, string closed)
+        {
+            List<ATKTInfo> aTKTInfos = new List<ATKTInfo>();
+            IDataReader reader = null;
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ATKTInfo.PARAM_FROM_DATE, fromDate));
+                parameters.Add(DBManager.GetParameter(ATKTInfo.PARAM_TO_DATE, toDate));
+                parameters.Add(DBManager.GetParameter(ATKTInfo.PARAM_CLOSED, closed));
+
+                string query = "";
+                if (closed.Equals(DBConstant.TYPE_CLOSED) || closed.Equals(DBConstant.TYPE_PENDING))
+                    query = ATKTInfo.QUERY_REPORT_ON_CLOSED;
+                else if (closed.Equals(DBConstant.TYPE_ALL))
+                    query = ATKTInfo.QUERY_REPORT_ALL;
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
+                while (reader.Read())
+                {
+                    ATKTInfo aTKTInfo = new ATKTInfo();
+                    aTKTInfo.ReadValues(reader);
+
+                    aTKTInfos.Add(aTKTInfo);
+                }
+                return aTKTInfos;
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
         public static void CloseATKT(ATKTInfo aTKTInfo)
         {
             IDbConnection connection = null;

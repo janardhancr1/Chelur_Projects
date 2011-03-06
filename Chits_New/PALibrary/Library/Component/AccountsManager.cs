@@ -487,6 +487,232 @@ namespace PALibrary.Library.Component
             return AccountsDAO.GetIncomesDetails(toDate);
         }
 
+        public List<DayBookInfo> GetProfitLoss(DateTime todate)
+        {
+            AccountsDAO accountDao = new AccountsDAO();
+            int maxCount = 0;
+            decimal loss = 0;
+            decimal profit = 0;
+
+            List<DayBookInfo> profitlossDetails = new List<DayBookInfo>();
+            List<DayBookInfo> expenses = GetExpenses(todate.AddDays(1));
+            List<DayBookInfo> incomes = GetIncomes(todate.AddDays(1));
+
+            if (expenses.Count > incomes.Count)
+                maxCount = expenses.Count;
+            else if (expenses.Count < incomes.Count)
+                maxCount = incomes.Count;
+            else
+                maxCount = expenses.Count;
+
+            for (int i = 0; i < maxCount; i++)
+            {
+                DayBookInfo detail = new DayBookInfo();
+                if (i < expenses.Count)
+                {
+                    detail.FromLedger = expenses[i].Particulars;
+                    detail.Debit = expenses[i].Debit;
+                    loss = loss + expenses[i].Debit;
+                }
+                if (i < incomes.Count)
+                {
+                    detail.ToLedger = incomes[i].Particulars;
+                    detail.Credit = incomes[i].Debit;
+                    profit = profit + incomes[i].Debit;
+                }
+                profitlossDetails.Add(detail);
+            }
+            if (profit > loss)
+            {
+                DayBookInfo detail = new DayBookInfo();
+                detail.FromLedger = "Gross Profit C/O";
+                detail.Debit = profit - loss;
+                detail.ToLedger = "";
+                detail.Credit = 0;
+                profitlossDetails.Add(detail);
+
+                DayBookInfo detail2 = new DayBookInfo();
+                detail2.FromLedger = "";
+                detail2.Debit = 0;
+                detail2.ToLedger = "";
+                detail2.Credit = 0;
+                profitlossDetails.Add(detail2);
+
+                DayBookInfo detail3 = new DayBookInfo();
+                detail3.FromLedger = "Total";
+                detail3.Debit = loss + (profit - loss);
+                detail3.ToLedger = "Total";
+                detail3.Credit = loss + (profit - loss);
+                profitlossDetails.Add(detail3);
+
+                DayBookInfo detail4 = new DayBookInfo();
+                detail4.FromLedger = "";
+                detail4.Debit = 0;
+                detail4.ToLedger = "";
+                detail4.Credit = 0;
+                profitlossDetails.Add(detail4);
+
+                DayBookInfo detail5 = new DayBookInfo();
+                detail5.FromLedger = "Net Profit";
+                detail5.Debit = profit - loss;
+                detail5.ToLedger = "Gross Profit B/F";
+                detail5.Credit = profit - loss;
+                profitlossDetails.Add(detail5);
+            }
+            if (loss > profit)
+            {
+                DayBookInfo detail = new DayBookInfo();
+                detail.FromLedger = "";
+                detail.Debit = 0;
+                detail.ToLedger = "Gross Loss C/O";
+                detail.Credit = loss - profit;
+                profitlossDetails.Add(detail);
+
+                DayBookInfo detail2 = new DayBookInfo();
+                detail2.FromLedger = "";
+                detail2.Debit = 0;
+                detail2.ToLedger = "";
+                detail2.Credit = 0;
+                profitlossDetails.Add(detail2);
+
+                DayBookInfo detail3 = new DayBookInfo();
+                detail3.FromLedger = "Total";
+                detail3.Debit = profit + (loss - profit);
+                detail3.ToLedger = "Total";
+                detail3.Credit = profit + (loss - profit);
+                profitlossDetails.Add(detail3);
+
+                DayBookInfo detail4 = new DayBookInfo();
+                detail4.FromLedger = "";
+                detail4.Debit = 0;
+                detail4.ToLedger = "";
+                detail4.Credit = 0;
+                profitlossDetails.Add(detail4);
+
+                DayBookInfo detail5 = new DayBookInfo();
+                detail5.FromLedger = "Gross Loss B/F";
+                detail5.Debit = loss - profit;
+                detail5.ToLedger = "Net Loss";
+                detail5.Credit = loss - profit;
+                profitlossDetails.Add(detail5);
+            }
+
+            return profitlossDetails;
+        }
+
+        public List<DayBookInfo> GetProfitLossDetails(DateTime todate)
+        {
+            AccountsDAO accountDao = new AccountsDAO();
+            int maxCount = 0;
+            decimal loss = 0;
+            decimal profit = 0;
+
+            List<DayBookInfo> profitlossDetails = new List<DayBookInfo>();
+            List<DayBookInfo> expenses = GetExpensesDetails(todate.AddDays(1));
+            List<DayBookInfo> incomes = GetIncomesDetails(todate.AddDays(1));
+
+            if (expenses.Count > incomes.Count)
+                maxCount = expenses.Count;
+            else if (expenses.Count < incomes.Count)
+                maxCount = incomes.Count;
+            else
+                maxCount = expenses.Count;
+
+            for (int i = 0; i < maxCount; i++)
+            {
+                DayBookInfo detail = new DayBookInfo();
+                if (i < expenses.Count)
+                {
+                    detail.FromLedger = expenses[i].Particulars;
+                    detail.Debit = expenses[i].Debit;
+                    loss = loss + expenses[i].Debit;
+                }
+                if (i < incomes.Count)
+                {
+                    detail.ToLedger = incomes[i].Particulars;
+                    detail.Credit = incomes[i].Debit;
+                    profit = profit + incomes[i].Debit;
+                }
+                profitlossDetails.Add(detail);
+            }
+            if (profit > loss)
+            {
+                DayBookInfo detail = new DayBookInfo();
+                detail.FromLedger = "Gross Profit C/O";
+                detail.Debit = profit - loss;
+                detail.ToLedger = "";
+                detail.Credit = 0;
+                profitlossDetails.Add(detail);
+
+                DayBookInfo detail2 = new DayBookInfo();
+                detail2.FromLedger = "";
+                detail2.Debit = 0;
+                detail2.ToLedger = "";
+                detail2.Credit = 0;
+                profitlossDetails.Add(detail2);
+
+                DayBookInfo detail3 = new DayBookInfo();
+                detail3.FromLedger = "Total";
+                detail3.Debit = loss + (profit - loss);
+                detail3.ToLedger = "Total";
+                detail3.Credit = loss + (profit - loss);
+                profitlossDetails.Add(detail3);
+
+                DayBookInfo detail4 = new DayBookInfo();
+                detail4.FromLedger = "";
+                detail4.Debit = 0;
+                detail4.ToLedger = "";
+                detail4.Credit = 0;
+                profitlossDetails.Add(detail4);
+
+                DayBookInfo detail5 = new DayBookInfo();
+                detail5.FromLedger = "Net Profit";
+                detail5.Debit = profit - loss;
+                detail5.ToLedger = "Gross Profit B/F";
+                detail5.Credit = profit - loss;
+                profitlossDetails.Add(detail5);
+            }
+            if (loss > profit)
+            {
+                DayBookInfo detail = new DayBookInfo();
+                detail.FromLedger = "";
+                detail.Debit = 0;
+                detail.ToLedger = "Gross Loss C/O";
+                detail.Credit = loss - profit;
+                profitlossDetails.Add(detail);
+
+                DayBookInfo detail2 = new DayBookInfo();
+                detail2.FromLedger = "";
+                detail2.Debit = 0;
+                detail2.ToLedger = "";
+                detail2.Credit = 0;
+                profitlossDetails.Add(detail2);
+
+                DayBookInfo detail3 = new DayBookInfo();
+                detail3.FromLedger = "Total";
+                detail3.Debit = profit + (loss - profit);
+                detail3.ToLedger = "Total";
+                detail3.Credit = profit + (loss - profit);
+                profitlossDetails.Add(detail3);
+
+                DayBookInfo detail4 = new DayBookInfo();
+                detail4.FromLedger = "";
+                detail4.Debit = 0;
+                detail4.ToLedger = "";
+                detail4.Credit = 0;
+                profitlossDetails.Add(detail4);
+
+                DayBookInfo detail5 = new DayBookInfo();
+                detail5.FromLedger = "Gross Loss B/F";
+                detail5.Debit = loss - profit;
+                detail5.ToLedger = "Net Loss";
+                detail5.Credit = loss - profit;
+                profitlossDetails.Add(detail5);
+            }
+
+            return profitlossDetails;
+        }
+
         #endregion
 
         #region Trial Balance
