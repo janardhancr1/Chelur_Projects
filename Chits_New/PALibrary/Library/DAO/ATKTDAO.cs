@@ -176,7 +176,6 @@ namespace PALibrary.Library.DAO
                 {
                     ATKTInfo aTKTInfo = new ATKTInfo();
                     aTKTInfo.ReadValues(reader);
-                    aTKTInfo.ClosedType = aTKTInfo.Closed == DBConstant.TYPE_PENDING ? "Pending" : "Closed";
                     aTKTInfos.Add(aTKTInfo);
                 }
                 return aTKTInfos;

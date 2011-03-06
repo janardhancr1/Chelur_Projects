@@ -55,8 +55,6 @@ namespace PALibrary.Library.Model
         private string closed;
         private DateTime closedDate;
 
-        private string closedType;
-
         public int RecordID
         {
             get { return recordID; }
@@ -113,8 +111,7 @@ namespace PALibrary.Library.Model
 
         public string ClosedType
         {
-            get { return closedType; }
-            set { closedType = value; }
+            get { return closed == DBConstant.TYPE_PENDING ? "Pending" : "Closed"; }
         }
 
         public List<IDbDataParameter> GetParameters()
