@@ -53,6 +53,8 @@ CREATE TABLE `chits` (
 
 /*Data for the table `chits` */
 
+insert  into `chits`(`Chit_No`,`Chit_Name`,`Chit_Amount`,`Installment_Amount`,`No_Installments`,`Closed`) values ('CH001','chit1',25000,2500,10,'n');
+
 /*Table structure for table `chits_bidding` */
 
 DROP TABLE IF EXISTS `chits_bidding`;
