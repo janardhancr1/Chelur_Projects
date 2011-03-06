@@ -1,0 +1,59 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Globalization;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+using PALibrary.Library.Component;
+using PALibrary.Library.Exception;
+using PALibrary.Library.Model;
+using PALibrary.Library.Utils;
+
+public partial class PrintProfitLossDetails : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        UsersInfo loggedIn = (UsersInfo)Session["user"];
+        if (loggedIn == null)
+        {
+            Response.Write("<script>window.opener.location.reload(true);self.close();</script>");
+        }
+        else
+        {
+            if (!IsPostBack)
+            {
+                //CompID.Value = company.CompID.ToString();
+
+                if (Request.Params["todate"] != null)
+                {
+                    ToDate.Value = DateTime.ParseExact(Request.Params["todate"], "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString(); 
+                }
+
+                if (Request.Params["fromdate"] != null)
+                {
+                    FromDate.Value = Request.Params["fromdate"];
+                }
+
+                //ObjectDataSource3.SelectParameters[0].DefaultValue = FromDate.Value;
+                //ObjectDataSource3.SelectParameters[1].DefaultValue = ToDate.Value;
+                //ObjectDataSource3.SelectParameters[2].DefaultValue = "Profit&Loss";
+
+                //ObjectDataSource2.SelectParameters[0].DefaultValue = CompID.Value;
+
+                ObjectDataSource1.SelectParameters[0].DefaultValue = ToDate.Value;
+
+                if (!Page.IsPostBack)
+                {
+                    ReportViewer1.LocalReport.Refresh();
+                }
+            }
+        }
+    }
+}

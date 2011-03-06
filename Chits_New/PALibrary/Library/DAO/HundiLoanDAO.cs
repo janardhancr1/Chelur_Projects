@@ -334,7 +334,7 @@ namespace PALibrary.Library.DAO
 
                     CustomerInfo customer = CustomerDAO.GetCustomerInfo(hundiLoanInfo.CustomerID);
                     CityInfo city = CityDAO.GetCityInfo(customer.ResVillage);
-                    hundiLoanInfo.CustomerAddress = "S/D/H " + customer.SonHusband + ", " + city.VillageName + ", " + city.CityName + ", " + city.State + "-" + city.Pincode;
+                    hundiLoanInfo.CustomerAddress = city.VillageName + ", " + city.CityName;
 
                     hundiLoanInfos.Add(hundiLoanInfo);
                 }

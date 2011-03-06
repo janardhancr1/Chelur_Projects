@@ -64,6 +64,7 @@ public partial class TrialBalance : System.Web.UI.Page
     {
         DateTime toDate = new DateTime();
         DBConstant appConstants = (DBConstant)Session["AppConstants"];
+        SelectedType.Value = "1";
 
         if (ViewType.SelectedValue.Equals(DBConstant.MODE_ADD.ToString()))
         {
@@ -167,6 +168,7 @@ public partial class TrialBalance : System.Web.UI.Page
         }
         DateTime toDate = new DateTime();
         DBConstant appConstants = (DBConstant)Session["AppConstants"];
+        SelectedType.Value = "2";
 
         if (ViewType.SelectedValue.Equals(DBConstant.MODE_ADD.ToString()))
         {

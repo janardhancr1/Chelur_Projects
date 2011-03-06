@@ -31,6 +31,9 @@ namespace PALibrary.Library.Model
         public const string QUERY_SELECT = "SELECT Record_ID,ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
         public const string QUERY_SELECT_ALL = "SELECT Record_ID,ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM " + TABLE_NAME;
 
+        public const string QUERY_REPORT_ON_CLOSED = "SELECT Record_ID,ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM " + TABLE_NAME + " WHERE ATKT_Date>=" + PARAM_FROM_DATE + " AND ATKT_Date<=" + PARAM_TO_DATE + " AND closed=" + PARAM_CLOSED;
+        public const string QUERY_REPORT_ALL = "SELECT Record_ID,ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM " + TABLE_NAME + " WHERE ATKT_Date>=" + PARAM_FROM_DATE + " AND ATKT_Date<=" + PARAM_TO_DATE;
+
         public const string QUERY_CLOSE = "UPDATE " + TABLE_NAME + " SET Closed=" + PARAM_CLOSED + ",Closed_Date=" + PARAM_CLOSED_DATE + " WHERE Record_ID=" + PARAM_RECORD_ID;
 
         public const string PARAM_FROM_DATE = "@fromDate";

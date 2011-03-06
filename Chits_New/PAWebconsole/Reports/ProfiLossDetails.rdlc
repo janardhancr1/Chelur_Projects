@@ -6,34 +6,32 @@
         <ConnectString />
         <DataProvider>SQL</DataProvider>
       </ConnectionProperties>
-      <rd:DataSourceID>4fcda533-092e-4161-97bd-6a6432f20139</rd:DataSourceID>
+      <rd:DataSourceID>17bd263d-1e3d-416a-ae77-8d3657077088</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <BottomMargin>0.5in</BottomMargin>
-  <RightMargin>0.25in</RightMargin>
+  <BottomMargin>0.1in</BottomMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <Body>
     <ReportItems>
-      <Textbox Name="textbox18">
-        <Left>2.5in</Left>
-        <Top>0.125in</Top>
-        <rd:DefaultName>textbox18</rd:DefaultName>
+      <Textbox Name="CompName">
+        <Left>0.125in</Left>
+        <Top>0.0625in</Top>
+        <rd:DefaultName>CompName</rd:DefaultName>
         <ZIndex>1</ZIndex>
-        <Width>2.875in</Width>
+        <Width>8.125in</Width>
         <Style>
           <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingBottom>2pt</PaddingBottom>
-          <FontWeight>700</FontWeight>
-          <TextDecoration>Underline</TextDecoration>
+          <FontSize>14pt</FontSize>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
         </Style>
         <CanGrow>true</CanGrow>
         <Height>0.25in</Height>
-        <Value>Hundi Loan Report</Value>
+        <Value>Profit &amp; Loss Detail Report</Value>
       </Textbox>
       <Table Name="table1">
         <Footer>
@@ -44,10 +42,19 @@
                   <ReportItems>
                     <Textbox Name="textbox7">
                       <rd:DefaultName>textbox7</rd:DefaultName>
-                      <ZIndex>15</ZIndex>
+                      <ZIndex>9</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -60,10 +67,44 @@
                   <ReportItems>
                     <Textbox Name="textbox8">
                       <rd:DefaultName>textbox8</rd:DefaultName>
-                      <ZIndex>14</ZIndex>
+                      <ZIndex>8</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Top>Black</Top>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox12">
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -76,10 +117,19 @@
                   <ReportItems>
                     <Textbox Name="textbox9">
                       <rd:DefaultName>textbox9</rd:DefaultName>
-                      <ZIndex>13</ZIndex>
+                      <ZIndex>6</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -90,76 +140,21 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox6">
-                      <rd:DefaultName>textbox6</rd:DefaultName>
-                      <ZIndex>12</ZIndex>
+                    <Textbox Name="textbox15">
+                      <rd:DefaultName>textbox15</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Top>Solid</Top>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox11">
-                      <rd:DefaultName>textbox11</rd:DefaultName>
-                      <ZIndex>11</ZIndex>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox13">
-                      <rd:DefaultName>textbox13</rd:DefaultName>
-                      <ZIndex>10</ZIndex>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox16">
-                      <rd:DefaultName>textbox16</rd:DefaultName>
-                      <ZIndex>9</ZIndex>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox17">
-                      <rd:DefaultName>textbox17</rd:DefaultName>
-                      <ZIndex>8</ZIndex>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -173,99 +168,36 @@
             </TableRow>
           </TableRows>
         </Footer>
-        <Left>0.09375in</Left>
-        <DataSetName>HundiLoanInfo</DataSetName>
-        <Top>0.625in</Top>
-        <Width>7.75in</Width>
+        <Left>0.125in</Left>
+        <DataSetName>DayBookInfo</DataSetName>
+        <Top>1.25in</Top>
+        <Width>8.25in</Width>
         <Details>
           <TableRows>
             <TableRow>
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="HlLoanno">
-                      <rd:DefaultName>HlLoanno</rd:DefaultName>
-                      <ZIndex>7</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!HlLoanno.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="CustomerName">
-                      <rd:DefaultName>CustomerName</rd:DefaultName>
-                      <ZIndex>6</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!CustomerName.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="CustomerAddress">
-                      <rd:DefaultName>CustomerAddress</rd:DefaultName>
-                      <ZIndex>5</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!CustomerAddress.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="LoanDate">
-                      <rd:DefaultName>LoanDate</rd:DefaultName>
+                    <Textbox Name="FromLedger">
+                      <rd:DefaultName>FromLedger</rd:DefaultName>
                       <ZIndex>4</ZIndex>
                       <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingBottom>2pt</PaddingBottom>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Cdate(Fields!LoanDate.Value).ToString("dd/MM/yyyy")</Value>
+                      <Value>=Fields!FromLedger.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="LoanAmount">
-                      <rd:DefaultName>LoanAmount</rd:DefaultName>
+                    <Textbox Name="Debit">
+                      <rd:DefaultName>Debit</rd:DefaultName>
                       <ZIndex>3</ZIndex>
                       <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
                         <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingBottom>2pt</PaddingBottom>
@@ -273,57 +205,16 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!LoanAmount.Value</Value>
+                      <Value>=IIf(Fields!Debit.Value &lt;&gt; "0", CDec(Fields!Debit.Value).ToString("#0.00"), "")</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="Balance">
-                      <rd:DefaultName>Balance</rd:DefaultName>
+                    <Textbox Name="textbox11">
+                      <rd:DefaultName>textbox11</rd:DefaultName>
                       <ZIndex>2</ZIndex>
                       <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <TextAlign>Right</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!Balance.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="InterestPaid">
-                      <rd:DefaultName>InterestPaid</rd:DefaultName>
-                      <ZIndex>1</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=IIf(Cdate(Fields!InterestPaid.Value).Year &gt; 1980,Cdate(Fields!InterestPaid.Value).ToString("dd/MM/yyyy"), "")</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox15">
-                      <rd:DefaultName>textbox15</rd:DefaultName>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingBottom>2pt</PaddingBottom>
                         <PaddingRight>2pt</PaddingRight>
@@ -331,6 +222,38 @@
                       </Style>
                       <CanGrow>true</CanGrow>
                       <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="ToLedger">
+                      <rd:DefaultName>ToLedger</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!ToLedger.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Credit">
+                      <rd:DefaultName>Credit</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Fields!Credit.Value &lt;&gt; "0", CDec(Fields!Credit.Value).ToString("#0.00"),"")</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -341,106 +264,46 @@
         </Details>
         <Style>
           <BorderStyle>
-            <Default>Solid</Default>
+            <Bottom>Solid</Bottom>
+            <Top>Solid</Top>
           </BorderStyle>
+          <BorderWidth>
+            <Bottom>1pt</Bottom>
+            <Top>1pt</Top>
+          </BorderWidth>
+          <BorderColor>
+            <Bottom>Black</Bottom>
+            <Top>Black</Top>
+          </BorderColor>
         </Style>
         <Header>
           <TableRows>
             <TableRow>
               <TableCells>
                 <TableCell>
+                  <ColSpan>2</ColSpan>
                   <ReportItems>
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
-                      <ZIndex>23</ZIndex>
+                      <ZIndex>17</ZIndex>
                       <Style>
                         <BorderStyle>
-                          <Default>Solid</Default>
+                          <Bottom>Solid</Bottom>
                         </BorderStyle>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>HL No</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox2">
-                      <rd:DefaultName>textbox2</rd:DefaultName>
-                      <ZIndex>22</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Customer Name</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox3">
-                      <rd:DefaultName>textbox3</rd:DefaultName>
-                      <ZIndex>21</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Customer Address</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox4">
-                      <rd:DefaultName>textbox4</rd:DefaultName>
-                      <ZIndex>20</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Loan Date</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox5">
-                      <rd:DefaultName>textbox5</rd:DefaultName>
-                      <ZIndex>19</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <TextAlign>Right</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Loan Amount</Value>
+                      <Value>Expenses</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -448,19 +311,111 @@
                   <ReportItems>
                     <Textbox Name="textbox10">
                       <rd:DefaultName>textbox10</rd:DefaultName>
-                      <ZIndex>18</ZIndex>
+                      <ZIndex>16</ZIndex>
                       <Style>
                         <BorderStyle>
-                          <Default>Solid</Default>
+                          <Bottom>Solid</Bottom>
                         </BorderStyle>
-                        <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>Balance</Value>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ColSpan>2</ColSpan>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <TextAlign>Center</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Incomes</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.25in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox18">
+                      <ZIndex>14</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Particulars</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Amount</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -468,37 +423,82 @@
                   <ReportItems>
                     <Textbox Name="textbox14">
                       <rd:DefaultName>textbox14</rd:DefaultName>
-                      <ZIndex>17</ZIndex>
+                      <ZIndex>12</ZIndex>
                       <Style>
                         <BorderStyle>
-                          <Default>Solid</Default>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
                         </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Int Paid upto</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox12">
-                      <rd:DefaultName>textbox12</rd:DefaultName>
-                      <ZIndex>16</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
                       <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Particulars</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox6">
+                      <ZIndex>10</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Amount</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -509,43 +509,33 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>0.75in</Width>
+            <Width>2.375in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.25in</Width>
+            <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.375in</Width>
+            <Width>0.5in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>0.75in</Width>
+            <Width>2.25in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>0.875in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>0.875in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>1in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>0.875in</Width>
+            <Width>1.625in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>0.75in</Height>
+        <Height>1in</Height>
       </Table>
     </ReportItems>
-    <Height>1.75in</Height>
+    <Height>2.375in</Height>
   </Body>
-  <rd:ReportID>9233329d-66b7-4a8a-a3a7-d2bbfc69e2d7</rd:ReportID>
-  <LeftMargin>0.25in</LeftMargin>
+  <rd:ReportID>f543cb26-b253-4620-9b61-de11e70dc250</rd:ReportID>
   <DataSets>
-    <DataSet Name="HundiLoanInfo">
+    <DataSet Name="DayBookInfo">
       <rd:DataSetInfo>
-        <rd:ObjectDataSourceSelectMethod>GetHundiLoanInfos</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>PALibrary.Library.Component.HundiLoanManager, PALibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[PALibrary.Library.Model.HundiLoanInfo] GetHundiLoanInfos(System.DateTime, System.DateTime, System.String, System.String)</rd:ObjectDataSourceSelectMethodSignature>
+        <rd:ObjectDataSourceSelectMethod>GetProfitLossDetails</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>PALibrary.Library.Component.AccountsManager, PALibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[PALibrary.Library.Model.DayBookInfo] GetProfitLossDetails(System.DateTime)</rd:ObjectDataSourceSelectMethodSignature>
       </rd:DataSetInfo>
       <Query>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
@@ -553,84 +543,49 @@
         <DataSourceName>DummyDataSource</DataSourceName>
       </Query>
       <Fields>
-        <Field Name="HlLoanno">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>HlLoanno</DataField>
-        </Field>
-        <Field Name="CustomerID">
-          <rd:TypeName>System.Int32</rd:TypeName>
-          <DataField>CustomerID</DataField>
-        </Field>
-        <Field Name="CoObligent">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>CoObligent</DataField>
-        </Field>
-        <Field Name="CoobligentAddress">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>CoobligentAddress</DataField>
-        </Field>
-        <Field Name="LoanAmount">
-          <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>LoanAmount</DataField>
-        </Field>
-        <Field Name="LoanDate">
+        <Field Name="CurrentDate">
           <rd:TypeName>System.DateTime</rd:TypeName>
-          <DataField>LoanDate</DataField>
+          <DataField>CurrentDate</DataField>
         </Field>
-        <Field Name="Closed">
+        <Field Name="Particulars">
           <rd:TypeName>System.String</rd:TypeName>
-          <DataField>Closed</DataField>
+          <DataField>Particulars</DataField>
         </Field>
-        <Field Name="Rate">
-          <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>Rate</DataField>
+        <Field Name="VoucherType">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>VoucherType</DataField>
         </Field>
-        <Field Name="PayMode">
+        <Field Name="VoucherNo">
           <rd:TypeName>System.Int32</rd:TypeName>
-          <DataField>PayMode</DataField>
+          <DataField>VoucherNo</DataField>
         </Field>
-        <Field Name="ChequeNO">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>ChequeNO</DataField>
-        </Field>
-        <Field Name="BankID">
-          <rd:TypeName>System.Int32</rd:TypeName>
-          <DataField>BankID</DataField>
-        </Field>
-        <Field Name="CustomerName">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>CustomerName</DataField>
-        </Field>
-        <Field Name="AccountNo">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>AccountNo</DataField>
-        </Field>
-        <Field Name="CustomerAddress">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>CustomerAddress</DataField>
-        </Field>
-        <Field Name="Balance">
+        <Field Name="Debit">
           <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>Balance</DataField>
+          <DataField>Debit</DataField>
         </Field>
-        <Field Name="PaidAmount">
+        <Field Name="Credit">
           <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>PaidAmount</DataField>
+          <DataField>Credit</DataField>
         </Field>
-        <Field Name="InterestPaid">
-          <rd:TypeName>System.DateTime</rd:TypeName>
-          <DataField>InterestPaid</DataField>
-        </Field>
-        <Field Name="BankName">
+        <Field Name="Narration">
           <rd:TypeName>System.String</rd:TypeName>
-          <DataField>BankName</DataField>
+          <DataField>Narration</DataField>
+        </Field>
+        <Field Name="FromLedger">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>FromLedger</DataField>
+        </Field>
+        <Field Name="ToLedger">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ToLedger</DataField>
         </Field>
       </Fields>
     </DataSet>
   </DataSets>
   <Code />
-  <Width>8.07292in</Width>
+  <Width>8.5in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>
-  <TopMargin>0.5in</TopMargin>
+  <TopMargin>0.1in</TopMargin>
+  <PageHeight>12in</PageHeight>
 </Report>

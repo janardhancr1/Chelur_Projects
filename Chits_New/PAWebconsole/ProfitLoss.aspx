@@ -2,6 +2,31 @@
     CodeFile="ProfitLoss.aspx.cs" Inherits="ProfitLoss" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script language="Javascript">
+     function openReport()
+       {
+            var fromDate = document.getElementById('<%= FromDate.ClientID %>').value;
+            var toDate;
+            if(document.getElementById("<%= ViewType.ClientID %>").value == "2")
+            {
+                toDate = document.getElementById('<%= UptoYearTo.ClientID %>').value;
+            }
+            else
+            {
+               toDate = document.getElementById('<%= FinYearTo.ClientID %>').innerText; 
+            }
+            if(document.getElementById("<%= SelectedType.ClientID %>").value == "1")
+            {
+                var win = window.open('PrintProfitLoss.aspx?todate=' + toDate + '&fromdate=' + fromDate, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
+                win.focus();
+            }
+            else
+            {
+                var win = window.open('PrintProfitLossDetails.aspx?todate=' + toDate+ '&fromdate=' + fromDate, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
+                win.focus();
+            }
+       }
+    </script>
     <div id="content" class="nav_header" runat="server">
         Profit & Loss</div>
     <table width="100%">
@@ -28,6 +53,7 @@
                 <input type="button" value="Print" onclick="javascript:openReport();"/>
                 <input type="hidden" id="SelectedType" runat="server" />
                 <input type="hidden" id="ToDate" runat="server" />
+                <input type="hidden" id="FromDate" runat="server" />
             </td>
         </tr>
     </table>

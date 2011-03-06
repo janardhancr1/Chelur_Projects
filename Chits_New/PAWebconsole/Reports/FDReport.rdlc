@@ -156,9 +156,9 @@
         </Footer>
         <Left>0.03125in</Left>
         <DataSetName>FixedDepositInfo</DataSetName>
-        <Top>0.875in</Top>
+        <Top>0.625in</Top>
         <ZIndex>1</ZIndex>
-        <Width>8.25in</Width>
+        <Width>7.875in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -494,7 +494,7 @@
             <Width>0.625in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.625in</Width>
+            <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
             <Width>1.5in</Width>
@@ -503,10 +503,10 @@
             <Width>0.75in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1in</Width>
+            <Width>0.875in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1in</Width>
+            <Width>0.875in</Width>
           </TableColumn>
           <TableColumn>
             <Width>0.875in</Width>
@@ -536,7 +536,7 @@
         <Value>Fixed Deposit Report</Value>
       </Textbox>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>1.625in</Height>
   </Body>
   <rd:ReportID>7d6148d7-a25a-45b0-8789-e27786ba96c2</rd:ReportID>
   <LeftMargin>0.25in</LeftMargin>
@@ -609,7 +609,7 @@
     </DataSet>
   </DataSets>
   <Code />
-  <Width>8.375in</Width>
+  <Width>8in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>
   <TopMargin>0.5in</TopMargin>

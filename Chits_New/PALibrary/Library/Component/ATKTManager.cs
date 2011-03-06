@@ -44,6 +44,11 @@ namespace PALibrary.Library.Component
             return ATKTDAO.GetATKTInfos();
         }
 
+        public static List<ATKTInfo> GetATKTInfos(DateTime fromDate, DateTime toDate, string closed)
+        {
+            return ATKTDAO.GetATKTInfos(fromDate, toDate, closed);
+        }
+
         public static void CloseATKT(ATKTInfo aTKTInfo)
         {
             ATKTDAO.CloseATKT(aTKTInfo);

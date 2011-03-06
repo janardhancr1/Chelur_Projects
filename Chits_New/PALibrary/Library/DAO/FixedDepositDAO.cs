@@ -300,7 +300,7 @@ namespace PALibrary.Library.DAO
                     fixedDepositInfo.ReadValues(reader);
                     CustomerInfo customer = CustomerDAO.GetCustomerInfo(fixedDepositInfo.CustomerID);
                     CityInfo city = CityDAO.GetCityInfo(customer.ResVillage);
-                    fixedDepositInfo.CustomerAddress = "S/D/H " + customer.SonHusband + ", " + city.VillageName + ", " + city.CityName + ", " + city.State + "-" + city.Pincode;
+                    fixedDepositInfo.CustomerAddress = city.VillageName + ", " + city.CityName;
 
                     List<FixedInterestInfo> interests = FixedInterestDAO.GetFixedInterestInfos(fixedDepositInfo.FDNO);
                     foreach (FixedInterestInfo interest in interests)
