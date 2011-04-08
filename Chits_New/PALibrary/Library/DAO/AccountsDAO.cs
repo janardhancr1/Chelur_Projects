@@ -592,18 +592,21 @@ namespace PALibrary.Library.DAO
 
             foreach (LedgersInfo ledger in ledgers)
             {
-                DayBookInfo ledgerBalance = null;
-                if (ledger.LedgerName == DBConstant.CASH_LEDGER)
-                    ledgerBalance = GetCashBookOpeningBalance(toDate);
-                else
-                    ledgerBalance = GetBankBookOpeningBalance(toDate, ledger.LedgerID);
-                foreach (DayBookInfo tb in trialBalance)
+                if (ledger.LedgerName != DBConstant.INTEREST_LEDGER && ledger.LedgerName != DBConstant.INTEREST_PAID_LEDGER)
                 {
-                    if (tb.Particulars.Equals(ledger.SubGroupName))
+                    DayBookInfo ledgerBalance = null;
+                    if (ledger.LedgerName == DBConstant.CASH_LEDGER)
+                        ledgerBalance = GetCashBookOpeningBalance(toDate);
+                    else
+                        ledgerBalance = GetBankBookOpeningBalance(toDate, ledger.LedgerID);
+                    foreach (DayBookInfo tb in trialBalance)
                     {
-                        tb.Credit = tb.Credit + ledgerBalance.Credit;
-                        tb.Debit = tb.Debit + ledgerBalance.Debit;
-                        break;
+                        if (tb.Particulars.Equals(ledger.SubGroupName))
+                        {
+                            tb.Credit = tb.Credit + ledgerBalance.Credit;
+                            tb.Debit = tb.Debit + ledgerBalance.Debit;
+                            break;
+                        }
                     }
                 }
             }
@@ -739,19 +742,22 @@ namespace PALibrary.Library.DAO
 
             foreach (LedgersInfo ledger in ledgers)
             {
-                DayBookInfo openingBalance = null;
-                if (ledger.LedgerName == DBConstant.CASH_LEDGER)
-                    openingBalance = GetCashBookOpeningBalance(toDate);
-                else
-                    openingBalance = GetBankBookOpeningBalance(toDate, ledger.LedgerID);
-                if (openingBalance.Credit > 0 || openingBalance.Debit > 0)
+                if (ledger.LedgerName != DBConstant.INTEREST_LEDGER && ledger.LedgerName != DBConstant.INTEREST_PAID_LEDGER)
                 {
-                    detail = new DayBookInfo();
-                    detail.Particulars = ledger.LedgerName;
-                    detail.Narration = ledger.SubGroupName;
-                    detail.Debit = openingBalance.Debit;
-                    detail.Credit = openingBalance.Credit;
-                    trialDetails.Add(detail);
+                    DayBookInfo openingBalance = null;
+                    if (ledger.LedgerName == DBConstant.CASH_LEDGER)
+                        openingBalance = GetCashBookOpeningBalance(toDate);
+                    else
+                        openingBalance = GetBankBookOpeningBalance(toDate, ledger.LedgerID);
+                    if (openingBalance.Credit > 0 || openingBalance.Debit > 0)
+                    {
+                        detail = new DayBookInfo();
+                        detail.Particulars = ledger.LedgerName;
+                        detail.Narration = ledger.SubGroupName;
+                        detail.Debit = openingBalance.Debit;
+                        detail.Credit = openingBalance.Credit;
+                        trialDetails.Add(detail);
+                    }
                 }
             }
 

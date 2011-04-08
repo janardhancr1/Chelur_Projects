@@ -2,6 +2,31 @@
     CodeFile="ViewDetails.aspx.cs" Inherits="ViewDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<script language="Javascript">
+        function checkDate()
+        {
+            var fromDate = new Date(document.getElementById("<%= FromDate.ClientID %>").value);
+            var toDate = new Date(document.getElementById("<%= ToDate.ClientID %>").value);
+            if(toDate < fromDate)
+            {
+                alert("Please check the date period");
+                return false;
+            }
+            return true;
+        }
+        
+        function openReport(type)
+        {
+            var fromDate = document.getElementById('<%= FromDate.ClientID %>').value;
+            var toDate = document.getElementById('<%= ToDate.ClientID %>').value;
+            var ledgerName = document.getElementById('<% =LedgerName.ClientID  %>').innerText;
+            var type = document.getElementById('<%= LedgerType.ClientID %>').value;
+            var ledgerid = document.getElementById('<%= LedgerID.ClientID %>').value;
+           
+            var win = window.open('PrintLedgerDetails.aspx?fromdate=' + fromDate + '&todate=' + toDate + '&ledger=' + ledgerName + '&ledgerID=' + ledgerid + '&type=' + type, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
+            win.focus();
+        }
+    </script>
 <div id="content" class="nav_header">
         View Ledger Details  -
         <asp:Label ID="LedgerName" runat="server"></asp:Label></div>
@@ -23,7 +48,7 @@
                 <asp:Button ID="ViewButton" Text="View" runat="server" OnClick="View_Click" />
                 <input type="button" value="Print" onclick="javascript:openReport();" />
                 <input id="CloseButton" type="button" value="Close" runat="server" />
-                <input type="hidden" id="LedgerID" runat="server" />
+                <input type="hidden" id="LedgerID" runat="server" value="0"/>
                 <input type="hidden" id="LedgerType" runat="server" />
                 <input type="hidden" id="GroupName" runat="server" />
             </td>

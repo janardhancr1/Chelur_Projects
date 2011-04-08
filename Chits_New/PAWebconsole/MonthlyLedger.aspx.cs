@@ -153,11 +153,11 @@ public partial class MonthlyLedger : System.Web.UI.Page
             {
                 if (openingBalance.Credit > 0)
                 {
-                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Debit.ToString("#0.00") + " Cr";
+                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Credit.ToString("#0.00") + " Cr";
                 }
                 else if (openingBalance.Debit > 0)
                 {
-                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Credit.ToString("#0.00") + " Dr";
+                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Debit.ToString("#0.00") + " Dr";
                 }
             }
         }

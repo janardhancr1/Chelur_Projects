@@ -24,6 +24,7 @@ public partial class ViewDetails : System.Web.UI.Page
             if (Request.Params["type"] != null)
             {
                 LedgerType.Value = Request.Params["type"];
+                LedgerID.Value = "0";
                 CloseButton.Attributes.Add("onclick", "window.location.href='MonthlyLedger.aspx?type=" + LedgerType.Value + "';");
             }
             else if (Request.Params["ledgerID"] != null)
@@ -195,7 +196,7 @@ public partial class ViewDetails : System.Web.UI.Page
             cell = new HtmlTableCell();
             cell.InnerText = dayBook.FromLedger.Equals(LedgerName.Text) ? dayBook.ToLedger : dayBook.FromLedger;
             if (GetConditon(dayBook))
-                cell.InnerText = dayBook.Credit > 0 ? DBConstant.PARTICULARS_TO + cell.InnerText : DBConstant.PARTICULARS_BY + cell.InnerText;
+                cell.InnerText = dayBook.Debit > 0 ? DBConstant.PARTICULARS_TO + cell.InnerText : DBConstant.PARTICULARS_BY + cell.InnerText;
             else
                 cell.InnerText = dayBook.Credit > 0 ? DBConstant.PARTICULARS_BY + cell.InnerText : DBConstant.PARTICULARS_TO + cell.InnerText;
 
@@ -269,7 +270,7 @@ public partial class ViewDetails : System.Web.UI.Page
             cell = new HtmlTableCell();
             cell.InnerText = dayBook.Narration;
             if (GetConditon(dayBook))
-                cell.InnerText = dayBook.Credit > 0 ? DBConstant.NARATION_TOWARDS + dayBook.Narration : DBConstant.NARATION_FROM + dayBook.Narration;
+                cell.InnerText = dayBook.Debit > 0 ? DBConstant.NARATION_TOWARDS + dayBook.Narration : DBConstant.NARATION_FROM + dayBook.Narration;
             else
                 cell.InnerText = dayBook.Credit > 0 ? DBConstant.NARATION_FROM + dayBook.Narration : DBConstant.NARATION_TOWARDS + dayBook.Narration;
             cell.Width = "20%";
