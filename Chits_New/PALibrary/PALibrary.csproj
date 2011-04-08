@@ -45,6 +45,7 @@
     <Compile Include="Library\Component\FixedTransManager.cs" />
     <Compile Include="Library\Component\HundiLoanManager.cs" />
     <Compile Include="Library\Component\LedgersManager.cs" />
+    <Compile Include="Library\Component\ReportManager.cs" />
     <Compile Include="Library\Component\UsersManager.cs" />
     <Compile Include="Library\Component\UtilManager.cs" />
     <Compile Include="Library\Component\VouchersManager.cs" />

@@ -728,6 +728,160 @@ namespace PALibrary.Library.Component
         }
 
         #endregion
+
+        #region Print
+        public List<DayBookInfo> GetPrintLedger(DateTime fromDate, DateTime toDate, int ledgerID, string ledgerName, int type)
+        {
+            List<DayBookInfo> details = new List<DayBookInfo>();
+
+            DayBookInfo openingBalance = null;
+
+            if (type == 1)
+                openingBalance = GetHundiLoanOpeningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            else if (type == 2)
+                openingBalance = GetFixedDepositOpeningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            else if (type == 3)
+                openingBalance = GetATKTOpeningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            else if (type == 5)
+                openingBalance = GetInterestOpeningBalance(fromDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
+            else if (type == 6)
+                openingBalance = GetInterestPaidOpeningBalance(fromDate, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_OPENING);
+            else if (type == 7)
+                openingBalance = GetLedgerOpeningBalance(fromDate, ledgerID);
+            else if (type == 8)
+                openingBalance = GetBankBookOpeningBalance(fromDate, ledgerID);
+            else if (type == 9)
+                openingBalance = GetCashBookOpeningBalance(fromDate);
+
+            decimal credit = 0;
+            decimal debit = 0;
+
+
+            List<DayBookInfo> ledgerDetails = null;
+
+            if (type == 1)
+                ledgerDetails = LedgersDAO.GetHundiLoanLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
+            else if (type == 2)
+                ledgerDetails = LedgersDAO.GetFixedDespositLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
+            else if (type == 3)
+                ledgerDetails = LedgersDAO.GetATKTLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
+            else if (type == 5)
+                ledgerDetails = LedgersDAO.GetInterestLedger(fromDate, toDate);
+            else if (type == 6)
+                ledgerDetails = LedgersDAO.GetInterestPaidLedger(fromDate, toDate);
+            /*else if (type == 7)
+                ledgerDetails = LedgersDAO.GetLedgerDetails(fromDate, toDate);
+            else if (type == 8)
+                ledgerDetails = GetBankBook(fromDate, toDate, ledgerName);
+            else if (type == 9)
+                ledgerDetails = GetCashBook(fromDate, toDate, ledgerName);*/
+
+            foreach (DayBookInfo ledgerDetail in ledgerDetails)
+            {
+                if (type != 11 && type != 12)
+                {
+                    decimal detlTemp = ledgerDetail.Debit;
+                    ledgerDetail.Debit = ledgerDetail.Credit;
+                    ledgerDetail.Credit = detlTemp;
+
+                    if (ledgerDetail.Debit > 0)
+                        ledgerDetail.Particulars = DBConstant.PARTICULARS_BY + ledgerDetail.Particulars;
+                    else if (ledgerDetail.Credit > 0)
+                        ledgerDetail.Particulars = DBConstant.PARTICULARS_TO + ledgerDetail.Particulars;
+
+                    details.Add(ledgerDetail);
+
+                    credit = credit + ledgerDetail.Debit;
+                    debit = debit + ledgerDetail.Credit;
+                }
+                else
+                {
+                    if (ledgerDetail.Debit > 0)
+                        ledgerDetail.Particulars = DBConstant.PARTICULARS_BY + ledgerDetail.Particulars;
+                    else if (ledgerDetail.Credit > 0)
+                        ledgerDetail.Particulars = DBConstant.PARTICULARS_TO + ledgerDetail.Particulars;
+
+                    details.Add(ledgerDetail);
+
+                    credit = credit + ledgerDetail.Credit;
+                    debit = debit + ledgerDetail.Debit;
+                }
+            }
+
+            details.Sort(new LedgerComparer());
+            int i = 1;
+            foreach (DayBookInfo detail in details)
+            {
+                detail.ToLedger = i.ToString();
+                i++;
+            }
+
+            if (openingBalance != null)
+            {
+                openingBalance.Particulars = "Opening Balance";
+                if (type != 7 && type != 8 && type != 11 && type != 12 && type != 10)
+                {
+                    decimal openTemp = openingBalance.Debit;
+                    openingBalance.Debit = openingBalance.Credit;
+                    openingBalance.Credit = openTemp;
+                }
+                details.Insert(0, openingBalance);
+            }
+
+            DayBookInfo currentTotal = new DayBookInfo();
+            currentTotal.Particulars = "Current Total";
+            if (type != 11 && type != 12)
+            {
+                currentTotal.Credit = debit;
+                currentTotal.Debit = credit;
+            }
+            else
+            {
+                currentTotal.Credit = credit;
+                currentTotal.Debit = debit;
+            }
+            details.Add(currentTotal);
+
+            if (type != 11 && type != 12)
+            {
+                credit = credit + openingBalance.Debit;
+                debit = debit + openingBalance.Credit;
+            }
+            else
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            DayBookInfo closingBalance = new DayBookInfo();
+            closingBalance.Particulars = "Closing Balance";
+            if (type != 11 && type != 12)
+            {
+                if (credit > debit)
+                {
+                    closingBalance.Debit = credit - debit;
+                }
+                else if (debit > credit)
+                {
+                    closingBalance.Credit = debit - credit;
+                }
+            }
+            else
+            {
+                if (credit > debit)
+                {
+                    closingBalance.Credit = credit - debit;
+                }
+                else if (debit > credit)
+                {
+                    closingBalance.Debit = debit - credit;
+                }
+            }
+            details.Add(closingBalance);
+
+            return details;
+        }
+        #endregion
     }
 
     public class ReportComparer : IComparer<DayBookInfo>

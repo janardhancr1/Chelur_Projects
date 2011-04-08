@@ -99,4 +99,32 @@ namespace PALibrary.Library.Component
 
         #endregion
     }
+
+    public class LedgerComparer : IComparer<DayBookInfo>
+    {
+        public int Compare(DayBookInfo a, DayBookInfo b)
+        {
+            int returnValue = 1;
+            if (a != null && b == null)
+            {
+                returnValue = 0;
+            }
+            else if (a == null && b != null)
+            {
+                returnValue = 0;
+            }
+            else if (a != null && b != null)
+            {
+                if (a.CurrentDate.Equals(b.CurrentDate))
+                {
+                    returnValue = a.VoucherNo.CompareTo(b.VoucherNo);
+                }
+                else
+                {
+                    returnValue = a.CurrentDate.CompareTo(b.CurrentDate);
+                }
+            }
+            return returnValue;
+        }
+    }
 }
