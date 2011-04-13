@@ -23,6 +23,10 @@ public partial class ViewChits : System.Web.UI.Page
                 if (Request.Params["chitNO"] != null)
                 {
                     ChitNO.Text = Request.Params["chitNO"];
+                    Link1.Attributes.Remove("href");
+                    Link1.Attributes.Add("href", "ChitBidding.aspx?chitNO=" + ChitNO.Text);
+                    Link2.Attributes.Remove("href");
+                    Link2.Attributes.Add("href", "ChitBidders.aspx?chitNO=" + ChitNO.Text);
                     //DeleteButton.Visible = true;
 
                     ChitsInfo chitsInfo = ChitsManager.GetChitsInfo(ChitNO.Text);
