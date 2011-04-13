@@ -62,6 +62,8 @@ namespace PALibrary.Library.Utils
 	    public const string VOUCHER_ATKTPAY = "ATKTPAY";
 	    public const string VOUCHER_ATKTRECP = "ATKTRECP";
 
+        public const int START_YEAR = 2000;
+
 	    private int userID;
 	    private string userName;
 	    private DateTime currentDate;
