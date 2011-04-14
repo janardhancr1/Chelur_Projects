@@ -40,6 +40,7 @@
     <Compile Include="Library\Component\ChitsBiddingManager.cs" />
     <Compile Include="Library\Component\ChitsManager.cs" />
     <Compile Include="Library\Component\ChitsParticipateManager.cs" />
+    <Compile Include="Library\Component\ChitsTransManager.cs" />
     <Compile Include="Library\Component\CityManager.cs" />
     <Compile Include="Library\Component\CustomerManager.cs" />
     <Compile Include="Library\Component\FixedDepositManager.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Library\DAO\ChitsBiddingDAO.cs" />
     <Compile Include="Library\DAO\ChitsDAO.cs" />
     <Compile Include="Library\DAO\ChitsParticipateDAO.cs" />
+    <Compile Include="Library\DAO\ChitsTransDAO.cs" />
     <Compile Include="Library\DAO\CityDAO.cs" />
     <Compile Include="Library\DAO\CustomerDAO.cs" />
     <Compile Include="Library\DAO\FixedDepositDAO.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Library\Model\ChitsBiddingInfo.cs" />
     <Compile Include="Library\Model\ChitsInfo.cs" />
     <Compile Include="Library\Model\ChitsParticipateInfo.cs" />
+    <Compile Include="Library\Model\ChitsTransInfo.cs" />
     <Compile Include="Library\Model\CityInfo.cs" />
     <Compile Include="Library\Model\CustomerInfo.cs" />
     <Compile Include="Library\Model\DayBookInfo.cs" />

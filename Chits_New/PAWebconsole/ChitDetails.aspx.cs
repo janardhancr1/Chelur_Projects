@@ -1,8 +1,8 @@
 using System;
 using System.Data;
 using System.Configuration;
-using System.Globalization;
 using System.Collections;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
@@ -16,7 +16,7 @@ using PALibrary.Library.Exception;
 using PALibrary.Library.Model;
 using PALibrary.Library.Utils;
 
-public partial class ChitBidding : System.Web.UI.Page
+public partial class ChitDetails : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -44,21 +44,30 @@ public partial class ChitBidding : System.Web.UI.Page
                     {
                         ChitName.Value = chitsInfo.ChitName;
                         ChitAmount.Value = chitsInfo.ChitAmount.ToString();
-                        NoInstallments.Value = chitsInfo.NoInstallments.ToString();
+
+                        for (int i = 1; i <= chitsInfo.NoInstallments; i++)
+                        {
+                            SelectInstallment.Items.Add(i.ToString());
+                        }
                     }
 
                     int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(0, ChitNO.Value, 0, 0, new DateTime(), 0, 0, 0, 0);
                     totalInstallments += 1;
                     InstallmentNo.Value = totalInstallments.ToString();
-                }
 
-                List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
-                foreach (ChitsParticipateInfo customer in customers)
-                {
-                    ListItem item = new ListItem();
-                    item.Text = customer.CustomerName;
-                    item.Value = customer.CustomerID.ToString();
-                    Customer.Items.Add(item);
+                    List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
+                    foreach (ChitsParticipateInfo customer in customers)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = customer.CustomerName;
+                        item.Value = customer.CustomerID.ToString();
+                        Customer.Items.Add(item);
+
+                        ListItem pItem = new ListItem();
+                        pItem.Text = customer.CustomerName;
+                        pItem.Value = customer.CustomerID.ToString();
+                        Customer_ID.Items.Add(pItem);
+                    }
                 }
             }
         }
@@ -70,22 +79,20 @@ public partial class ChitBidding : System.Web.UI.Page
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        ChitsBiddingInfo chitBidding = new ChitsBiddingInfo();
-        chitBidding.ChitNO = ChitNO.Value;
-        chitBidding.BidDate = DateTime.ParseExact(BidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        chitBidding.BidAmount = Convert.ToDecimal(BidAmount.Value);
-        chitBidding.InstallmentNO = Convert.ToInt32(InstallmentNo.Value);
-        chitBidding.CustomerID = Convert.ToInt32(Customer.SelectedValue);
-        chitBidding.LeftAmount = Convert.ToDecimal(ChitAmount.Value) - Convert.ToDecimal(BidAmount.Value);
+        ChitsTransInfo chitTrans = new ChitsTransInfo();
+        chitTrans.ChitNO = ChitNO.Value;
+        chitTrans.Date = DateTime.ParseExact(PaidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        chitTrans.InstallmentNO = Convert.ToInt32(InstallmentNo.Value);
+        chitTrans.CustomerID = Convert.ToInt32(Customer.SelectedValue);
 
         try
         {
-            ChitsBiddingManager.AddChitsBiddingInfo(chitBidding);
+            ChitsTransManager.AddChitsTransInfo(chitTrans);
         }
         catch (PAException ex)
         {
             throw ex;
         }
-        Response.Redirect("ChitBidding.aspx?chitNO=" + ChitNO.Value);
+        Response.Redirect("ChitDetails.aspx?chitNO=" + ChitNO.Value);
     }
 }

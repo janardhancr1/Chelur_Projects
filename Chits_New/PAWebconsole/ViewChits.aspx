@@ -54,9 +54,9 @@
             <td>
                 &nbsp;</td>
             <td colspan="2">
-                <a href="#" id="A1" runat="server" class="acolor">View Details</a>&nbsp;&nbsp;&nbsp;
-                <a href="#" id="Link1" runat="server" class="acolor">View Bidding</a>&nbsp;&nbsp;&nbsp;
-                <a href="#" id="Link2" runat="server" class="acolor">View Bidder Details</a>
+                <a href="#" id="Link1" runat="server" class="acolor">View Details</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="Link2" runat="server" class="acolor">View Bidding</a>&nbsp;&nbsp;&nbsp;
+                <a href="#" id="Link3" runat="server" class="acolor">View Bidder Details</a>
             </td>
         </tr>
         <tr>
@@ -66,6 +66,8 @@
         </tr>
         <tr>
             <td colspan="3" align="center">
+                <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="button" OnClick="Delete_Click"
+                    OnClientClick="javascript:return confirm('Are you sure to Delete?');" />
                 <input type="button" value="Close" onclick="window.location.href='Chits.aspx';" />
             </td>
         </tr>

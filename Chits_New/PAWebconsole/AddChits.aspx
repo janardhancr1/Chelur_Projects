@@ -15,36 +15,44 @@
             <td>
                 Chit Name</td>
             <td>
-                <asp:TextBox ID="ChitName" runat="server"></asp:TextBox></td>
+                <asp:TextBox ID="ChitName" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ChitName"
+                    Display="Dynamic">*</asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
                 Chit Amount</td>
             <td>
-                <asp:TextBox ID="ChitAmount" runat="server"></asp:TextBox></td>
+                <asp:TextBox ID="ChitAmount" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ChitAmount"
+                    Display="Dynamic">*</asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
                 Installment Amount</td>
             <td>
-                <asp:TextBox ID="InstallmentAmount" runat="server"></asp:TextBox></td>
+                <asp:TextBox ID="InstallmentAmount" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="InstallmentAmount"
+                    Display="Dynamic">*</asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
                 No Installments</td>
             <td>
-                <asp:TextBox ID="NoInstallments" runat="server"></asp:TextBox></td>
+                <asp:TextBox ID="NoInstallments" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="NoInstallments"
+                    Display="Dynamic">*</asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td colspan="2" align="center">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="SingleParagraph"
+                    HeaderText="Please fill all required values." />
                 <asp:Label ID="ErrorMessage" runat="server" ForeColor="Red"></asp:Label>
             </td>
         </tr>
         <tr>
             <td colspan="2" align="center">
                 <asp:Button ID="SaveButton" runat="server" OnClick="Save_Click" Text="Save"></asp:Button>
-                <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="button" OnClick="Delete_Click"
-                    OnClientClick="javascript:return confirm('Are you sure to Delete?');" Visible="false" />
                 <input type="button" value="Close" onclick="window.location.href='Chits.aspx';" />
                 <input type="hidden" id="mode" runat="server" />
                 <input type="hidden" id="RecordID" runat="server" />
