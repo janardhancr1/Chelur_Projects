@@ -39,8 +39,7 @@ public partial class AddChits : System.Web.UI.Page
                 {
                     mode.Value = DBConstant.MODE_UPDATE.ToString();
                     ChitNO.Text = Request.Params["chitNO"];
-                    ActionTitle.Text = "Modify/Delete Chits";
-                    DeleteButton.Visible = true;
+                    ActionTitle.Text = "Modify Chits";
 
                     ChitsInfo chitsInfo = ChitsManager.GetChitsInfo(ChitNO.Text);
                     if (chitsInfo != null)

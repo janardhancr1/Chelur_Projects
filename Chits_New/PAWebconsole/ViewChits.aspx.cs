@@ -24,9 +24,11 @@ public partial class ViewChits : System.Web.UI.Page
                 {
                     ChitNO.Text = Request.Params["chitNO"];
                     Link1.Attributes.Remove("href");
-                    Link1.Attributes.Add("href", "ChitBidding.aspx?chitNO=" + ChitNO.Text);
+                    Link1.Attributes.Add("href", "ChitDetails.aspx?chitNO=" + ChitNO.Text);
                     Link2.Attributes.Remove("href");
-                    Link2.Attributes.Add("href", "ChitBidders.aspx?chitNO=" + ChitNO.Text);
+                    Link2.Attributes.Add("href", "ChitBidding.aspx?chitNO=" + ChitNO.Text);
+                    Link3.Attributes.Remove("href");
+                    Link3.Attributes.Add("href", "ChitBidders.aspx?chitNO=" + ChitNO.Text);
                     //DeleteButton.Visible = true;
 
                     ChitsInfo chitsInfo = ChitsManager.GetChitsInfo(ChitNO.Text);
@@ -39,6 +41,19 @@ public partial class ViewChits : System.Web.UI.Page
                     }
                 }
             }
+        }
+    }
+
+    public void Delete_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            ChitsManager.DeleteChitsInfo(ChitNO.Text);
+            Response.Redirect("Chits.aspx");
+        }
+        catch (PAException pe)
+        {
+            throw new PAException(pe.Message);
         }
     }
 }

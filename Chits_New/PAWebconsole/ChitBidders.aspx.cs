@@ -76,7 +76,7 @@ public partial class ChitBidders : System.Web.UI.Page
         {
             throw ex;
         }
-        GridView1.DataBind();
+        Response.Redirect("ChitBidders.aspx?chitNO=" + ChitNO.Value);
 
     }
 }
