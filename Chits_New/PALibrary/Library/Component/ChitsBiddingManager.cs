@@ -24,14 +24,14 @@ namespace PALibrary.Library.Component
             ChitsBiddingDAO.DeleteChitsBiddingInfo(recordID);
         }
 
-        public static List<ChitsBiddingInfo> SearchChitsBiddingInfo(int recordID, string chitNO, int installmentNO, decimal bidAmount, DateTime bidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
+        public static List<ChitsBiddingInfo> SearchChitsBiddingInfo(int recordID, string chitNO, int installmentNO, decimal paidAmount, DateTime paidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
         {
-            return ChitsBiddingDAO.SearchChitsBiddingInfo(ChitsBiddingDAO.SearchConditions(recordID, chitNO, installmentNO, bidAmount, bidDate, customerID, leftAmount), startRowIndex);
+            return ChitsBiddingDAO.SearchChitsBiddingInfo(ChitsBiddingDAO.SearchConditions(recordID, chitNO, installmentNO, paidAmount, paidDate, customerID, leftAmount), startRowIndex);
         }
 
-        public static int SearchChitsBiddingInfoCount(int recordID, string chitNO, int installmentNO, decimal bidAmount, DateTime bidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
+        public static int SearchChitsBiddingInfoCount(int recordID, string chitNO, int installmentNO, decimal paidAmount, DateTime paidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
         {
-            return ChitsBiddingDAO.SearchChitsBiddingInfoCount(ChitsBiddingDAO.SearchConditions(recordID, chitNO, installmentNO, bidAmount, bidDate, customerID, leftAmount));
+            return ChitsBiddingDAO.SearchChitsBiddingInfoCount(ChitsBiddingDAO.SearchConditions(recordID, chitNO, installmentNO, paidAmount, paidDate, customerID, leftAmount));
         }
 
         public static ChitsBiddingInfo GetChitsBiddingInfo(int recordID)

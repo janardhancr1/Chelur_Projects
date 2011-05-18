@@ -24,14 +24,14 @@ namespace PALibrary.Library.Component
             ChitsDAO.DeleteChitsInfo(chitNO);
         }
 
-        public static List<ChitsInfo> SearchChitsInfo(string chitNO, string chitName, decimal chitAmount, decimal installmentAmount, decimal noInstallments, string closed, int startRowIndex, int maximumRows)
+        public static List<ChitsInfo> SearchChitsInfo(string chitNO, string chitName, decimal chitAmount, int bidDate, decimal installmentAmount, decimal noInstallments, string closed, int startRowIndex, int maximumRows)
         {
-            return ChitsDAO.SearchChitsInfo(ChitsDAO.SearchConditions(chitNO, chitName, chitAmount, installmentAmount, noInstallments, closed), startRowIndex);
+            return ChitsDAO.SearchChitsInfo(ChitsDAO.SearchConditions(chitNO, chitName, chitAmount, bidDate, installmentAmount, noInstallments, closed), startRowIndex);
         }
 
-        public static int SearchChitsInfoCount(string chitNO, string chitName, decimal chitAmount, decimal installmentAmount, decimal noInstallments, string closed, int startRowIndex, int maximumRows)
+        public static int SearchChitsInfoCount(string chitNO, string chitName, decimal chitAmount, int bidDate, decimal installmentAmount, decimal noInstallments, string closed, int startRowIndex, int maximumRows)
         {
-            return ChitsDAO.SearchChitsInfoCount(ChitsDAO.SearchConditions(chitNO, chitName, chitAmount, installmentAmount, noInstallments, closed));
+            return ChitsDAO.SearchChitsInfoCount(ChitsDAO.SearchConditions(chitNO, chitName, chitAmount, bidDate, installmentAmount, noInstallments, closed));
         }
 
         public static ChitsInfo GetChitsInfo(string chitNO)
