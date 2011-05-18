@@ -68,7 +68,7 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static SearchHelper SearchConditions(string chitNO, string chitName, decimal chitAmount, decimal installmentAmount, decimal noInstallments, string closed)
+        public static SearchHelper SearchConditions(string chitNO, string chitName, decimal chitAmount, int bidDate, decimal installmentAmount, decimal noInstallments, string closed)
         {
             try
             {
@@ -96,6 +96,12 @@ namespace PALibrary.Library.DAO
                 {
                     conditions.Add("Chit_Amount = " + ChitsInfo.PARAM_CHIT_AMOUNT);
                     parameters.Add(DBManager.GetParameter(ChitsInfo.PARAM_CHIT_AMOUNT, chitAmount));
+                }
+
+                if (bidDate > 0)
+                {
+                    conditions.Add("Bid_Date = " + ChitsInfo.PARAM_BID_DATE);
+                    parameters.Add(DBManager.GetParameter(ChitsInfo.PARAM_BID_DATE, bidDate));
                 }
 
                 if (installmentAmount > 0)

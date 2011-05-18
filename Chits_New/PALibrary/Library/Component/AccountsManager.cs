@@ -752,6 +752,8 @@ namespace PALibrary.Library.Component
                 openingBalance = GetBankBookOpeningBalance(fromDate, ledgerID);
             else if (type == 9)
                 openingBalance = GetCashBookOpeningBalance(fromDate);
+            else
+                openingBalance = GetLedgerOpeningBalance(fromDate, ledgerID);
 
             decimal credit = 0;
             decimal debit = 0;
@@ -769,12 +771,14 @@ namespace PALibrary.Library.Component
                 ledgerDetails = LedgersDAO.GetInterestLedger(fromDate, toDate);
             else if (type == 6)
                 ledgerDetails = LedgersDAO.GetInterestPaidLedger(fromDate, toDate);
-            /*else if (type == 7)
-                ledgerDetails = LedgersDAO.GetLedgerDetails(fromDate, toDate);
+            else if (type == 7)
+                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
             else if (type == 8)
-                ledgerDetails = GetBankBook(fromDate, toDate, ledgerName);
+                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
             else if (type == 9)
-                ledgerDetails = GetCashBook(fromDate, toDate, ledgerName);*/
+                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
+            else
+                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
 
             foreach (DayBookInfo ledgerDetail in ledgerDetails)
             {

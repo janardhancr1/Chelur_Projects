@@ -29,6 +29,15 @@
         </tr>
         <tr>
             <td>
+                Bid Date</td>
+            <td>
+                <asp:DropDownList ID="BidDate" runat="server" Width="153px">
+                    <asp:ListItem Value="">--Select--</asp:ListItem>
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="BidDate">*</asp:RequiredFieldValidator></td>
+        </tr>
+        <tr>
+            <td>
                 Installment Amount</td>
             <td>
                 <asp:TextBox ID="InstallmentAmount" runat="server"></asp:TextBox>

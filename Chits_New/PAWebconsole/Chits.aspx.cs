@@ -49,6 +49,11 @@ public partial class Chits : System.Web.UI.Page
                 item.Value = DBConstant.TYPE_ALL;
                 item.Text = "All";
                 ClosedType.Items.Add(item);
+
+                for (int i = 1; i < 31; i++)
+                {
+                    BidDate.Items.Add(i.ToString());
+                }
             }
         }
     }

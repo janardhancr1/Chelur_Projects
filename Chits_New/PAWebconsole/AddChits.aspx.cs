@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.UI.WebControls;
 
 using PALibrary.Library.Component;
@@ -20,6 +21,10 @@ public partial class AddChits : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
+                for (int i = 1; i < 31; i++)
+                {
+                    BidDate.Items.Add(i.ToString());
+                }
                 mode.Value = DBConstant.MODE_ADD.ToString();
 
                 string nextNo = UtilManager.GetNextSerial("Chits", "Chit_No");
@@ -46,6 +51,7 @@ public partial class AddChits : System.Web.UI.Page
                     {
                         ChitName.Text = chitsInfo.ChitName;
                         ChitAmount.Text = chitsInfo.ChitAmount.ToString();
+                        BidDate.SelectedValue = chitsInfo.BidDate.ToString();
                         InstallmentAmount.Text = chitsInfo.InstallmentAmount.ToString();
                         NoInstallments.Text = chitsInfo.NoInstallments.ToString();
                     }
@@ -60,10 +66,11 @@ public partial class AddChits : System.Web.UI.Page
 
         chitsInfo.ChitNO = ChitNO.Text;
         chitsInfo.ChitName = ChitName.Text;
+        if (BidDate.SelectedValue.Trim().Length > 0) chitsInfo.BidDate = Convert.ToInt32(BidDate.SelectedValue);
         if (ChitAmount.Text.Trim().Length > 0) chitsInfo.ChitAmount = Convert.ToDecimal(ChitAmount.Text);
         if (InstallmentAmount.Text.Trim().Length > 0) chitsInfo.InstallmentAmount = Convert.ToDecimal(InstallmentAmount.Text);
         if (NoInstallments.Text.Trim().Length > 0) chitsInfo.NoInstallments = Convert.ToDecimal(NoInstallments.Text);
-        chitsInfo.Closed = DBConstant.TYPE_PENDING;
+        chitsInfo.ClosedType = DBConstant.TYPE_PENDING;
 
         try
         {

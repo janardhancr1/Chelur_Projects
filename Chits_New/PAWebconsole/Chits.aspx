@@ -26,6 +26,14 @@
                         <td>
                             <asp:TextBox ID="ChitAmount" runat="server"></asp:TextBox></td>
                     </tr>
+                    <tr>
+                        <td>
+                            Bid Date</td>
+                        <td>
+                            <asp:DropDownList ID="BidDate" runat="server" Width="153px">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                    </tr>
                 </table>
             </td>
             <td valign="top" width="50%">
@@ -82,6 +90,7 @@
                             DataNavigateUrlFormatString="AddChits.aspx?chitNO={0}" SortExpression="ChitNO" />
                         <asp:BoundField DataField="ChitName" HeaderText="ChitName" SortExpression="ChitName" />
                         <asp:BoundField DataField="ChitAmount" HeaderText="ChitAmount" SortExpression="ChitAmount" />
+                        <asp:BoundField DataField="BidDate" HeaderText="BidDate" SortExpression="BidDate" />
                         <asp:BoundField DataField="InstallmentAmount" HeaderText="InstallmentAmount" SortExpression="InstallmentAmount" />
                         <asp:BoundField DataField="NoInstallments" HeaderText="NoInstallments" SortExpression="NoInstallments" />
                         <asp:BoundField DataField="ClosedType" HeaderText="Closed" SortExpression="Closed" />
@@ -102,6 +111,8 @@
                         <asp:ControlParameter ControlID="ChitNO" Name="chitNO" PropertyName="Text" Type="String" />
                         <asp:ControlParameter ControlID="ChitName" Name="chitName" PropertyName="Text" Type="String" />
                         <asp:ControlParameter ControlID="ChitAmount" Name="chitAmount" PropertyName="Text"
+                            Type="Decimal" />
+                        <asp:ControlParameter ControlID="BidDate" Name="bidDate" PropertyName="SelectedValue"
                             Type="Decimal" />
                         <asp:ControlParameter ControlID="InstallmentAmount" Name="installmentAmount" PropertyName="Text"
                             Type="Decimal" />

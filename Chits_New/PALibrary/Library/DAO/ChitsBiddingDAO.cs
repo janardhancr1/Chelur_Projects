@@ -68,7 +68,7 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static SearchHelper SearchConditions(int recordID, string chitNO, int installmentNO, decimal bidAmount, DateTime bidDate, int customerID, decimal leftAmount)
+        public static SearchHelper SearchConditions(int recordID, string chitNO, int installmentNO, decimal paidAmount, DateTime paidDate, int customerID, decimal leftAmount)
         {
             try
             {
@@ -95,18 +95,18 @@ namespace PALibrary.Library.DAO
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_INSTALLMENT_NO, installmentNO));
                 }
 
-                if (bidAmount > 0)
+                if (paidAmount > 0)
                 {
-                    conditions.Add("Bid_Amount = " + ChitsBiddingInfo.PARAM_BID_AMOUNT);
-                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_BID_AMOUNT, bidAmount));
+                    conditions.Add("Bid_Amount = " + ChitsBiddingInfo.PARAM_PAID_AMOUNT);
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_AMOUNT, paidAmount));
                 }
 
-                if (bidDate != null)
+                if (paidDate != null)
                 {
-                    if (bidDate.Year > 1980)
+                    if (paidDate.Year > 1980)
                     {
-                        conditions.Add("Bid_Date = " + ChitsBiddingInfo.PARAM_BID_DATE);
-                        parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_BID_DATE, bidDate));
+                        conditions.Add("Bid_Date = " + ChitsBiddingInfo.PARAM_PAID_DATE);
+                        parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, paidDate));
                     }
                 }
 

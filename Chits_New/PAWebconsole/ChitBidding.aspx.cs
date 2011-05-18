@@ -72,8 +72,8 @@ public partial class ChitBidding : System.Web.UI.Page
     {
         ChitsBiddingInfo chitBidding = new ChitsBiddingInfo();
         chitBidding.ChitNO = ChitNO.Value;
-        chitBidding.BidDate = DateTime.ParseExact(BidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        chitBidding.BidAmount = Convert.ToDecimal(BidAmount.Value);
+        chitBidding.PaidDate = DateTime.ParseExact(BidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        chitBidding.PaidAmount = Convert.ToDecimal(BidAmount.Value);
         chitBidding.InstallmentNO = Convert.ToInt32(InstallmentNo.Value);
         chitBidding.CustomerID = Convert.ToInt32(Customer.SelectedValue);
         chitBidding.LeftAmount = Convert.ToDecimal(ChitAmount.Value) - Convert.ToDecimal(BidAmount.Value);

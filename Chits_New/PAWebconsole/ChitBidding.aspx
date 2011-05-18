@@ -39,7 +39,7 @@
                 <table width="100%">
                     <tr>
                         <td>
-                            Bid Date
+                            Paid Date
                         </td>
                         <td>
                             <input type="text" id="BidDate" runat="Server" onfocus="showCalendarControl(this);"
@@ -61,7 +61,7 @@
                     </tr>
                     <tr>
                         <td>
-                            Bid Ammount
+                            Paid Ammount
                         </td>
                         <td>
                             <input type="text" id="BidAmount" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);" />
@@ -108,10 +108,10 @@
                         </table>
                     </EmptyDataTemplate>
                     <Columns>
-                        <asp:BoundField HeaderText="Bid Date" DataField="BidDate" SortExpression="BidDate"
+                        <asp:BoundField HeaderText="Paid Date" DataField="BidDate" SortExpression="BidDate"
                             HtmlEncode="false" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField HeaderText="Installment No" DataField="InstallmentNO" SortExpression="InstallmentNO" />
-                        <asp:BoundField HeaderText="Bid Amount" DataField="BidAmount" SortExpression="BidAmount"
+                        <asp:BoundField HeaderText="Paid Amount" DataField="BidAmount" SortExpression="BidAmount"
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
                         <asp:BoundField HeaderText="Left Amount" DataField="LeftAmount" SortExpression="LeftAmount"
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
