@@ -41,9 +41,9 @@ namespace PALibrary.Library.Model
         public const string PARAM_TRAN_TYPE2 = DBConstant.DB_PARAM + "Tran_Type2";
         public const string QUERY_ACCOUNT_OPENING_DEBIT = "SELECT COALESCE(SUM(Amount), 0) AS Amount FROM at_kt WHERE (Tran_Type=" + PARAM_TRAN_TYPE2 + " AND ATKT_Date < " + PARAM_ATKT_DATE + ") OR (Tran_Type=" + PARAM_TRAN_TYPE + " AND Closed =" + PARAM_CLOSED + " AND Closed_Date < " + PARAM_CLOSED_DATE + ")";
         public const string QUERY_ACCOUNT_OPENING_CREDIT = "SELECT COALESCE(SUM(Amount), 0) AS Amount FROM at_kt WHERE (Tran_Type=" + PARAM_TRAN_TYPE + " AND  ATKT_Date < " + PARAM_ATKT_DATE + ") OR (Tran_Type=" + PARAM_TRAN_TYPE2 + " AND Closed =" + PARAM_CLOSED + " AND Closed_Date < " + PARAM_CLOSED_DATE + ")";
-        
-        public const string QUERY_SELECT_PERIOD = "SELECT ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM at_kt WHERE (ATKT_Date >= " + PARAM_FROM_DATE + " AND ATKT_Date <= " + PARAM_TO_DATE + ") OR (Closed =" + PARAM_CLOSED + " AND Closed_Date >= " + PARAM_FROM_DATE + " AND Closed_Date <= " + PARAM_TO_DATE+ ")";
-        public const string QUERY_SELECT_PERIOD_CLOSED = "SELECT ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM at_kt WHERE Closed =" + PARAM_CLOSED + " AND Closed_Date >= " + PARAM_FROM_DATE + " AND Closed_Date <= " + PARAM_TO_DATE;
+
+        public const string QUERY_SELECT_PERIOD = "SELECT ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM at_kt WHERE (ATKT_Date >= " + PARAM_FROM_DATE + " AND ATKT_Date <= " + PARAM_TO_DATE + ") OR (Closed =" + PARAM_CLOSED + " AND Closed_Date >= " + PARAM_FROM_DATE + " AND Closed_Date <= " + PARAM_TO_DATE + ") ORDER BY ATKT_Date";
+        public const string QUERY_SELECT_PERIOD_CLOSED = "SELECT ATKT_No,Party_Name,ATKT_Date,Tran_Type,Amount,Remarks,Closed,Closed_Date FROM at_kt WHERE Closed =" + PARAM_CLOSED + " AND Closed_Date >= " + PARAM_FROM_DATE + " AND Closed_Date <= " + PARAM_TO_DATE + " ORDER BY ATKT_Date"; 
         
         private int recordID;
         private string aTKTNO;

@@ -9,8 +9,7 @@
       <rd:DataSourceID>f5672003-57fb-4606-83d4-0b04c1a653ad</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <BottomMargin>1in</BottomMargin>
-  <RightMargin>1in</RightMargin>
+  <BottomMargin>0.5in</BottomMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -69,7 +68,7 @@
         <Top>0.125in</Top>
         <rd:DefaultName>LedgerName</rd:DefaultName>
         <ZIndex>2</ZIndex>
-        <Width>8.25in</Width>
+        <Width>8in</Width>
         <Style>
           <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -304,7 +303,7 @@
         <Left>0.125in</Left>
         <DataSetName>DayBookInfo</DataSetName>
         <Top>0.875in</Top>
-        <Width>8.25in</Width>
+        <Width>8.125in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -749,13 +748,13 @@
             <Width>0.375in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>0.75in</Width>
+            <Width>0.875in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.125in</Width>
+            <Width>2in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.125in</Width>
+            <Width>1in</Width>
           </TableColumn>
           <TableColumn>
             <Width>0.625in</Width>
@@ -776,7 +775,6 @@
     <Height>1.75in</Height>
   </Body>
   <rd:ReportID>713f7719-05b6-45d1-a19a-88ac67b09faa</rd:ReportID>
-  <LeftMargin>1in</LeftMargin>
   <DataSets>
     <DataSet Name="DayBookInfo">
       <rd:DataSetInfo>
@@ -855,8 +853,9 @@
       </Fields>
     </DataSet>
   </DataSets>
-  <Width>8.5in</Width>
+  <Code />
+  <Width>8.375in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>
-  <TopMargin>1in</TopMargin>
+  <TopMargin>0.5in</TopMargin>
 </Report>

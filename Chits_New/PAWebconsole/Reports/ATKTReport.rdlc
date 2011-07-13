@@ -10,7 +10,6 @@
     </DataSource>
   </DataSources>
   <BottomMargin>1in</BottomMargin>
-  <RightMargin>1in</RightMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -721,7 +720,6 @@
     <Height>1.625in</Height>
   </Body>
   <rd:ReportID>94deac3d-e946-40d4-b8ad-57da3d9dbc73</rd:ReportID>
-  <LeftMargin>1in</LeftMargin>
   <DataSets>
     <DataSet Name="ATKTInfo">
       <rd:DataSetInfo>
@@ -778,6 +776,7 @@
       </Fields>
     </DataSet>
   </DataSets>
+  <Code />
   <Width>8.5in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>

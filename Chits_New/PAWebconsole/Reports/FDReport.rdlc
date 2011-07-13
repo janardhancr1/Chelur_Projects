@@ -10,7 +10,6 @@
     </DataSource>
   </DataSources>
   <BottomMargin>0.5in</BottomMargin>
-  <RightMargin>0.1in</RightMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -539,7 +538,6 @@
     <Height>1.625in</Height>
   </Body>
   <rd:ReportID>7d6148d7-a25a-45b0-8789-e27786ba96c2</rd:ReportID>
-  <LeftMargin>0.25in</LeftMargin>
   <DataSets>
     <DataSet Name="FixedDepositInfo">
       <rd:DataSetInfo>
