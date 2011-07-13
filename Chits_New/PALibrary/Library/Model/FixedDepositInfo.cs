@@ -40,8 +40,8 @@ namespace PALibrary.Library.Model
 
         public const string PARAM_FROM_DATE = "@fromDate";
         public const string PARAM_TO_DATE = "@toDate";
-        public const string QUERY_SELECT_PERIOD = "SELECT FD_No,Amount,Start_Date,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND Start_Date>=" + PARAM_FROM_DATE + " AND Start_Date<=" + PARAM_TO_DATE;
-        public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Amount,Start_Date,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND Start_Date>=" + PARAM_FROM_DATE + " AND Start_Date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME;
+        public const string QUERY_SELECT_PERIOD = "SELECT FD_No,Amount,Start_Date,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND Start_Date>=" + PARAM_FROM_DATE + " AND Start_Date<=" + PARAM_TO_DATE + " ORDER BY Start_Date";
+        public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Amount,Start_Date,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND Start_Date>=" + PARAM_FROM_DATE + " AND Start_Date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME + " ORDER BY Start_Date";
 
         private string fDNO;
         private int customerID;

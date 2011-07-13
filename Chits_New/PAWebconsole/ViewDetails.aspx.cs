@@ -155,13 +155,27 @@ public partial class ViewDetails : System.Web.UI.Page
 
         if (openingBalance != null)
         {
-            if (openingBalance.Credit > 0)
+            if (LedgerType.Value == "1" || LedgerType.Value == "2")
             {
-                OpenCredit.Text = openingBalance.Credit.ToString("#0.00");
+                if (openingBalance.Credit > 0)
+                {
+                    OpenDebit.Text = openingBalance.Credit.ToString("#0.00");
+                }
+                else if (openingBalance.Debit > 0)
+                {
+                    OpenCredit.Text = openingBalance.Debit.ToString("#0.00");
+                }
             }
-            else if (openingBalance.Debit > 0)
+            else
             {
-                OpenDebit.Text = openingBalance.Debit.ToString("#0.00");
+                if (openingBalance.Credit > 0)
+                {
+                    OpenCredit.Text = openingBalance.Credit.ToString("#0.00");
+                }
+                else if (openingBalance.Debit > 0)
+                {
+                    OpenDebit.Text = openingBalance.Debit.ToString("#0.00");
+                }
             }
         }
 

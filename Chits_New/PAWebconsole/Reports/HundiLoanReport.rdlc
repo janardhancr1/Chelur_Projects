@@ -10,7 +10,6 @@
     </DataSource>
   </DataSources>
   <BottomMargin>0.5in</BottomMargin>
-  <RightMargin>0.25in</RightMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -539,7 +538,6 @@
     <Height>1.75in</Height>
   </Body>
   <rd:ReportID>9233329d-66b7-4a8a-a3a7-d2bbfc69e2d7</rd:ReportID>
-  <LeftMargin>0.25in</LeftMargin>
   <DataSets>
     <DataSet Name="HundiLoanInfo">
       <rd:DataSetInfo>

@@ -45,8 +45,8 @@ namespace PALibrary.Library.Model
 
         public const string PARAM_FROM_DATE = "@fromDate";
         public const string PARAM_TO_DATE = "@toDate";
-        public const string QUERY_SELECT_PERIOD = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE;
-        public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME;
+        public const string QUERY_SELECT_PERIOD = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE + " ORDER BY loan_date";
+        public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME + " ORDER BY loan_date";
 
         private string hlLoanno;
         private int customerID;
