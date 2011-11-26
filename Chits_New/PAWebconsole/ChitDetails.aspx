@@ -2,8 +2,22 @@
     CodeFile="ChitDetails.aspx.cs" Inherits="ChitDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script language="javascript">
+        function unpaidClick()
+        {
+            if(document.getElementById('<%= SelectInstallment.ClientID %>').value == "")
+            {
+                alert("Please select Installment No");
+                return false;
+            }
+            else
+            {
+                window.location.href = "ChitUnpaid.aspx?chitNO=" + document.getElementById('<%= ChitNO.ClientID %>').value + "&insNO=" + document.getElementById('<%= SelectInstallment.ClientID %>').value;
+            }
+        }
+    </script>
     <div id="content" class="nav_header" runat="server">
-        Chit Members</div>
+        Chit Details</div>
     <table class="data_table" width="98%" align="center">
         <tr>
             <td width="50%" valign="top">
@@ -26,6 +40,12 @@
                             Chit Amount</td>
                         <td>
                             <input type="text" id="ChitAmount" runat="server" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Chit Commission</td>
+                        <td>
+                            <input type="text" id="ChitCommission" runat="server" readonly /></td>
                     </tr>
                 </table>
             </td>
@@ -67,6 +87,17 @@
                     </tr>
                     <tr>
                         <td>
+                            Installment Amount
+                        </td>
+                        <td>
+                            <input type="text" id="InstallmentAmount" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);"
+                                readonly />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="InstallmentAmount"
+                                Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             &nbsp;</td>
                         <td>
                             <asp:Button ID="AddButton" Text="Add" OnClick="Add_Click" runat="server" /></td>
@@ -81,14 +112,27 @@
         </tr>
         <tr>
             <td colspan="2">
-                Participator :
-                <asp:DropDownList ID="Customer_ID" runat="server" Width="153px" AutoPostBack="true">
-                    <asp:ListItem Value="">--Select--</asp:ListItem>
-                </asp:DropDownList>
-                Installment No :
-                <asp:DropDownList ID="SelectInstallment" runat="server" Width="153px" AutoPostBack="true">
-                    <asp:ListItem Value="">--Select--</asp:ListItem>
-                </asp:DropDownList>
+                <table width="100%">
+                    <tr>
+                        <td>
+                            Participator :
+                            <asp:DropDownList ID="Customer_ID" runat="server" Width="153px" AutoPostBack="true">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            Installment No :
+                            <asp:DropDownList ID="SelectInstallment" runat="server" Width="153px" AutoPostBack="true">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            <a href="#" onclick="javascript:unpaidClick();">Unpaid Members</a>&nbsp;&nbsp;
+                            <a href="ChitBidders.aspx?chitNO=<%= ChitNO.Value %>&t=bid">Bidders</a>&nbsp;&nbsp;
+                            <a href="ChitBidders.aspx?chitNO=<%= ChitNO.Value %>&t=unbid">UnBidders</a>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr>

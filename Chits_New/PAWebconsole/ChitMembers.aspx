@@ -1,9 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/PAMaster.master" AutoEventWireup="true"
-    CodeFile="ChitBidding.aspx.cs" Inherits="ChitBidding" %>
+    CodeFile="ChitMembers.aspx.cs" Inherits="ChitMembers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div id="content" class="nav_header" runat="server">
-        Chit Bidding</div>
+        Chit Members</div>
     <table class="data_table" width="98%" align="center">
         <tr>
             <td width="50%" valign="top">
@@ -27,57 +27,20 @@
                         <td>
                             <input type="text" id="ChitAmount" runat="server" readonly /></td>
                     </tr>
-                    <tr>
-                        <td>
-                            No of Installment</td>
-                        <td>
-                            <input type="text" id="NoInstallments" runat="server" readonly /></td>
-                    </tr>
                 </table>
             </td>
             <td width="50%" valign="top">
                 <table width="100%">
                     <tr>
                         <td>
-                            Paid Date
+                            Customer
                         </td>
-                        <td>
-                            <input type="text" id="BidDate" runat="Server" onfocus="showCalendarControl(this);"
-                                readonly />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="BidDate"
-                                Display="Dynamic">*</asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Bidder</td>
                         <td>
                             <asp:DropDownList ID="Customer" runat="server" Width="153px">
                                 <asp:ListItem Value="">--Select--</asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Customer"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Customer"
                                 Display="Dynamic">Select customer</asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Paid Ammount
-                        </td>
-                        <td>
-                            <input type="text" id="BidAmount" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);" />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="BidAmount"
-                                Display="Dynamic">*</asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Installment No
-                        </td>
-                        <td>
-                            <input type="text" id="InstallmentNo" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);"
-                                readonly />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="InstallmentNo"
-                                Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -103,23 +66,15 @@
                         <table>
                             <tr>
                                 <td>
-                                    <font color="red" size="2">No Biddings found.</font></td>
+                                    <font color="red" size="2">No Receipts found.</font></td>
                             </tr>
                         </table>
                     </EmptyDataTemplate>
                     <Columns>
-                        <asp:BoundField HeaderText="Paid Date" DataField="PaidDate" SortExpression="PaidDate"
-                            HtmlEncode="false" DataFormatString="{0:dd/MM/yyyy}" />
-                        <asp:BoundField HeaderText="Installment No" DataField="InstallmentNO" SortExpression="InstallmentNO" />
-                        <asp:BoundField HeaderText="Paid Amount" DataField="PaidAmount" SortExpression="BidAmount"
-                            ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
-                        <asp:BoundField HeaderText="Left Amount" DataField="LeftAmount" SortExpression="LeftAmount"
-                            ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
-                        <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName"
-                            ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
                         <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
-                            DataNavigateUrlFormatString="ChitBidding.aspx?chitNO={0}&transid={1}" />
+                            DataNavigateUrlFormatString="ChitBidders.aspx?chitNO={0}&transid={1}" />
                     </Columns>
                     <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
                     <AlternatingRowStyle BackColor="Beige" />
@@ -128,8 +83,8 @@
                         NextPageImageUrl="~/images/arrow-right.gif" PreviousPageImageUrl="~/images/arrow-left.gif"
                         Mode="NextPreviousFirstLast" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetChitsBiddingInfos"
-                    TypeName="PALibrary.Library.Component.ChitsBiddingManager">
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetChitsParticipateInfos"
+                    TypeName="PALibrary.Library.Component.ChitsParticipateManager">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ChitNO" PropertyName="Value" Name="chitNo" Type="string" />
                     </SelectParameters>

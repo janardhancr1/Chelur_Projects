@@ -54,6 +54,7 @@ public partial class AddChits : System.Web.UI.Page
                         BidDate.SelectedValue = chitsInfo.BidDate.ToString();
                         InstallmentAmount.Text = chitsInfo.InstallmentAmount.ToString();
                         NoInstallments.Text = chitsInfo.NoInstallments.ToString();
+                        ChitCommission.Text = chitsInfo.ChitCommission.ToString();
                     }
                 }
             }
@@ -70,6 +71,7 @@ public partial class AddChits : System.Web.UI.Page
         if (ChitAmount.Text.Trim().Length > 0) chitsInfo.ChitAmount = Convert.ToDecimal(ChitAmount.Text);
         if (InstallmentAmount.Text.Trim().Length > 0) chitsInfo.InstallmentAmount = Convert.ToDecimal(InstallmentAmount.Text);
         if (NoInstallments.Text.Trim().Length > 0) chitsInfo.NoInstallments = Convert.ToDecimal(NoInstallments.Text);
+        if (ChitCommission.Text.Trim().Length > 0) chitsInfo.ChitCommission = Convert.ToDecimal(ChitCommission.Text);
         chitsInfo.ClosedType = DBConstant.TYPE_PENDING;
 
         try

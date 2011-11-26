@@ -53,6 +53,14 @@
                     Display="Dynamic">*</asp:RequiredFieldValidator></td>
         </tr>
         <tr>
+            <td>
+                Chit Commission</td>
+            <td>
+                <asp:TextBox ID="ChitCommission" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ChitCommission"
+                    Display="Dynamic">*</asp:RequiredFieldValidator></td>
+        </tr>
+        <tr>
             <td colspan="2" align="center">
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="SingleParagraph"
                     HeaderText="Please fill all required values." />

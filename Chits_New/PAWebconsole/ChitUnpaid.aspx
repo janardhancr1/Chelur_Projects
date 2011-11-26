@@ -1,9 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/PAMaster.master" AutoEventWireup="true"
-    CodeFile="ChitBidders.aspx.cs" Inherits="ChitBidders" %>
+    CodeFile="ChitUnpaid.aspx.cs" Inherits="ChitUnpaid" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div id="content" class="nav_header" runat="server">
-        Chit Bidders</div>
+        Unpaid Members</div>
     <table width="100%">
         <tr>
             <td>
@@ -25,6 +25,12 @@
                 <input type="text" id="ChitAmount" runat="server" readonly /></td>
         </tr>
         <tr>
+            <td>
+                Installment No</td>
+            <td>
+                <input type="text" id="InstallmentNo" runat="server" readonly /></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <hr />
             </td>
@@ -35,7 +41,6 @@
                     <tr class="nav_header">
                         <th align="left">CustomerName</th>
                         <th align="left">CustomerAddress</th>
-                        <th align="left">Installment No</th>
                     </tr>
                 </table>
             </td>
@@ -56,4 +61,5 @@
             </td>
         </tr>
     </table>
+    
 </asp:Content>

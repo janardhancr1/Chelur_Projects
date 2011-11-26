@@ -56,7 +56,7 @@
             <td colspan="2">
                 <a href="#" id="Link1" runat="server" class="acolor">View Details</a>&nbsp;&nbsp;&nbsp;
                 <a href="#" id="Link2" runat="server" class="acolor">View Bidding</a>&nbsp;&nbsp;&nbsp;
-                <a href="#" id="Link3" runat="server" class="acolor">View Bidder Details</a>
+                <a href="#" id="Link3" runat="server" class="acolor">View Members</a>
             </td>
         </tr>
         <tr>

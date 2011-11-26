@@ -15,7 +15,7 @@ using PALibrary.Library.Exception;
 using PALibrary.Library.Model;
 using PALibrary.Library.Utils;
 
-public partial class ChitBidders : System.Web.UI.Page
+public partial class ChitUnpaid : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -38,35 +38,17 @@ public partial class ChitBidders : System.Web.UI.Page
                     {
                         ChitName.Value = chitsInfo.ChitName;
                         ChitAmount.Value = chitsInfo.ChitAmount.ToString();
+                        InstallmentNo.Value = Request.Params["insNO"];
                     }
 
                     List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
                     foreach (ChitsParticipateInfo customer in customers)
                     {
-                        List<ChitsBiddingInfo> trans = ChitsBiddingManager.SearchChitsBiddingInfo(0, ChitNO.Value, 0, 0, new DateTime(), customer.CustomerID, 0, -1, 0);
+                        List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Value, customer.CustomerID, Convert.ToInt32(InstallmentNo.Value), new DateTime(), -1, 0);
 
                         HtmlTableRow row = null;
                         HtmlTableCell cell = null;
-                        if (trans.Count > 0 && Request.Params["t"].ToString().Equals("bid"))
-                        {
-                            row = new HtmlTableRow();
-
-                            cell = new HtmlTableCell();
-                            cell.InnerText = customer.CustomerName;
-                            row.Cells.Add(cell);
-
-                            cell = new HtmlTableCell();
-                            cell.InnerText = customer.CustomerAddress;
-                            row.Cells.Add(cell);
-
-                            cell = new HtmlTableCell();
-                            cell.InnerText = trans[0].InstallmentNO.ToString();
-                            row.Cells.Add(cell);
-
-                            MembersTable.Rows.Add(row);
-                        }
-
-                        if (trans.Count == 0 && Request.Params["t"].ToString().Equals("unbid"))
+                        if (trans.Count == 0)
                         {
                             row = new HtmlTableRow();
 

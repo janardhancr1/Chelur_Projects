@@ -44,7 +44,7 @@ public partial class ChitDetails : System.Web.UI.Page
                     {
                         ChitName.Value = chitsInfo.ChitName;
                         ChitAmount.Value = chitsInfo.ChitAmount.ToString();
-
+                        ChitCommission.Value = chitsInfo.ChitCommission.ToString();
                         for (int i = 1; i <= chitsInfo.NoInstallments; i++)
                         {
                             SelectInstallment.Items.Add(i.ToString());
@@ -54,6 +54,19 @@ public partial class ChitDetails : System.Web.UI.Page
                     int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(0, ChitNO.Value, 0, 0, new DateTime(), 0, 0, 0, 0);
                     totalInstallments += 1;
                     InstallmentNo.Value = totalInstallments.ToString();
+
+                    List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(0, ChitNO.Value, totalInstallments - 1, 0, new DateTime(), 0, 0, -1, 0);
+                    if (lastBidding.Count > 0)
+                    {
+                        decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
+                        decimal leftAmount = lastBidding[0].LeftAmount - comm;
+                        decimal installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
+                        InstallmentAmount.Value = installAmount.ToString();
+                    }
+                    else
+                    {
+                        InstallmentAmount.Value = chitsInfo.InstallmentAmount.ToString();
+                    }
 
                     List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
                     foreach (ChitsParticipateInfo customer in customers)
