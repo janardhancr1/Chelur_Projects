@@ -93,6 +93,7 @@
                         <asp:BoundField DataField="BidDate" HeaderText="BidDate" SortExpression="BidDate" />
                         <asp:BoundField DataField="InstallmentAmount" HeaderText="InstallmentAmount" SortExpression="InstallmentAmount" />
                         <asp:BoundField DataField="NoInstallments" HeaderText="NoInstallments" SortExpression="NoInstallments" />
+                        <asp:BoundField DataField="ChitCommission" HeaderText="Commission" SortExpression="ChitCommission" />
                         <asp:BoundField DataField="ClosedType" HeaderText="Closed" SortExpression="Closed" />
                         <asp:HyperLinkField Text="View" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO"
                             DataNavigateUrlFormatString="ViewChits.aspx?chitNO={0}" ItemStyle-HorizontalAlign="Center" />
