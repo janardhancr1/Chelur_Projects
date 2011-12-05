@@ -156,7 +156,7 @@
                         Mode="NextPreviousFirstLast" />
                 </asp:GridView>
                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="SearchChitsTransInfo"
-                    SelectCountMethod="SearchChitsInfoCount" TypeName="PALibrary.Library.Component.ChitsTransManager">
+                    SelectCountMethod="SearchChitsTransInfoCount" TypeName="PALibrary.Library.Component.ChitsTransManager" EnablePaging="true">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ChitNO" Name="chitNO" PropertyName="Value" Type="String" />
                         <asp:ControlParameter ControlID="Customer_ID" Name="customerID" PropertyName="SelectedValue"

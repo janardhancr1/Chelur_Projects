@@ -71,7 +71,7 @@ public partial class ChitUnpaid : System.Web.UI.Page
                                 row.Cells.Add(cell);
 
                                 decimal installAmount = chitsInfo.InstallmentAmount;
-                                if (i > 1)
+                                if (i > 1 && i < totalInstallments - 1)
                                 {
                                     decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
                                     decimal leftAmount = biddings[i].LeftAmount - comm;

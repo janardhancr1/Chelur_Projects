@@ -129,7 +129,7 @@
                         Mode="NextPreviousFirstLast" />
                 </asp:GridView>
                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetChitsBiddingInfos"
-                    TypeName="PALibrary.Library.Component.ChitsBiddingManager">
+                    TypeName="PALibrary.Library.Component.ChitsBiddingManager" >
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ChitNO" PropertyName="Value" Name="chitNo" Type="string" />
                     </SelectParameters>

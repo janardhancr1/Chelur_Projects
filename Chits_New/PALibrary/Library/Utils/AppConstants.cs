@@ -16,7 +16,7 @@ namespace PALibrary.Library.Utils
         public const string TYPE_PENDING = "n";
         public const string TYPE_ALL = "a";
 
-        public const int PAGE_SIZE = 20;
+        public const int PAGE_SIZE = 25;
 
 	    public const int VOUCHER_PAYMENT = 1;
 	    public const int VOUCHER_RECEIPT = 2;
