@@ -97,7 +97,7 @@
         <tr>
             <td colspan="2">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="100%"
-                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="20" OnRowDataBound="Gridview_RowBound"
+                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="25" OnRowDataBound="Gridview_RowBound"
                     DataSourceID="ObjectDataSource1">
                     <EmptyDataTemplate>
                         <table>

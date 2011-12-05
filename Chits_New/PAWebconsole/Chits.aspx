@@ -75,7 +75,7 @@
         <tr>
             <td valign="top" width="100%" colspan="2">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="100%"
-                    AllowPaging="True" AllowSorting="false" BorderWidth="0" Visible="false" PageSize="20"
+                    AllowPaging="True" AllowSorting="false" BorderWidth="0" Visible="false" PageSize="25"
                     OnRowDataBound="Gridview_RowBound">
                     <EmptyDataTemplate>
                         <table>
@@ -114,7 +114,7 @@
                         <asp:ControlParameter ControlID="ChitAmount" Name="chitAmount" PropertyName="Text"
                             Type="Decimal" />
                         <asp:ControlParameter ControlID="BidDate" Name="bidDate" PropertyName="SelectedValue"
-                            Type="Decimal" />
+                            Type="Int32" />
                         <asp:ControlParameter ControlID="InstallmentAmount" Name="installmentAmount" PropertyName="Text"
                             Type="Decimal" />
                         <asp:ControlParameter ControlID="NoInstallments" Name="noInstallments" PropertyName="Text"

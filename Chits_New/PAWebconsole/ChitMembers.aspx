@@ -60,7 +60,7 @@
         <tr>
             <td colspan="2">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="100%"
-                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="20" OnRowDataBound="Gridview_RowBound"
+                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="25" OnRowDataBound="Gridview_RowBound"
                     DataSourceID="ObjectDataSource1">
                     <EmptyDataTemplate>
                         <table>
@@ -74,7 +74,7 @@
                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
                         <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
-                            DataNavigateUrlFormatString="ChitBidders.aspx?chitNO={0}&transid={1}" />
+                            DataNavigateUrlFormatString="ChitMembers.aspx?chitNO={0}&transid={1}" />
                     </Columns>
                     <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
                     <AlternatingRowStyle BackColor="Beige" />
