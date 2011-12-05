@@ -63,6 +63,10 @@ public partial class ChitBidders : System.Web.UI.Page
                             cell.InnerText = trans[0].InstallmentNO.ToString();
                             row.Cells.Add(cell);
 
+                            cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].PaidAmount.ToString();
+                            row.Cells.Add(cell);
+
                             MembersTable.Rows.Add(row);
                         }
 

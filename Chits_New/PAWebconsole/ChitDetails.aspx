@@ -2,20 +2,6 @@
     CodeFile="ChitDetails.aspx.cs" Inherits="ChitDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script language="javascript">
-        function unpaidClick()
-        {
-            if(document.getElementById('<%= SelectInstallment.ClientID %>').value == "")
-            {
-                alert("Please select Installment No");
-                return false;
-            }
-            else
-            {
-                window.location.href = "ChitUnpaid.aspx?chitNO=" + document.getElementById('<%= ChitNO.ClientID %>').value + "&insNO=" + document.getElementById('<%= SelectInstallment.ClientID %>').value;
-            }
-        }
-    </script>
     <div id="content" class="nav_header" runat="server">
         Chit Details</div>
     <table class="data_table" width="98%" align="center">
@@ -127,7 +113,7 @@
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <a href="#" onclick="javascript:unpaidClick();">Unpaid Members</a>&nbsp;&nbsp;
+                            <a href="ChitUnpaid.aspx?chitNO=<%= ChitNO.Value %>" >Unpaid Members</a>&nbsp;&nbsp;
                             <a href="ChitBidders.aspx?chitNO=<%= ChitNO.Value %>&t=bid">Bidders</a>&nbsp;&nbsp;
                             <a href="ChitBidders.aspx?chitNO=<%= ChitNO.Value %>&t=unbid">UnBidders</a>
                         </td>
@@ -143,7 +129,7 @@
         <tr>
             <td colspan="2">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="100%"
-                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="20" OnRowDataBound="Gridview_RowBound"
+                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="25" OnRowDataBound="Gridview_RowBound"
                     DataSourceID="ObjectDataSource1">
                     <EmptyDataTemplate>
                         <table>
@@ -160,7 +146,7 @@
                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
                         <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
-                            DataNavigateUrlFormatString="ChitBidders.aspx?chitNO={0}&transid={1}" />
+                            DataNavigateUrlFormatString="ChitDetails.aspx?chitNO={0}&transid={1}" />
                     </Columns>
                     <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
                     <AlternatingRowStyle BackColor="Beige" />
