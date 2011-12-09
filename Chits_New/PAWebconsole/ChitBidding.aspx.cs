@@ -45,20 +45,25 @@ public partial class ChitBidding : System.Web.UI.Page
                         ChitName.Value = chitsInfo.ChitName;
                         ChitAmount.Value = chitsInfo.ChitAmount.ToString();
                         NoInstallments.Value = chitsInfo.NoInstallments.ToString();
+
+                        for (int i = 1; i <= chitsInfo.NoInstallments; i++)
+                        {
+                            InstallmentNo.Items.Add(i.ToString());
+                        }
+
+                        int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), 0, 0, 0, 0);
+                        totalInstallments += 1;
+                        InstallmentNo.SelectedValue = totalInstallments.ToString();
+                    }
+                    List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
+                    foreach (ChitsParticipateInfo customer in customers)
+                    {
+                        ListItem item = new ListItem();
+                        item.Text = customer.CustomerName;
+                        item.Value = customer.CustomerID.ToString();
+                        Customer.Items.Add(item);
                     }
 
-                    int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(0, ChitNO.Value, 0, 0, new DateTime(), 0, 0, 0, 0);
-                    totalInstallments += 1;
-                    InstallmentNo.Value = totalInstallments.ToString();
-                }
-
-                List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
-                foreach (ChitsParticipateInfo customer in customers)
-                {
-                    ListItem item = new ListItem();
-                    item.Text = customer.CustomerName;
-                    item.Value = customer.CustomerID.ToString();
-                    Customer.Items.Add(item);
                 }
             }
         }
@@ -72,9 +77,10 @@ public partial class ChitBidding : System.Web.UI.Page
     {
         ChitsBiddingInfo chitBidding = new ChitsBiddingInfo();
         chitBidding.ChitNO = ChitNO.Value;
-        chitBidding.PaidDate = DateTime.ParseExact(BidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        chitBidding.PaidDate = DateTime.ParseExact(PaidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        chitBidding.BidDate = DateTime.ParseExact(BidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         chitBidding.PaidAmount = Convert.ToDecimal(BidAmount.Value);
-        chitBidding.InstallmentNO = Convert.ToInt32(InstallmentNo.Value);
+        chitBidding.InstallmentNO = Convert.ToInt32(InstallmentNo.SelectedValue);
         chitBidding.CustomerID = Convert.ToInt32(Customer.SelectedValue);
         chitBidding.LeftAmount = Convert.ToDecimal(ChitAmount.Value) - Convert.ToDecimal(BidAmount.Value);
 

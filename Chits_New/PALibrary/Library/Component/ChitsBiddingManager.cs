@@ -24,14 +24,14 @@ namespace PALibrary.Library.Component
             ChitsBiddingDAO.DeleteChitsBiddingInfo(recordID);
         }
 
-        public static List<ChitsBiddingInfo> SearchChitsBiddingInfo(int recordID, string chitNO, int installmentNO, decimal paidAmount, DateTime paidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
+        public static List<ChitsBiddingInfo> SearchChitsBiddingInfo(string chitNO, int installmentNO, decimal paidAmount, DateTime bidDate, DateTime paidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
         {
-            return ChitsBiddingDAO.SearchChitsBiddingInfo(ChitsBiddingDAO.SearchConditions(recordID, chitNO, installmentNO, paidAmount, paidDate, customerID, leftAmount), startRowIndex);
+            return ChitsBiddingDAO.SearchChitsBiddingInfo(ChitsBiddingDAO.SearchConditions(chitNO, installmentNO, paidAmount, bidDate, paidDate, customerID, leftAmount), startRowIndex);
         }
 
-        public static int SearchChitsBiddingInfoCount(int recordID, string chitNO, int installmentNO, decimal paidAmount, DateTime paidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
+        public static int SearchChitsBiddingInfoCount(string chitNO, int installmentNO, decimal paidAmount, DateTime bidDate, DateTime paidDate, int customerID, decimal leftAmount, int startRowIndex, int maximumRows)
         {
-            return ChitsBiddingDAO.SearchChitsBiddingInfoCount(ChitsBiddingDAO.SearchConditions(recordID, chitNO, installmentNO, paidAmount, paidDate, customerID, leftAmount));
+            return ChitsBiddingDAO.SearchChitsBiddingInfoCount(ChitsBiddingDAO.SearchConditions(chitNO, installmentNO, paidAmount, bidDate, paidDate, customerID, leftAmount));
         }
 
         public static ChitsBiddingInfo GetChitsBiddingInfo(int recordID)
@@ -39,9 +39,9 @@ namespace PALibrary.Library.Component
             return ChitsBiddingDAO.GetChitsBiddingInfo(recordID);
         }
 
-        public static List<ChitsBiddingInfo> GetChitsBiddingInfos(string chitNo)
+        public static List<ChitsBiddingInfo> GetChitsBiddingInfos(string chitNO)
         {
-            return ChitsBiddingDAO.GetChitsBiddingInfos(chitNo);
+            return ChitsBiddingDAO.GetChitsBiddingInfos(chitNO);
         }
 
     }

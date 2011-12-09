@@ -214,7 +214,6 @@ namespace PALibrary.Library.DAO
                     chitsParticipateInfo.ReadValues(reader);
 
                     CustomerInfo customer = CustomerDAO.GetCustomerInfo(chitsParticipateInfo.CustomerID);
-                    chitsParticipateInfo.CustomerName = customer.CustomerName;
                     chitsParticipateInfo.CustomerAddress = customer.FullAddress;
 
                     chitsParticipateInfos.Add(chitsParticipateInfo);

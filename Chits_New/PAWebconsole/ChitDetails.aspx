@@ -65,8 +65,9 @@
                             Installment No
                         </td>
                         <td>
-                            <input type="text" id="InstallmentNo" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);"
-                                readonly />
+                            <asp:DropDownList ID="InstallmentNo" runat="server" Width="153px">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="InstallmentNo"
                                 Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>
@@ -163,6 +164,7 @@
                             Type="Int32" />
                         <asp:ControlParameter ControlID="SelectInstallment" Name="installmentNO" PropertyName="SelectedValue"
                             Type="Int32" />
+                        <asp:Parameter Name="installmentAmount" Type="decimal" DefaultValue="0"/>
                         <asp:Parameter Name="date" Type="DateTime" DefaultValue="01/01/1900" />
                         <asp:Parameter Name="startRowIndex" Type="Int32" />
                         <asp:Parameter Name="maximumRows" Type="Int32" />

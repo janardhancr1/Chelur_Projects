@@ -73,6 +73,8 @@
                     <Columns>
                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
+                        <asp:HyperLinkField Text="View Account" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,CustomerID"
+                            DataNavigateUrlFormatString="ChitAccount.aspx?chitNO={0}&customerID={1}" />
                         <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
                             DataNavigateUrlFormatString="ChitMembers.aspx?chitNO={0}&transid={1}" />
                     </Columns>

@@ -68,13 +68,13 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static SearchHelper SearchConditions(string chitNO, int customerID, int installmentNO, DateTime date)
+        public static SearchHelper SearchConditions(string chitNO, int customerID, int installmentNO, decimal installmentAmount, DateTime date)
         {
             try
             {
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
                 List<string> conditions = new List<string>();
-                
+
                 if (chitNO != null)
                 {
                     if (chitNO.Trim().Length > 0)
@@ -94,6 +94,12 @@ namespace PALibrary.Library.DAO
                 {
                     conditions.Add("Installment_No = " + ChitsTransInfo.PARAM_INSTALLMENT_NO);
                     parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_INSTALLMENT_NO, installmentNO));
+                }
+
+                if (installmentAmount > 0)
+                {
+                    conditions.Add("Installment_Amount = " + ChitsTransInfo.PARAM_INSTALLMENT_AMOUNT);
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_INSTALLMENT_AMOUNT, installmentAmount));
                 }
 
                 if (date != null)
@@ -212,16 +218,13 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static List<ChitsTransInfo> GetChitsTransInfos(string chitNo)
+        public static List<ChitsTransInfo> GetChitsTransInfos()
         {
             List<ChitsTransInfo> chitsTransInfos = new List<ChitsTransInfo>();
             IDataReader reader = null;
             try
             {
-                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-                parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_CHIT_NO, chitNo));
-
-                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsTransInfo.QUERY_SELECT_ALL, parameters);
+                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsTransInfo.QUERY_SELECT_ALL, null);
                 while (reader.Read())
                 {
                     ChitsTransInfo chitsTransInfo = new ChitsTransInfo();

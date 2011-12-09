@@ -38,10 +38,9 @@ public partial class ChitUnpaid : System.Web.UI.Page
                     {
                         ChitName.Value = chitsInfo.ChitName;
                         ChitAmount.Value = chitsInfo.ChitAmount.ToString();
-                        InstallmentNo.Value = Request.Params["insNO"];
                     }
 
-                    List<ChitsBiddingInfo> biddings = ChitsBiddingManager.SearchChitsBiddingInfo(0, ChitNO.Value, 0, 0, new DateTime(), 0, 0, -1, 0);
+                    List<ChitsBiddingInfo> biddings = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
                     int totalInstallments = biddings.Count + 1;
 
                     List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
@@ -50,7 +49,7 @@ public partial class ChitUnpaid : System.Web.UI.Page
                     {
                         for (int i = 1; i < totalInstallments; i++)
                         {
-                            List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Value, customer.CustomerID, i, new DateTime(), -1, 0);
+                            List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Value, customer.CustomerID, i, 0, new DateTime(), -1, 0);
 
                             HtmlTableRow row = null;
                             HtmlTableCell cell = null;
@@ -71,10 +70,10 @@ public partial class ChitUnpaid : System.Web.UI.Page
                                 row.Cells.Add(cell);
 
                                 decimal installAmount = chitsInfo.InstallmentAmount;
-                                if (i > 1 && i < totalInstallments - 1)
+                                if (i > 1 && i <= totalInstallments - 1)
                                 {
                                     decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
-                                    decimal leftAmount = biddings[i].LeftAmount - comm;
+                                    decimal leftAmount = biddings[i - 1].LeftAmount - comm;
                                     installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
 
                                 }
