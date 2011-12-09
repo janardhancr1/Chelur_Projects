@@ -23,7 +23,7 @@ namespace PALibrary.Library.Model
         public const string QUERY_COUNT = "SELECT Count(*) FROM " + TABLE_NAME;
 
         public const string QUERY_SELECT = "SELECT Record_ID,Chit_No,Customer_ID FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
-        public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Customer_ID FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
+        public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,p.Customer_ID,c.Customer_name FROM " + TABLE_NAME + " p, Customers c WHERE p.Customer_ID=c.Customer_ID AND Chit_No=" + PARAM_CHIT_NO + " ORDER BY c.Customer_name";
 
         private int recordID;
         private string chitNO;
@@ -87,6 +87,9 @@ namespace PALibrary.Library.Model
                         break;
                     case "Customer_ID":
                         customerID = DBUtils.ConvertInt(reader["Customer_ID"]);
+                        break;
+                    case "Customer_name":
+                        customerName = DBUtils.ConvertString(reader["Customer_name"]);
                         break;
                 }
             }

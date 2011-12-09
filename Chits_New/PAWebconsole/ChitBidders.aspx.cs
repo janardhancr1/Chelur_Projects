@@ -43,7 +43,7 @@ public partial class ChitBidders : System.Web.UI.Page
                     List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
                     foreach (ChitsParticipateInfo customer in customers)
                     {
-                        List<ChitsBiddingInfo> trans = ChitsBiddingManager.SearchChitsBiddingInfo(0, ChitNO.Value, 0, 0, new DateTime(), customer.CustomerID, 0, -1, 0);
+                        List<ChitsBiddingInfo> trans = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), customer.CustomerID, 0, -1, 0);
 
                         HtmlTableRow row = null;
                         HtmlTableCell cell = null;

@@ -24,14 +24,14 @@ namespace PALibrary.Library.Component
             ChitsTransDAO.DeleteChitsTransInfo(recordID);
         }
 
-        public static List<ChitsTransInfo> SearchChitsTransInfo(string chitNO, int customerID, int installmentNO, DateTime date, int startRowIndex, int maximumRows)
+        public static List<ChitsTransInfo> SearchChitsTransInfo(string chitNO, int customerID, int installmentNO, decimal installmentAmount, DateTime date, int startRowIndex, int maximumRows)
         {
-            return ChitsTransDAO.SearchChitsTransInfo(ChitsTransDAO.SearchConditions(chitNO, customerID, installmentNO, date), startRowIndex);
+            return ChitsTransDAO.SearchChitsTransInfo(ChitsTransDAO.SearchConditions(chitNO, customerID, installmentNO, installmentAmount, date), startRowIndex);
         }
 
-        public static int SearchChitsTransInfoCount(string chitNO, int customerID, int installmentNO, DateTime date, int startRowIndex, int maximumRows)
+        public static int SearchChitsTransInfoCount(string chitNO, int customerID, int installmentNO, decimal installmentAmount, DateTime date, int startRowIndex, int maximumRows)
         {
-            return ChitsTransDAO.SearchChitsTransInfoCount(ChitsTransDAO.SearchConditions(chitNO, customerID, installmentNO, date));
+            return ChitsTransDAO.SearchChitsTransInfoCount(ChitsTransDAO.SearchConditions(chitNO, customerID, installmentNO, installmentAmount, date));
         }
 
         public static ChitsTransInfo GetChitsTransInfo(int recordID)
@@ -39,9 +39,9 @@ namespace PALibrary.Library.Component
             return ChitsTransDAO.GetChitsTransInfo(recordID);
         }
 
-        public static List<ChitsTransInfo> GetChitsTransInfos(string chitNo)
+        public static List<ChitsTransInfo> GetChitsTransInfos()
         {
-            return ChitsTransDAO.GetChitsTransInfos(chitNo);
+            return ChitsTransDAO.GetChitsTransInfos();
         }
 
     }

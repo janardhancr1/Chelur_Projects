@@ -13,24 +13,26 @@ namespace PALibrary.Library.Model
         public const string PARAM_CHIT_NO = DBConstant.DB_PARAM + "Chit_No";
         public const string PARAM_CUSTOMER_ID = DBConstant.DB_PARAM + "Customer_ID";
         public const string PARAM_INSTALLMENT_NO = DBConstant.DB_PARAM + "Installment_No";
+        public const string PARAM_INSTALLMENT_AMOUNT = DBConstant.DB_PARAM + "Installment_Amount";
         public const string PARAM_DATE = DBConstant.DB_PARAM + "Date";
 
         public const string TABLE_NAME = "chits_trans";
 
-        public const string QUERY_INSERT = "INSERT INTO " + TABLE_NAME + "(Record_ID,Chit_No,Customer_ID,Installment_No,Date) VALUES (" + PARAM_RECORD_ID + "," + PARAM_CHIT_NO + "," + PARAM_CUSTOMER_ID + "," + PARAM_INSTALLMENT_NO + "," + PARAM_DATE + ")";
-        public const string QUERY_UPDATE = "UPDATE " + TABLE_NAME + " SET Chit_No=" + PARAM_CHIT_NO + ",Customer_ID=" + PARAM_CUSTOMER_ID + ",Installment_No=" + PARAM_INSTALLMENT_NO + ",Date=" + PARAM_DATE + " WHERE Record_ID=" + PARAM_RECORD_ID;
+        public const string QUERY_INSERT = "INSERT INTO " + TABLE_NAME + "(Record_ID,Chit_No,Customer_ID,Installment_No,Installment_Amount,Date) VALUES (" + PARAM_RECORD_ID + "," + PARAM_CHIT_NO + "," + PARAM_CUSTOMER_ID + "," + PARAM_INSTALLMENT_NO + "," + PARAM_INSTALLMENT_AMOUNT + "," + PARAM_DATE + ")";
+        public const string QUERY_UPDATE = "UPDATE " + TABLE_NAME + " SET Chit_No=" + PARAM_CHIT_NO + ",Customer_ID=" + PARAM_CUSTOMER_ID + ",Installment_No=" + PARAM_INSTALLMENT_NO + ",Installment_Amount=" + PARAM_INSTALLMENT_AMOUNT + ",Date=" + PARAM_DATE + " WHERE Record_ID=" + PARAM_RECORD_ID;
         public const string QUERY_DELETE = "DELETE FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
 
-        public const string QUERY_SEARCH = "SELECT Record_ID,Chit_No,Customer_ID,Installment_No,Date FROM " + TABLE_NAME;
+        public const string QUERY_SEARCH = "SELECT Record_ID,Chit_No,Customer_ID,Installment_No,Installment_Amount,Date FROM " + TABLE_NAME;
         public const string QUERY_COUNT = "SELECT Count(*) FROM " + TABLE_NAME;
 
-        public const string QUERY_SELECT = "SELECT Record_ID,Chit_No,Customer_ID,Installment_No,Date FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
-        public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Customer_ID,Installment_No,Date FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
+        public const string QUERY_SELECT = "SELECT Record_ID,Chit_No,Customer_ID,Installment_No,Installment_Amount,Date FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
+        public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Customer_ID,Installment_No,Installment_Amount,Date FROM " + TABLE_NAME;
 
         private int recordID;
         private string chitNO;
         private int customerID;
         private int installmentNO;
+        private decimal installmentAmount;
         private DateTime date;
 
         private string customerName;
@@ -60,6 +62,12 @@ namespace PALibrary.Library.Model
             set { installmentNO = value; }
         }
 
+        public decimal InstallmentAmount
+        {
+            get { return installmentAmount; }
+            set { installmentAmount = value; }
+        }
+
         public DateTime Date
         {
             get { return date; }
@@ -87,6 +95,7 @@ namespace PALibrary.Library.Model
             parameters.Add(DBManager.GetParameter(PARAM_CHIT_NO, chitNO));
             parameters.Add(DBManager.GetParameter(PARAM_CUSTOMER_ID, customerID));
             parameters.Add(DBManager.GetParameter(PARAM_INSTALLMENT_NO, installmentNO));
+            parameters.Add(DBManager.GetParameter(PARAM_INSTALLMENT_AMOUNT, installmentAmount));
             parameters.Add(DBManager.GetParameter(PARAM_DATE, date));
 
             return parameters;
@@ -108,6 +117,9 @@ namespace PALibrary.Library.Model
                         break;
                     case "Installment_No":
                         installmentNO = DBUtils.ConvertInt(reader["Installment_No"]);
+                        break;
+                    case "Installment_Amount":
+                        installmentAmount = DBUtils.ConvertDecimal(reader["Installment_Amount"]);
                         break;
                     case "Date":
                         date = DBUtils.ConvertDate(reader["Date"]);

@@ -39,12 +39,23 @@
                 <table width="100%">
                     <tr>
                         <td>
-                            Paid Date
+                            Bid Date
                         </td>
                         <td>
                             <input type="text" id="BidDate" runat="Server" onfocus="showCalendarControl(this);"
                                 readonly />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="BidDate"
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="BidDate"
+                                Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Paid Date
+                        </td>
+                        <td>
+                            <input type="text" id="PaidDate" runat="Server" onfocus="showCalendarControl(this);"
+                                readonly />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="PaidDate"
                                 Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
@@ -74,8 +85,9 @@
                             Installment No
                         </td>
                         <td>
-                            <input type="text" id="InstallmentNo" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);"
-                                readonly />
+                            <asp:DropDownList ID="InstallmentNo" runat="server" Width="153px">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="InstallmentNo"
                                 Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>

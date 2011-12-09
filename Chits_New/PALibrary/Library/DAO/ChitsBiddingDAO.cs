@@ -68,17 +68,12 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static SearchHelper SearchConditions(int recordID, string chitNO, int installmentNO, decimal paidAmount, DateTime paidDate, int customerID, decimal leftAmount)
+        public static SearchHelper SearchConditions(string chitNO, int installmentNO, decimal paidAmount, DateTime bidDate, DateTime paidDate, int customerID, decimal leftAmount)
         {
             try
             {
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
                 List<string> conditions = new List<string>();
-                if (recordID > 0)
-                {
-                    conditions.Add("Record_ID = " + ChitsBiddingInfo.PARAM_RECORD_ID);
-                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_RECORD_ID, recordID));
-                }
 
                 if (chitNO != null)
                 {
@@ -97,15 +92,24 @@ namespace PALibrary.Library.DAO
 
                 if (paidAmount > 0)
                 {
-                    conditions.Add("Bid_Amount = " + ChitsBiddingInfo.PARAM_PAID_AMOUNT);
+                    conditions.Add("Paid_Amount = " + ChitsBiddingInfo.PARAM_PAID_AMOUNT);
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_AMOUNT, paidAmount));
+                }
+
+                if (bidDate != null)
+                {
+                    if (bidDate.Year > 1980)
+                    {
+                        conditions.Add("Bid_Date = " + ChitsBiddingInfo.PARAM_BID_DATE);
+                        parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_BID_DATE, bidDate));
+                    }
                 }
 
                 if (paidDate != null)
                 {
                     if (paidDate.Year > 1980)
                     {
-                        conditions.Add("Bid_Date = " + ChitsBiddingInfo.PARAM_PAID_DATE);
+                        conditions.Add("Paid_Date = " + ChitsBiddingInfo.PARAM_PAID_DATE);
                         parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, paidDate));
                     }
                 }
@@ -225,14 +229,14 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static List<ChitsBiddingInfo> GetChitsBiddingInfos(string chitNo)
+        public static List<ChitsBiddingInfo> GetChitsBiddingInfos(string chitNO)
         {
             List<ChitsBiddingInfo> chitsBiddingInfos = new List<ChitsBiddingInfo>();
             IDataReader reader = null;
             try
             {
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
-                parameters.Add(DBManager.GetParameter(ChitsParticipateInfo.PARAM_CHIT_NO, chitNo));
+                parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_CHIT_NO, chitNO));
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsBiddingInfo.QUERY_SELECT_ALL, parameters);
                 while (reader.Read())

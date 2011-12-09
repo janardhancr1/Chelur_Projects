@@ -1,10 +1,10 @@
 <%@ Page Language="C#" MasterPageFile="~/PAMaster.master" AutoEventWireup="true"
-    CodeFile="ChitUnpaid.aspx.cs" Inherits="ChitUnpaid" %>
+    CodeFile="ChitAccount.aspx.cs" Inherits="ChitAccount" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div id="content" class="nav_header" runat="server">
-        Unpaid Members</div>
-    <table width="100%">
+        Chit Member Account</div>
+    <table class="data_table" width="98%" align="center">
         <tr>
             <td>
                 Chit No</td>
@@ -33,10 +33,14 @@
             <td colspan="2">
                 <table width="100%" id="MembersTable" runat="server">
                     <tr class="nav_header">
-                        <th align="left">CustomerName</th>
-                        <th align="left">CustomerAddress</th>
-                        <th align="left">InstallMent No</th>
-                        <th align="left">Amount</th>
+                        <th align="left" width="25%">
+                            Installment No</th>
+                        <th align="left" width="25%">
+                            Installment Amount</th>
+                        <th align="left" width="25%">
+                            Bid Date</th>
+                        <th align="left" width="25%">
+                            Bid Amount</th>
                     </tr>
                 </table>
             </td>
@@ -57,5 +61,4 @@
             </td>
         </tr>
     </table>
-    
 </asp:Content>

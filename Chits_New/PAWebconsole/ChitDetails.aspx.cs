@@ -38,7 +38,7 @@ public partial class ChitDetails : System.Web.UI.Page
                     if (Request.Params["transid"] != null)
                     {
                         int transID = Convert.ToInt32(Request.Params["transid"]);
-                        ChitsBiddingManager.DeleteChitsBiddingInfo(transID);
+                        ChitsTransManager.DeleteChitsTransInfo(transID);
                     }
                     if (chitsInfo != null)
                     {
@@ -48,38 +48,39 @@ public partial class ChitDetails : System.Web.UI.Page
                         for (int i = 1; i <= chitsInfo.NoInstallments; i++)
                         {
                             SelectInstallment.Items.Add(i.ToString());
+                            InstallmentNo.Items.Add(i.ToString());
                         }
-                    }
 
-                    int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(0, ChitNO.Value, 0, 0, new DateTime(), 0, 0, 0, 0);
-                    totalInstallments += 1;
-                    InstallmentNo.Value = totalInstallments.ToString();
+                        int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), 0, 0, 0, 0);
+                        totalInstallments += 1;
+                        InstallmentNo.SelectedValue = totalInstallments.ToString();
 
-                    List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(0, ChitNO.Value, totalInstallments - 1, 0, new DateTime(), 0, 0, -1, 0);
-                    if (lastBidding.Count > 0)
-                    {
-                        decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
-                        decimal leftAmount = lastBidding[0].LeftAmount - comm;
-                        decimal installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
-                        InstallmentAmount.Value = installAmount.ToString();
-                    }
-                    else
-                    {
-                        InstallmentAmount.Value = chitsInfo.InstallmentAmount.ToString();
-                    }
+                        List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, totalInstallments - 1, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
+                        if (lastBidding.Count > 0)
+                        {
+                            decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
+                            decimal leftAmount = lastBidding[0].LeftAmount - comm;
+                            decimal installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
+                            InstallmentAmount.Value = installAmount.ToString();
+                        }
+                        else
+                        {
+                            InstallmentAmount.Value = chitsInfo.InstallmentAmount.ToString();
+                        }
 
-                    List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
-                    foreach (ChitsParticipateInfo customer in customers)
-                    {
-                        ListItem item = new ListItem();
-                        item.Text = customer.CustomerName;
-                        item.Value = customer.CustomerID.ToString();
-                        Customer.Items.Add(item);
+                        List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
+                        foreach (ChitsParticipateInfo customer in customers)
+                        {
+                            ListItem item = new ListItem();
+                            item.Text = customer.CustomerName;
+                            item.Value = customer.CustomerID.ToString();
+                            Customer.Items.Add(item);
 
-                        ListItem pItem = new ListItem();
-                        pItem.Text = customer.CustomerName;
-                        pItem.Value = customer.CustomerID.ToString();
-                        Customer_ID.Items.Add(pItem);
+                            ListItem pItem = new ListItem();
+                            pItem.Text = customer.CustomerName;
+                            pItem.Value = customer.CustomerID.ToString();
+                            Customer_ID.Items.Add(pItem);
+                        }
                     }
                 }
             }
@@ -95,7 +96,8 @@ public partial class ChitDetails : System.Web.UI.Page
         ChitsTransInfo chitTrans = new ChitsTransInfo();
         chitTrans.ChitNO = ChitNO.Value;
         chitTrans.Date = DateTime.ParseExact(PaidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-        chitTrans.InstallmentNO = Convert.ToInt32(InstallmentNo.Value);
+        chitTrans.InstallmentNO = Convert.ToInt32(InstallmentNo.SelectedValue);
+        chitTrans.InstallmentAmount = Convert.ToInt32(InstallmentAmount.Value);
         chitTrans.CustomerID = Convert.ToInt32(Customer.SelectedValue);
 
         try
