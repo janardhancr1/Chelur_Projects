@@ -33,14 +33,16 @@
             <td colspan="2">
                 <table width="100%" id="MembersTable" runat="server">
                     <tr class="nav_header">
-                        <th align="left" width="25%">
+                        <th align="left" width="20%">
                             Installment No</th>
-                        <th align="left" width="25%">
+                        <th align="left" width="20%">
                             Installment Amount</th>
-                        <th align="left" width="25%">
-                            Bid Date</th>
-                        <th align="left" width="25%">
+                        <th align="left" width="20%">
+                            Paid Date</th>
+                        <th align="left" width="20%">
                             Bid Amount</th>
+                        <th align="left" width="20%">
+                            Bid Date</th>
                     </tr>
                 </table>
             </td>
