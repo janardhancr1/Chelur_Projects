@@ -68,20 +68,28 @@ public partial class ChitAccount : System.Web.UI.Page
                                     cell.InnerText = "";
                                 row.Cells.Add(cell);
 
-                                List<ChitsBiddingInfo> bid = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, i, 0, new DateTime(), new DateTime(), customerID, 0, -1, 0);
-
                                 cell = new HtmlTableCell();
                                 cell.Align = "center";
-                                if (bid.Count > 0)
-                                    cell.InnerText = bid[0].BidDate.ToString("dd/MM/yyyy");
+                                if (trans.Count > 0)
+                                    cell.InnerText = trans[0].Date.ToString("dd/MM/yyyy");
                                 else
                                     cell.InnerText = "";
                                 row.Cells.Add(cell);
+
+                                List<ChitsBiddingInfo> bid = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, i, 0, new DateTime(), new DateTime(), customerID, 0, -1, 0);
 
                                 cell = new HtmlTableCell();
                                 cell.Align = "right";
                                 if (bid.Count > 0)
                                     cell.InnerText = bid[0].PaidAmount.ToString();
+                                else
+                                    cell.InnerText = "";
+                                row.Cells.Add(cell);
+
+                                cell = new HtmlTableCell();
+                                cell.Align = "center";
+                                if (bid.Count > 0)
+                                    cell.InnerText = bid[0].BidDate.ToString("dd/MM/yyyy");
                                 else
                                     cell.InnerText = "";
                                 row.Cells.Add(cell);
