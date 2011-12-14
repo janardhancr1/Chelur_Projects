@@ -122,6 +122,8 @@
                     <Columns>
                         <asp:BoundField HeaderText="Paid Date" DataField="PaidDate" SortExpression="PaidDate"
                             HtmlEncode="false" DataFormatString="{0:dd/MM/yyyy}" />
+                         <asp:BoundField HeaderText="Bid Date" DataField="BidDate" SortExpression="BidDate"
+                            HtmlEncode="false" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField HeaderText="Installment No" DataField="InstallmentNO" SortExpression="InstallmentNO" />
                         <asp:BoundField HeaderText="Paid Amount" DataField="PaidAmount" SortExpression="BidAmount"
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />

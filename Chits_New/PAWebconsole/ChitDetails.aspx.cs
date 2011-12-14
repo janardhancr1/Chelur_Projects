@@ -27,8 +27,7 @@ public partial class ChitDetails : System.Web.UI.Page
         }
         else
         {
-            if (!IsPostBack)
-            {
+            
                 if (Request.Params["chitNO"] != null)
                 {
                     ChitNO.Value = Request.Params["chitNO"];
@@ -47,13 +46,14 @@ public partial class ChitDetails : System.Web.UI.Page
                         ChitCommission.Value = chitsInfo.ChitCommission.ToString();
                         for (int i = 1; i <= chitsInfo.NoInstallments; i++)
                         {
-                            SelectInstallment.Items.Add(i.ToString());
+                            //SelectInstallment.Items.Add(i.ToString());
                             InstallmentNo.Items.Add(i.ToString());
                         }
 
                         int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), 0, 0, 0, 0);
                         totalInstallments += 1;
-                        InstallmentNo.SelectedValue = totalInstallments.ToString();
+                        if (!IsPostBack)
+                            InstallmentNo.SelectedValue = totalInstallments.ToString();
 
                         List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, totalInstallments - 1, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
                         if (lastBidding.Count > 0)
@@ -68,6 +68,25 @@ public partial class ChitDetails : System.Web.UI.Page
                             InstallmentAmount.Value = chitsInfo.InstallmentAmount.ToString();
                         }
 
+                        HtmlTableRow row = null;
+                        HtmlTableCell cell = null;
+
+                        row = new HtmlTableRow();
+                        row.Attributes.Add("class","nav_header");
+
+                        cell = new HtmlTableCell();
+                        cell.InnerText = "Customer Name";
+                        row.Cells.Add(cell);
+
+                        for (int i = 1; i < totalInstallments; i++)
+                        {
+                            cell = new HtmlTableCell();
+                            cell.InnerText = i.ToString();
+                            row.Cells.Add(cell);
+                        }
+
+                        DetailsTable.Rows.Add(row);
+
                         List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
                         foreach (ChitsParticipateInfo customer in customers)
                         {
@@ -76,12 +95,33 @@ public partial class ChitDetails : System.Web.UI.Page
                             item.Value = customer.CustomerID.ToString();
                             Customer.Items.Add(item);
 
-                            ListItem pItem = new ListItem();
-                            pItem.Text = customer.CustomerName;
-                            pItem.Value = customer.CustomerID.ToString();
-                            Customer_ID.Items.Add(pItem);
+                            //ListItem pItem = new ListItem();
+                            //pItem.Text = customer.CustomerName;
+                            //pItem.Value = customer.CustomerID.ToString();
+                            //Customer_ID.Items.Add(pItem);
+
+                            row = new HtmlTableRow();
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerName;
+                            row.Cells.Add(cell);
+
+                            for (int i = 1; i < totalInstallments; i++)
+                            {
+                                List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Value, customer.CustomerID, i, 0, new DateTime(), -1, 0);
+
+                                cell = new HtmlTableCell();
+                                if (trans.Count > 0)
+                                    cell.InnerText = trans[0].Date.ToString("dd/MM");
+                                else
+                                    cell.InnerText = "";
+                                row.Cells.Add(cell);
+                            }
+
+                            DetailsTable.Rows.Add(row);
+
                         }
-                    }
+                    
                 }
             }
         }
@@ -89,6 +129,27 @@ public partial class ChitDetails : System.Web.UI.Page
 
     protected void Gridview_RowBound(object sender, GridViewRowEventArgs e)
     {
+    }
+
+    protected void Installment_Changed(object sender, EventArgs e)
+    {
+        if (InstallmentNo.SelectedValue.Length > 0)
+        {
+            int currentInstall = Convert.ToInt32(InstallmentNo.SelectedValue);
+            ChitsInfo chitsInfo = ChitsManager.GetChitsInfo(ChitNO.Value);
+            List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, currentInstall - 1, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
+            if (lastBidding.Count > 0 && currentInstall > 1)
+            {
+                decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
+                decimal leftAmount = lastBidding[0].LeftAmount - comm;
+                decimal installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
+                InstallmentAmount.Value = installAmount.ToString();
+            }
+            else
+            {
+                InstallmentAmount.Value = chitsInfo.InstallmentAmount.ToString();
+            }
+        }
     }
 
     protected void Add_Click(object sender, EventArgs e)

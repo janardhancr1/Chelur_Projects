@@ -35,8 +35,8 @@
                     <tr class="nav_header">
                         <th align="left">CustomerName</th>
                         <th align="left">CustomerAddress</th>
-                        <th align="left">InstallMent No</th>
-                        <th align="left">Amount</th>
+                        <th align="left">Total Amount</th>
+                        <th align="left">Installments</th>
                     </tr>
                 </table>
             </td>
