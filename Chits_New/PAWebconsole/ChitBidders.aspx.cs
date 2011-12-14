@@ -64,6 +64,14 @@ public partial class ChitBidders : System.Web.UI.Page
                             row.Cells.Add(cell);
 
                             cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].BidDate.ToString("dd/MM/yyyy");
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].PaidDate.ToString("dd/MM/yyyy");
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
                             cell.InnerText = trans[0].PaidAmount.ToString();
                             row.Cells.Add(cell);
 

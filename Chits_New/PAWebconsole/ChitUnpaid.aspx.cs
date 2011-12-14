@@ -44,30 +44,23 @@ public partial class ChitUnpaid : System.Web.UI.Page
                     int totalInstallments = biddings.Count + 1;
 
                     List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
+                    decimal chitTotal = 0;
+                    HtmlTableRow row = null;
+                    HtmlTableCell cell = null;
 
                     foreach (ChitsParticipateInfo customer in customers)
                     {
+                        decimal totalAmount = 0;
+                        string installments = "";
+                        bool found = false;
+
                         for (int i = 1; i < totalInstallments; i++)
                         {
                             List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Value, customer.CustomerID, i, 0, new DateTime(), -1, 0);
 
-                            HtmlTableRow row = null;
-                            HtmlTableCell cell = null;
                             if (trans.Count == 0)
                             {
-                                row = new HtmlTableRow();
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = customer.CustomerName;
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = customer.CustomerAddress;
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = i.ToString();
-                                row.Cells.Add(cell);
+                                found = true;
 
                                 decimal installAmount = chitsInfo.InstallmentAmount;
                                 if (i > 1 && i <= totalInstallments - 1)
@@ -77,14 +70,65 @@ public partial class ChitUnpaid : System.Web.UI.Page
                                     installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
 
                                 }
-                                cell = new HtmlTableCell();
-                                cell.InnerText = installAmount.ToString();
-                                row.Cells.Add(cell);
 
-                                MembersTable.Rows.Add(row);
+                                totalAmount += installAmount;
+                                installments += i.ToString() + ", ";
+
                             }
                         }
+                        if (found == true)
+                        {
+                            row = new HtmlTableRow();
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerName;
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerAddress;
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = totalAmount.ToString();
+                            row.Cells.Add(cell);
+
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = installments;
+                            row.Cells.Add(cell);
+
+                            MembersTable.Rows.Add(row);
+
+                        }
+
+                        chitTotal += totalAmount;
                     }
+
+                    row = new HtmlTableRow();
+
+                    cell = new HtmlTableCell();
+                    cell.InnerHtml = "<hr />";
+                    cell.ColSpan = 4;
+                    row.Cells.Add(cell);
+
+                    MembersTable.Rows.Add(row);
+
+                    row = new HtmlTableRow();
+
+                    cell = new HtmlTableCell();
+                    cell.InnerText = "Total";
+                    cell.ColSpan = 2;
+                    row.Cells.Add(cell);
+
+                    cell = new HtmlTableCell();
+                    cell.InnerText = chitTotal.ToString();
+                    row.Cells.Add(cell);
+
+                    cell = new HtmlTableCell();
+                    cell.InnerHtml = "&nbsp;";
+                    row.Cells.Add(cell);
+
+                    MembersTable.Rows.Add(row);
                 }
             }
         }

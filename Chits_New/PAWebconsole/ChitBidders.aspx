@@ -36,6 +36,8 @@
                         <th align="left">CustomerName</th>
                         <th align="left">CustomerAddress</th>
                         <th align="left">Installment No</th>
+                        <th align="left">Bid Date</th>
+                        <th align="left">Paid Date</th>
                         <th align="left">Bid Amount</th>
                     </tr>
                 </table>

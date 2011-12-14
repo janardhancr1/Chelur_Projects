@@ -47,12 +47,15 @@ public partial class ChitAccount : System.Web.UI.Page
                         if (customers.Count > 0)
                         {
 
+                            decimal paidTotal = 0;
+                            decimal bidTotal = 0;
+
+                            HtmlTableRow row = null;
+                            HtmlTableCell cell = null;
+
                             for (int i = 1; i < totalInstallments; i++)
                             {
                                 List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Value, customerID, i, 0, new DateTime(), -1, 0);
-
-                                HtmlTableRow row = null;
-                                HtmlTableCell cell = null;
 
                                 row = new HtmlTableRow();
 
@@ -63,7 +66,10 @@ public partial class ChitAccount : System.Web.UI.Page
                                 cell = new HtmlTableCell();
                                 cell.Align = "right";
                                 if (trans.Count > 0)
+                                {
                                     cell.InnerText = trans[0].InstallmentAmount.ToString();
+                                    paidTotal += trans[0].InstallmentAmount;
+                                }
                                 else
                                     cell.InnerText = "";
                                 row.Cells.Add(cell);
@@ -81,7 +87,10 @@ public partial class ChitAccount : System.Web.UI.Page
                                 cell = new HtmlTableCell();
                                 cell.Align = "right";
                                 if (bid.Count > 0)
+                                {
                                     cell.InnerText = bid[0].PaidAmount.ToString();
+                                    bidTotal += bid[0].PaidAmount;
+                                }
                                 else
                                     cell.InnerText = "";
                                 row.Cells.Add(cell);
@@ -96,6 +105,42 @@ public partial class ChitAccount : System.Web.UI.Page
 
                                 MembersTable.Rows.Add(row);
                             }
+
+                            row = new HtmlTableRow();
+
+                            cell = new HtmlTableCell();
+                            cell.InnerHtml = "<hr/>";
+                            cell.ColSpan = 5;
+                            row.Cells.Add(cell);
+
+                            MembersTable.Rows.Add(row);
+
+                            row = new HtmlTableRow();
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = "Total : ";
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.Align = "right";
+                            cell.InnerText = paidTotal.ToString();
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.InnerText = "Total : ";
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.Align = "right";
+                            cell.InnerText = bidTotal.ToString();
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.InnerHtml = "&nbsp;";
+                            row.Cells.Add(cell);
+
+                            MembersTable.Rows.Add(row);
+
                         }
                     }
                 }
@@ -103,3 +148,4 @@ public partial class ChitAccount : System.Web.UI.Page
         }
     }
 }
+
