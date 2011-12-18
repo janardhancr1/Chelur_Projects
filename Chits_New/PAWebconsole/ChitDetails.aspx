@@ -102,6 +102,18 @@
                 <table width="100%">
                     <tr>
                         <td>
+                            Participator :
+                            <asp:DropDownList ID="Customer_ID" runat="server" Width="153px" AutoPostBack="true">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
+                            Installment No :
+                            <asp:DropDownList ID="SelectInstallment" runat="server" Width="153px" AutoPostBack="true">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td>
                             <a href="ChitUnpaid.aspx?chitNO=<%= ChitNO.Value %>" >Unpaid Members</a>&nbsp;&nbsp;
                             <a href="ChitBidders.aspx?chitNO=<%= ChitNO.Value %>&t=bid">Bidders</a>&nbsp;&nbsp;
                             <a href="ChitBidders.aspx?chitNO=<%= ChitNO.Value %>&t=unbid">UnBidders</a>
@@ -117,9 +129,47 @@
         </tr>
         <tr>
             <td colspan="2">
-                <table width="100%" id="DetailsTable" runat="server">
-                    
-                </table>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="100%"
+                    AllowPaging="True" AllowSorting="false" BorderWidth="0" PageSize="25" OnRowDataBound="Gridview_RowBound"
+                    DataSourceID="ObjectDataSource1" OnPreRender="Gridview_PreRender">
+                    <EmptyDataTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <font color="red" size="2">No Transactions found.</font></td>
+                            </tr>
+                        </table>
+                    </EmptyDataTemplate>
+                    <Columns>
+                        <asp:BoundField HeaderText="Paid Date" DataField="Date" SortExpression="Date" HtmlEncode="false"
+                            DataFormatString="{0:dd/MM/yyyy}" />
+                        <asp:BoundField HeaderText="Installment No" DataField="InstallmentNO" SortExpression="InstallmentNO" />
+                        <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
+                        <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
+                        <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
+                            DataNavigateUrlFormatString="ChitDetails.aspx?chitNO={0}&transid={1}" />
+                    </Columns>
+                    <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
+                    <AlternatingRowStyle BackColor="Beige" />
+                    <PagerStyle CssClass="nav_header" />
+                    <PagerSettings FirstPageImageUrl="~/images/arrow-left-end.gif" LastPageImageUrl="~/images/arrow-right-end.gif"
+                        NextPageImageUrl="~/images/arrow-right.gif" PreviousPageImageUrl="~/images/arrow-left.gif"
+                        Mode="NextPreviousFirstLast" />
+                </asp:GridView>
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="SearchChitsTransInfo"
+                    SelectCountMethod="SearchChitsTransInfoCount" TypeName="PALibrary.Library.Component.ChitsTransManager" EnablePaging="true">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="ChitNO" Name="chitNO" PropertyName="Value" Type="String" />
+                        <asp:ControlParameter ControlID="Customer_ID" Name="customerID" PropertyName="SelectedValue"
+                            Type="Int32" />
+                        <asp:ControlParameter ControlID="SelectInstallment" Name="installmentNO" PropertyName="SelectedValue"
+                            Type="Int32" />
+                        <asp:Parameter Name="installmentAmount" Type="decimal" DefaultValue="0"/>
+                        <asp:Parameter Name="date" Type="DateTime" DefaultValue="01/01/1900" />
+                        <asp:Parameter Name="startRowIndex" Type="Int32" />
+                        <asp:Parameter Name="maximumRows" Type="Int32" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
             </td>
         </tr>
         <tr>

@@ -110,6 +110,11 @@ namespace PALibrary.Library.Component
             return AccountsDAO.GetATKTOpeningBalance(toDate, ledgerName, type);
         }
 
+        public static DayBookInfo GetChitsOpeniningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetChitsOpeniningBalance(toDate, ledgerName, type);
+        }
+
         #endregion
 
         #region Monthly Summary
@@ -229,9 +234,9 @@ namespace PALibrary.Library.Component
                 case 3:
                     details = LedgersDAO.GetATKTLedger(fromDate, toDate, ledgerName, type);
                     break;
-                //case 4:
-                //    details = ledgerDao.GetPronoteLoanLedger(fromDate, toDate, ledgerName, type);
-                //    break;
+                case 4:
+                    details = LedgersDAO.GetChitLedger(fromDate, toDate, ledgerName, type);
+                    break;
                 case 5:
                     details = LedgersDAO.GetInterestLedger(fromDate, toDate);
                     LedgersInfo interestLeger = LedgersDAO.GetLedgersInfo(ledgerName);

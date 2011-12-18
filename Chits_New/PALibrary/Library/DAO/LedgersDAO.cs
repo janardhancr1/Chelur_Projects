@@ -552,6 +552,50 @@ namespace PALibrary.Library.DAO
             return dayBooks;
         }
 
+        public static List<DayBookInfo> GetChitLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            List<DayBookInfo> dayBooks = new List<DayBookInfo>();
+            DayBookInfo dayBook = null;
+
+            //Chit Trans
+            List<ChitsTransInfo> trans = ChitsTransDAO.GetChitTrans(fromDate, toDate, ledgerName, type);
+            foreach (ChitsTransInfo tran in trans)
+            {
+                dayBook = new DayBookInfo();
+                dayBook.CurrentDate = tran.Date;
+                dayBook.Particulars = tran.ChitNO;
+                dayBook.VoucherType = DBConstant.CHITS_INSTALLMENT;
+                dayBook.VoucherNo = tran.RecordID;
+                dayBook.Debit = tran.InstallmentAmount;
+                dayBook.Credit = 0;
+                dayBook.Narration = tran.ChitNO;
+                dayBook.FromLedger = DBConstant.CASH_LEDGER;
+                dayBook.ToLedger = tran.ChitNO;
+
+                dayBooks.Add(dayBook);
+            }
+
+            //Chits Bids
+            List<ChitsBiddingInfo> bids = ChitsBiddingDAO.GetChitBids(fromDate, toDate, ledgerName, type);
+            foreach (ChitsBiddingInfo bid in bids)
+            {
+                dayBook = new DayBookInfo();
+                dayBook.CurrentDate = bid.PaidDate;
+                dayBook.Particulars = bid.ChitNO;
+                dayBook.VoucherType = DBConstant.CHITS_BIDDING;
+                dayBook.VoucherNo = bid.RecordID;
+                dayBook.Debit = 0;
+                dayBook.Credit = bid.PaidAmount;
+                dayBook.Narration = bid.ChitNO;
+                dayBook.FromLedger = bid.ChitNO;
+                dayBook.ToLedger = DBConstant.CASH_LEDGER;
+
+                dayBooks.Add(dayBook);
+            }
+
+            return dayBooks;
+        }
+
         #endregion
     }
 }

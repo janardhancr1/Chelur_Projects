@@ -72,6 +72,23 @@
             </td>
         </tr>
         <tr>
+            <td colspan="3">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table width="100%" id="DetailsTable" runat="server">
+                    
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <hr />
+            </td>
+        </tr>
+        <tr>
             <td class="nav_header" colspan="3">
                 &nbsp;
             </td>
