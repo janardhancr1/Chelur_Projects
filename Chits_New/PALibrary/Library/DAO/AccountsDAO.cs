@@ -991,5 +991,39 @@ namespace PALibrary.Library.DAO
             }
             return dayBook;
         }
+
+        public static DayBookInfo GetChitsOpeniningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            decimal credit = 0;
+            decimal debit = 0;
+            DayBookInfo openingBalance = null;
+
+            //Chit Trans
+            openingBalance = ChitsTransDAO.GetOpeningTrans(toDate, ledgerName, type);
+            if (openingBalance != null)
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            //Chit Bid
+            openingBalance = ChitsBiddingDAO.GetOpeningBids(toDate, ledgerName, type);
+            if (openingBalance != null)
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            DayBookInfo dayBook = new DayBookInfo();
+            if (credit > debit)
+            {
+                dayBook.Credit = credit - debit;
+            }
+            else if (debit > credit)
+            {
+                dayBook.Debit = debit - credit;
+            }
+            return dayBook;
+        }
     }
 }

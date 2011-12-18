@@ -70,6 +70,10 @@ namespace PALibrary.Library.Component
             return LedgersDAO.GetATKTLedger(fromDate, toDate, ledgerName, type);
         }
 
+        public static List<DayBookInfo> GetChitLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            return LedgersDAO.GetChitLedger(fromDate, toDate, ledgerName, type);
+        }
 
         public static List<DayBookInfo> GetInterestLedger(DateTime fromDate, DateTime toDate)
         {

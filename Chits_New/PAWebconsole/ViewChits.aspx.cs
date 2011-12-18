@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 using PALibrary.Library.Component;
 using PALibrary.Library.Exception;
@@ -38,6 +39,53 @@ public partial class ViewChits : System.Web.UI.Page
                         ChitAmount.Text = chitsInfo.ChitAmount.ToString();
                         InstallmentAmount.Text = chitsInfo.InstallmentAmount.ToString();
                         NoInstallments.Text = chitsInfo.NoInstallments.ToString();
+                    }
+
+                    int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(ChitNO.Text, 0, 0, new DateTime(), new DateTime(), 0, 0, 0, 0);
+                    totalInstallments += 1;
+
+                    HtmlTableRow row = null;
+                    HtmlTableCell cell = null;
+
+                    row = new HtmlTableRow();
+                    row.Attributes.Add("class", "nav_header");
+
+                    cell = new HtmlTableCell();
+                    cell.InnerText = "Customer Name";
+                    row.Cells.Add(cell);
+
+                    for (int i = 1; i < totalInstallments; i++)
+                    {
+                        cell = new HtmlTableCell();
+                        cell.InnerText = i.ToString();
+                        row.Cells.Add(cell);
+                    }
+
+                    DetailsTable.Rows.Add(row);
+
+                    List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Text);
+                    foreach (ChitsParticipateInfo customer in customers)
+                    {
+                        row = new HtmlTableRow();
+
+                        cell = new HtmlTableCell();
+                        cell.InnerText = customer.CustomerName;
+                        row.Cells.Add(cell);
+
+                        for (int i = 1; i < totalInstallments; i++)
+                        {
+                            List<ChitsTransInfo> trans = ChitsTransManager.SearchChitsTransInfo(ChitNO.Text, customer.CustomerID, i, 0, new DateTime(), -1, 0);
+
+                            cell = new HtmlTableCell();
+                            if (trans.Count > 0)
+                                cell.InnerText = trans[0].Date.ToString("dd/MM");
+                            else
+                                cell.InnerText = "";
+                            row.Cells.Add(cell);
+                        }
+
+                        DetailsTable.Rows.Add(row);
+
                     }
                 }
             }

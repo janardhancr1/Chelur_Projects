@@ -30,6 +30,12 @@
             <td>
                 <a href="MonthlyLedger.aspx?type=4" class="acolor"><b>Chits Ledger</b></a></td>
         </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td>
+                <a href="MonthlyLedger.aspx?type=7" class="acolor"><b>Chits Commission Ledger</b></a></td>
+        </tr>
          <tr>
             <td width="10%">
                 &nbsp;</td>

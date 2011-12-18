@@ -51,11 +51,8 @@ public partial class MonthlyLedger : System.Web.UI.Page
                         break;
                     case "4":
                         LedgerName.Text = "Chits Ledger";
-                        //openingBalance = accountManager.GetPronoteLoanOpeningBalance(appConstants.FinYearStart, "PL",
-                        //                                                             DBConstant.ACCOUNT_OPENING);
-                        //monthlySummary = accountManager.GetMonthlySummary(appConstants.FinYearStart,
-                        //                                                  appConstants.FinYearEnd, "PL", company.CompID,
-                        //                                                  DBConstant.ACCOUNT_PERIOD, 4);
+                        openingBalance = AccountsManager.GetChitsOpeniningBalance(appConstants.FinYearStart, "CHIT", DBConstant.ACCOUNT_OPENING);
+                        monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, "CHIT", DBConstant.ACCOUNT_PERIOD, 4);
                         break;
                     case "5":
                         LedgerName.Text = "Interest Collected Ledger";

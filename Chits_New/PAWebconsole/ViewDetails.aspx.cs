@@ -82,11 +82,8 @@ public partial class ViewDetails : System.Web.UI.Page
                     break;
                 case "4":
                     LedgerName.Text = "Chits Ledger";
-                    //openingBalance = accountManager.GetPronoteLoanOpeningBalance(appConstants.FinYearStart, "PL",
-                    //                                                             DBConstant.ACCOUNT_OPENING);
-                    //dayBooks = accountManager.GetMonthlySummary(appConstants.FinYearStart,
-                    //                                                  appConstants.FinYearEnd, "PL", company.CompID,
-                    //                                                  DBConstant.ACCOUNT_PERIOD, 4);
+                    openingBalance = AccountsManager.GetChitsOpeniningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "CHIT", DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "CHIT", DBConstant.ACCOUNT_PERIOD);
                     break;
                 case "5":
                     LedgerName.Text = "Interest Collected Ledger";

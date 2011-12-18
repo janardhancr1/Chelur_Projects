@@ -62,6 +62,9 @@ namespace PALibrary.Library.Utils
 	    public const string VOUCHER_ATKTPAY = "ATKTPAY";
 	    public const string VOUCHER_ATKTRECP = "ATKTRECP";
 
+        public const string CHITS_INSTALLMENT = "CHITINSTAL";
+        public const string CHITS_BIDDING = "CHITBID";
+
         public const int START_YEAR = 2000;
 
 	    private int userID;

@@ -30,6 +30,13 @@ namespace PALibrary.Library.Model
         public const string QUERY_SELECT = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
         public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
 
+        public const string PARAM_FROM_DATE = "@fromDate";
+        public const string PARAM_TO_DATE = "@toDate";
+        public const string QUERY_SELECT_OPENING = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Paid_Date<" + PARAM_PAID_DATE;
+        public const string QUERY_SELECT_PERIOD = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,c.Customer_ID,Left_Amount,cu.Customer_Name FROM " + TABLE_NAME + " c, customers cu WHERE c.customer_id=cu.customer_id AND Paid_Date>=" + PARAM_FROM_DATE + " AND Paid_Date<=" + PARAM_TO_DATE + " ORDER BY Paid_Date";
+        //public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME + " ORDER BY loan_date";
+
+
         private int recordID;
         private string chitNO;
         private int installmentNO;
