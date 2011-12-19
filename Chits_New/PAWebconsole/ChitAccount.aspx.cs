@@ -47,6 +47,9 @@ public partial class ChitAccount : System.Web.UI.Page
                         if (customers.Count > 0)
                         {
 
+                            CustomerName.Value = customers[0].CustomerName;
+                            CustomerAddress.Value = customers[0].CustomerAddress;
+
                             decimal paidTotal = 0;
                             decimal bidTotal = 0;
 

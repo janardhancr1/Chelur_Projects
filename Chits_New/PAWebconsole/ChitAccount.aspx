@@ -7,22 +7,44 @@
     <table class="data_table" width="98%" align="center">
         <tr>
             <td>
-                Chit No</td>
-            <td>
-                <input type="text" id="ChitNO" runat="server" readonly /></td>
-        </tr>
-        <tr>
-            <td>
-                Chit Name</td>
-            <td>
-                <input type="text" id="ChitName" runat="server" readonly />
+                <table>
+                    <tr>
+                        <td>
+                            Chit No</td>
+                        <td>
+                            <input type="text" id="ChitNO" runat="server" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Chit Name</td>
+                        <td>
+                            <input type="text" id="ChitName" runat="server" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Chit Amount</td>
+                        <td>
+                            <input type="text" id="ChitAmount" runat="server" readonly /></td>
+                    </tr>
+                </table>
             </td>
-        </tr>
-        <tr>
             <td>
-                Chit Amount</td>
-            <td>
-                <input type="text" id="ChitAmount" runat="server" readonly /></td>
+                <table>
+                    <tr>
+                        <td>
+                            Customer Name</td>
+                        <td>
+                            <input type="text" id="CustomerName" runat="server" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Customer Address</td>
+                        <td>
+                            <textarea id="CustomerAddress" runat="server" cols="30" readonly></textarea></td>
+                    </tr>
+                </table>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
