@@ -262,6 +262,39 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static List<ChitsBiddingInfo> GetChitsBiddingInfos(DateTime paidDate)
+        {
+            List<ChitsBiddingInfo> chitsBiddingInfos = new List<ChitsBiddingInfo>();
+            IDataReader reader = null;
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, paidDate));
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsBiddingInfo.QUERY_SELECT_UPTO, parameters);
+                while (reader.Read())
+                {
+                    ChitsBiddingInfo chitsBiddingInfo = new ChitsBiddingInfo();
+                    chitsBiddingInfo.ReadValues(reader);
+
+                    CustomerInfo customer = CustomerDAO.GetCustomerInfo(chitsBiddingInfo.CustomerID);
+                    chitsBiddingInfo.CustomerName = customer.CustomerName;
+                    chitsBiddingInfo.CustomerAddress = customer.FullAddress;
+
+                    chitsBiddingInfos.Add(chitsBiddingInfo);
+                }
+                return chitsBiddingInfos;
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
 
         public static DayBookInfo GetOpeningBids(DateTime toDate, string ledgerName, int type)
         {

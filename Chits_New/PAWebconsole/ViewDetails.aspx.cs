@@ -97,6 +97,12 @@ public partial class ViewDetails : System.Web.UI.Page
                     dayBooks = LedgersManager.GetInterestPaidLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                       DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture));
                     break;
+                case "7":
+                    LedgerName.Text = "Chit Commission Ledger";
+                    openingBalance = AccountsManager.GetChitCommissionOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGET, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitCommissionLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGET, DBConstant.ACCOUNT_PERIOD);
+                    break;
             }
 
         }

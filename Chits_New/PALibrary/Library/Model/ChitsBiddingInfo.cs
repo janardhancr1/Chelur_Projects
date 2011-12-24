@@ -33,7 +33,8 @@ namespace PALibrary.Library.Model
         public const string PARAM_FROM_DATE = "@fromDate";
         public const string PARAM_TO_DATE = "@toDate";
         public const string QUERY_SELECT_OPENING = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Paid_Date<" + PARAM_PAID_DATE;
-        public const string QUERY_SELECT_PERIOD = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,c.Customer_ID,Left_Amount,cu.Customer_Name FROM " + TABLE_NAME + " c, customers cu WHERE c.customer_id=cu.customer_id AND Paid_Date>=" + PARAM_FROM_DATE + " AND Paid_Date<=" + PARAM_TO_DATE + " ORDER BY Paid_Date";
+        public const string QUERY_SELECT_PERIOD = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,b.Customer_ID,Left_Amount,c.Chit_Name,cu.Customer_Name FROM " + TABLE_NAME + " b, chits c, customers cu WHERE b.Chit_No=c.Chit_No AND b.Customer_id = cu.Customer_id AND Paid_Date>=" + PARAM_FROM_DATE + " AND Paid_Date<=" + PARAM_TO_DATE + " ORDER BY Paid_Date";
+        public const string QUERY_SELECT_UPTO = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,b.Customer_ID,Left_Amount,c.Chit_Name,cu.Customer_Name FROM " + TABLE_NAME + " b, chits c, customers cu WHERE b.Chit_No=c.Chit_No AND b.Customer_id = cu.Customer_id AND Paid_Date<" + PARAM_PAID_DATE;
         //public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME + " ORDER BY loan_date";
 
 
@@ -46,6 +47,7 @@ namespace PALibrary.Library.Model
         private int customerID;
         private decimal leftAmount;
 
+        private string chitName;
         private string customerName;
         private string customerAddress;
 
@@ -95,6 +97,12 @@ namespace PALibrary.Library.Model
         {
             get { return leftAmount; }
             set { leftAmount = value; }
+        }
+
+        public string ChitName
+        {
+            get { return chitName; }
+            set { chitName = value; }
         }
 
         public string CustomerName
@@ -154,7 +162,9 @@ namespace PALibrary.Library.Model
                     case "Left_Amount":
                         leftAmount = DBUtils.ConvertDecimal(reader["Left_Amount"]);
                         break;
-
+                    case "Chit_Name":
+                        chitName = DBUtils.ConvertString(reader["Chit_Name"]);
+                        break;
                 }
             }
         }

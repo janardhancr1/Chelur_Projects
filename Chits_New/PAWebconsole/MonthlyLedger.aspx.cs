@@ -65,14 +65,9 @@ public partial class MonthlyLedger : System.Web.UI.Page
                         monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_PERIOD, 6);
                         break;
                     case "7":
-                        LedgerName.Text = "Interest Collected Ledger";
-                        //openingBalance = accountManager.GetInterestOpeningBalance(appConstants.FinYearStart,
-                        //                                                          DBConstant.INTEREST_LEDGER,
-                        //                                                          DBConstant.ACCOUNT_OPENING);
-                        //monthlySummary = accountManager.GetMonthlySummary(appConstants.FinYearStart,
-                        //                                                  appConstants.FinYearEnd,
-                        //                                                  DBConstant.INTEREST_LEDGER, company.CompID,
-                        //                                                  DBConstant.ACCOUNT_PERIOD, 7);
+                        LedgerName.Text = "Chit Commission Ledger";
+                        openingBalance = AccountsManager.GetChitCommissionOpeningBalance(appConstants.FinYearStart, DBConstant.CHIT_COMMISSION_LEDGET, DBConstant.ACCOUNT_OPENING);
+                        monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.CHIT_COMMISSION_LEDGET, DBConstant.ACCOUNT_PERIOD, 7);
                         break;
                     case "8":
                         //LedgerName.Text = "Interest Paid Ledger";

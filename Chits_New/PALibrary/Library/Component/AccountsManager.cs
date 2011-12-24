@@ -115,6 +115,11 @@ namespace PALibrary.Library.Component
             return AccountsDAO.GetChitsOpeniningBalance(toDate, ledgerName, type);
         }
 
+        public static DayBookInfo GetChitCommissionOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return AccountsDAO.GetChitCommissionOpeningBalance(toDate, ledgerName, type);
+        }
+
         #endregion
 
         #region Monthly Summary
@@ -265,6 +270,19 @@ namespace PALibrary.Library.Component
                         }
                     }
                     break;
+                case 7:
+                    details = LedgersDAO.GetChitCommissionLedger(fromDate, toDate, ledgerName, type);
+                    LedgersInfo chitCommLedger = LedgersDAO.GetLedgersInfo(ledgerName);
+                    if (chitCommLedger != null)
+                    {
+                        List<DayBookInfo> interestVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, chitCommLedger.LedgerID);
+                        foreach (DayBookInfo voucher in interestVouchers)
+                        {
+                            details.Add(voucher);
+                        }
+                    }
+                    break;
+
                 //case 9:
                 //    details = ledgerDao.GetCustomerLedger(fromDate, toDate, ledgerName, compID);
                 //    break;
