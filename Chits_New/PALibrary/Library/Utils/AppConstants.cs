@@ -30,6 +30,7 @@ namespace PALibrary.Library.Utils
         public const string CASH_LEDGER = "Cash";
         public const string INTEREST_LEDGER = "Interest";
         public const string INTEREST_PAID_LEDGER = "Interest Paid";
+        public const string CHIT_COMMISSION_LEDGET = "Chits Commission";
 
         public const string PARTICULARS_BY = "By ";
         public const string PARTICULARS_TO = "To ";
@@ -64,6 +65,7 @@ namespace PALibrary.Library.Utils
 
         public const string CHITS_INSTALLMENT = "CHITINSTAL";
         public const string CHITS_BIDDING = "CHITBID";
+        public const string CHITS_COMMISSION = "CHITCOMM";
 
         public const int START_YEAR = 2000;
 
