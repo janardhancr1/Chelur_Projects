@@ -63,10 +63,11 @@ public partial class ChitUnpaid : System.Web.UI.Page
                                 found = true;
 
                                 decimal installAmount = chitsInfo.InstallmentAmount;
-                                if (i > 1 && i <= totalInstallments - 1)
+                                if (i > 1 && i < totalInstallments)
                                 {
+                                    List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, i - 1, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
                                     decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
-                                    decimal leftAmount = biddings[i - 1].LeftAmount - comm;
+                                    decimal leftAmount = lastBidding[0].LeftAmount - comm;
                                     installAmount = (chitsInfo.InstallmentAmount - (leftAmount / chitsInfo.NoInstallments));
 
                                 }

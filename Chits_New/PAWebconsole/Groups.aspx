@@ -7,7 +7,7 @@
     <table width="100%">
         <tr>
             <td align="center">
-                <asp:ListBox ID="GroupNames" runat="server" Height="350px" Width="278px"></asp:ListBox>
+                <asp:ListBox ID="GroupNames" runat="server" Height="400px" Width="278px"></asp:ListBox>
             </td>
         </tr>
         <tr>

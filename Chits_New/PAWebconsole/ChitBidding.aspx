@@ -67,7 +67,7 @@
                                 <asp:ListItem Value="">--Select--</asp:ListItem>
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Customer"
-                                Display="Dynamic">Select customer</asp:RequiredFieldValidator>
+                                Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -122,15 +122,14 @@
                     <Columns>
                         <asp:BoundField HeaderText="Paid Date" DataField="PaidDate" SortExpression="PaidDate"
                             HtmlEncode="false" DataFormatString="{0:dd/MM/yyyy}" />
-                         <asp:BoundField HeaderText="Bid Date" DataField="BidDate" SortExpression="BidDate"
+                        <asp:BoundField HeaderText="Bid Date" DataField="BidDate" SortExpression="BidDate"
                             HtmlEncode="false" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField HeaderText="Installment No" DataField="InstallmentNO" SortExpression="InstallmentNO" />
                         <asp:BoundField HeaderText="Paid Amount" DataField="PaidAmount" SortExpression="BidAmount"
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
                         <asp:BoundField HeaderText="Left Amount" DataField="LeftAmount" SortExpression="LeftAmount"
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
-                        <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName"
-                            ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
                         <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
                             DataNavigateUrlFormatString="ChitBidding.aspx?chitNO={0}&transid={1}" />
@@ -143,7 +142,7 @@
                         Mode="NextPreviousFirstLast" />
                 </asp:GridView>
                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetChitsBiddingInfos"
-                    TypeName="PALibrary.Library.Component.ChitsBiddingManager" >
+                    TypeName="PALibrary.Library.Component.ChitsBiddingManager">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="ChitNO" PropertyName="Value" Name="chitNo" Type="string" />
                     </SelectParameters>

@@ -244,9 +244,18 @@ namespace PALibrary.Library.DAO
                     ChitsBiddingInfo chitsBiddingInfo = new ChitsBiddingInfo();
                     chitsBiddingInfo.ReadValues(reader);
 
-                    CustomerInfo customer = CustomerDAO.GetCustomerInfo(chitsBiddingInfo.CustomerID);
-                    chitsBiddingInfo.CustomerName = customer.CustomerName;
-                    chitsBiddingInfo.CustomerAddress = customer.FullAddress;
+                    if (chitsBiddingInfo.CustomerID > 0)
+                    {
+                        CustomerInfo customer = CustomerDAO.GetCustomerInfo(chitsBiddingInfo.CustomerID);
+                        chitsBiddingInfo.CustomerName = customer.CustomerName;
+                        chitsBiddingInfo.CustomerAddress = customer.FullAddress;
+                    }
+                    else
+                    {
+                        chitsBiddingInfo.CustomerName = "Company Bidding";
+                        chitsBiddingInfo.CustomerAddress = "";
+                    }
+
 
                     chitsBiddingInfos.Add(chitsBiddingInfo);
                 }
