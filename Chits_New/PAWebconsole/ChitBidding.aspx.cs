@@ -64,6 +64,8 @@ public partial class ChitBidding : System.Web.UI.Page
                         Customer.Items.Add(item);
                     }
 
+                    Customer.Items.Add(new ListItem("Company Bidding", "0"));
+
                 }
             }
         }

@@ -591,6 +591,24 @@ namespace PALibrary.Library.DAO
                 dayBook.ToLedger = DBConstant.CASH_LEDGER;
 
                 dayBooks.Add(dayBook);
+
+                dayBook = new DayBookInfo();
+                dayBook.CurrentDate = bid.PaidDate;
+                dayBook.Particulars = bid.ChitNO;
+                dayBook.VoucherType = DBConstant.CHITS_COMMISSION;
+                dayBook.VoucherNo = bid.RecordID;
+                dayBook.Debit = 0;
+
+                ChitsInfo chitsInfo = ChitsDAO.GetChitsInfo(bid.ChitNO);
+                decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
+                dayBook.Credit = comm;
+
+                dayBook.Narration = bid.ChitName;
+                dayBook.FromLedger = DBConstant.CHIT_COMMISSION_LEDGER;
+                dayBook.ToLedger = DBConstant.CASH_LEDGER;
+
+                dayBooks.Add(dayBook);
+
             }
 
             return dayBooks;
@@ -616,7 +634,7 @@ namespace PALibrary.Library.DAO
                 dayBook.Debit = chitCommission;
                 dayBook.Credit = 0;
                 dayBook.Narration = bid.ChitName;
-                dayBook.FromLedger = DBConstant.CHIT_COMMISSION_LEDGET;
+                dayBook.FromLedger = DBConstant.CHIT_COMMISSION_LEDGER;
                 dayBook.ToLedger = DBConstant.CASH_LEDGER;
 
                 dayBooks.Add(dayBook);

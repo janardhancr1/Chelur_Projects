@@ -99,9 +99,9 @@ public partial class ViewDetails : System.Web.UI.Page
                     break;
                 case "7":
                     LedgerName.Text = "Chit Commission Ledger";
-                    openingBalance = AccountsManager.GetChitCommissionOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGET, DBConstant.ACCOUNT_OPENING);
+                    openingBalance = AccountsManager.GetChitCommissionOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
                     dayBooks = LedgersManager.GetChitCommissionLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGET, DBConstant.ACCOUNT_PERIOD);
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD);
                     break;
             }
 
@@ -126,6 +126,10 @@ public partial class ViewDetails : System.Web.UI.Page
                                                                       DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "ATKT", DBConstant.ACCOUNT_PERIOD);
                 dayBooks.AddRange(atktInfos);
 
+                List<DayBookInfo> chitInfos = LedgersManager.GetChitLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "CHIT", DBConstant.ACCOUNT_PERIOD);
+                dayBooks.AddRange(chitInfos);
+
                 List<DayBookInfo> interestColleted = LedgersManager.GetInterestLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                   DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture));
                 foreach (DayBookInfo day in interestColleted)
@@ -145,6 +149,11 @@ public partial class ViewDetails : System.Web.UI.Page
                         dayBooks.Add(day);
                     }
                 }
+
+                List<DayBookInfo> chitComms = LedgersManager.GetChitCommissionLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                dayBooks.AddRange(chitComms);
+
                 dayBooks.Sort(new ReportComparer());
             }
             else
