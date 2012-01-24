@@ -34,6 +34,11 @@ namespace PALibrary.Library.Component
             return ChitsBiddingDAO.SearchChitsBiddingInfoCount(ChitsBiddingDAO.SearchConditions(chitNO, installmentNO, paidAmount, bidDate, paidDate, customerID, leftAmount));
         }
 
+        public static int GetLastBiddingInstallment(string chitNO)
+        {
+            return ChitsBiddingDAO.GetLastBiddingInstallment(chitNO);
+        }
+
         public static ChitsBiddingInfo GetChitsBiddingInfo(int recordID)
         {
             return ChitsBiddingDAO.GetChitsBiddingInfo(recordID);

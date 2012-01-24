@@ -202,6 +202,23 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static int GetLastBiddingInstallment(string chitNO)
+        {
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_CHIT_NO, chitNO));
+
+                int count = DBUtils.ConvertInt(SQLHelper.ExecuteScalar(CommandType.Text, ChitsBiddingInfo.QUERY_MAX_INSTALLMENT, parameters));
+                count++;
+                return count;
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+        }
+
         public static ChitsBiddingInfo GetChitsBiddingInfo(int recordID)
         {
             ChitsBiddingInfo chitsBiddingInfo = null;
