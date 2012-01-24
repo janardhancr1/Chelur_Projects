@@ -1069,8 +1069,8 @@ namespace PALibrary.Library.DAO
             openingBalance = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, type);
             if (openingBalance != null)
             {
-                credit = credit + openingBalance.Credit;
-                debit = debit + openingBalance.Debit;
+                credit = credit + openingBalance.Debit;
+                debit = debit + openingBalance.Credit;
             }
 
             DayBookInfo dayBook = new DayBookInfo();

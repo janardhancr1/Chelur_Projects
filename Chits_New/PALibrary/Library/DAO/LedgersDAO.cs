@@ -597,11 +597,11 @@ namespace PALibrary.Library.DAO
                 dayBook.Particulars = bid.ChitNO;
                 dayBook.VoucherType = DBConstant.CHITS_COMMISSION;
                 dayBook.VoucherNo = bid.RecordID;
-                dayBook.Debit = 0;
-
+                
                 ChitsInfo chitsInfo = ChitsDAO.GetChitsInfo(bid.ChitNO);
                 decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
-                dayBook.Credit = comm;
+                dayBook.Debit = comm;
+                dayBook.Credit = 0;
 
                 dayBook.Narration = bid.ChitName;
                 dayBook.FromLedger = DBConstant.CHIT_COMMISSION_LEDGER;

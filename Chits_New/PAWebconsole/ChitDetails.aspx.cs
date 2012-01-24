@@ -55,11 +55,13 @@ public partial class ChitDetails : System.Web.UI.Page
                         int totalInstallments = ChitsBiddingManager.SearchChitsBiddingInfoCount(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), 0, 0, 0, 0);
                         totalInstallments += 1;
 
-                        InstallmentNo.SelectedValue = totalInstallments.ToString();
+                        int currentInstallment = ChitsBiddingManager.GetLastBiddingInstallment(ChitNO.Value);
+
+                        InstallmentNo.SelectedValue = currentInstallment.ToString();
                         firstLoad = true;
 
 
-                        List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, totalInstallments - 1, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
+                        List<ChitsBiddingInfo> lastBidding = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, currentInstallment - 1, 0, new DateTime(), new DateTime(), 0, 0, -1, 0);
                         if (lastBidding.Count > 0)
                         {
                             decimal comm = chitsInfo.ChitAmount * chitsInfo.ChitCommission / 100;
