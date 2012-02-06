@@ -261,13 +261,6 @@ namespace PALibrary.Library.DAO
                 credit = credit + interestPaidOpening.Debit;
             }
 
-            DayBookInfo chitsCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
-            if (chitsCommOpening != null)
-            {
-                credit = credit + chitsCommOpening.Credit;
-                debit = debit + chitsCommOpening.Debit;
-            }
-
             DayBookInfo dayBook = null;
             if (credit > debit)
             {
@@ -691,16 +684,16 @@ namespace PALibrary.Library.DAO
                 }
             }
 
-            DayBookInfo chitComm = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
-            foreach (DayBookInfo tb in trialBalance)
-            {
-                if (tb.Particulars.Equals("INDIRECT INCOMES"))
-                {
-                    tb.Credit = tb.Credit + chitComm.Credit;
-                    tb.Debit = tb.Debit + chitComm.Debit;
-                    break;
-                }
-            }
+            //DayBookInfo chitComm = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
+            //foreach (DayBookInfo tb in trialBalance)
+            //{
+            //    if (tb.Particulars.Equals("INDIRECT INCOMES"))
+            //    {
+            //        tb.Credit = tb.Credit + chitComm.Credit;
+            //        tb.Debit = tb.Debit + chitComm.Debit;
+            //        break;
+            //    }
+            //}
 
             decimal debit = 0;
             decimal credit = 0;
@@ -822,11 +815,20 @@ namespace PALibrary.Library.DAO
             trialDetails.Add(detail);
 
             DayBookInfo chitOpening = GetChitsOpeniningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
+            DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
+
             detail = new DayBookInfo();
             detail.Particulars = "CHITS";
             detail.Narration = "CURRENT ASSETS";
             detail.Debit = chitOpening.Credit;
             detail.Credit = chitOpening.Debit;
+            trialDetails.Add(detail);
+
+            detail = new DayBookInfo();
+            detail.Particulars = DBConstant.CHIT_COMMISSION_LEDGER;
+            detail.Narration = "CURRENT ASSETS";
+            detail.Debit = chitCommOpening.Credit;
+            detail.Credit = chitCommOpening.Debit;
             trialDetails.Add(detail);
 
             DayBookInfo interests = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
@@ -843,14 +845,6 @@ namespace PALibrary.Library.DAO
             detail.Narration = "INDIRECT EXPENSES";
             detail.Debit = interestPaids.Debit;
             detail.Credit = interestPaids.Credit;
-            trialDetails.Add(detail);
-
-            DayBookInfo chitComm = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
-            detail = new DayBookInfo();
-            detail.Particulars = DBConstant.CHIT_COMMISSION_LEDGER;
-            detail.Narration = "INDIRECT INCOMES";
-            detail.Debit = chitComm.Debit;
-            detail.Credit = chitComm.Credit;
             trialDetails.Add(detail);
 
             return trialDetails;
@@ -1069,8 +1063,8 @@ namespace PALibrary.Library.DAO
             openingBalance = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, type);
             if (openingBalance != null)
             {
-                credit = credit + openingBalance.Debit;
-                debit = debit + openingBalance.Credit;
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
             }
 
             DayBookInfo dayBook = new DayBookInfo();
@@ -1090,31 +1084,31 @@ namespace PALibrary.Library.DAO
             decimal credit = 0;
             decimal debit = 0;
 
-            LedgersInfo interestLedger = LedgersDAO.GetLedgersInfo(ledgerName);
-            if (interestLedger != null)
-            {
-                if (type == DBConstant.ACCOUNT_OPENING)
-                {
-                    if (interestLedger.BalanceType.Equals("Cr"))
-                        credit = interestLedger.OpeningBalance;
-                    else if (interestLedger.BalanceType.Equals("Dr"))
-                        debit = interestLedger.OpeningBalance;
+            //LedgersInfo interestLedger = LedgersDAO.GetLedgersInfo(ledgerName);
+            //if (interestLedger != null)
+            //{
+            //    if (type == DBConstant.ACCOUNT_OPENING)
+            //    {
+            //        if (interestLedger.BalanceType.Equals("Cr"))
+            //            credit = interestLedger.OpeningBalance;
+            //        else if (interestLedger.BalanceType.Equals("Dr"))
+            //            debit = interestLedger.OpeningBalance;
 
-                    DayBookInfo voucherOpening = VouchersDAO.GetOpeningVoucher(toDate, interestLedger.LedgerID);
-                    if (voucherOpening != null)
-                    {
-                        debit = debit + voucherOpening.Debit;
-                        credit = credit + voucherOpening.Credit;
-                    }
-                }
-            }
+            //        DayBookInfo voucherOpening = VouchersDAO.GetOpeningVoucher(toDate, interestLedger.LedgerID);
+            //        if (voucherOpening != null)
+            //        {
+            //            debit = debit + voucherOpening.Debit;
+            //            credit = credit + voucherOpening.Credit;
+            //        }
+            //    }
+            //}
 
             List<ChitsBiddingInfo> chitBids = ChitsBiddingDAO.GetChitsBiddingInfos(toDate);
             foreach(ChitsBiddingInfo chitBid in chitBids)
             {
                 ChitsInfo chitInfo = ChitsDAO.GetChitsInfo(chitBid.ChitNO);
                 decimal chitCommission = chitInfo.ChitAmount * chitInfo.ChitCommission / 100;
-                debit = debit + chitCommission;
+                credit = credit + chitCommission;
             }
 
             DayBookInfo dayBook = new DayBookInfo();
