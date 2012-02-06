@@ -128,7 +128,11 @@ public partial class ViewDetails : System.Web.UI.Page
 
                 List<DayBookInfo> chitInfos = LedgersManager.GetChitLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                       DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "CHIT", DBConstant.ACCOUNT_PERIOD);
-                dayBooks.AddRange(chitInfos);
+                foreach (DayBookInfo chitInfo in chitInfos)
+                {
+                    if (!chitInfo.VoucherType.Equals(DBConstant.CHITS_COMMISSION))
+                        dayBooks.Add(chitInfo);
+                }
 
                 List<DayBookInfo> interestColleted = LedgersManager.GetInterestLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                   DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture));
@@ -149,10 +153,6 @@ public partial class ViewDetails : System.Web.UI.Page
                         dayBooks.Add(day);
                     }
                 }
-
-                List<DayBookInfo> chitComms = LedgersManager.GetChitCommissionLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD);
-                dayBooks.AddRange(chitComms);
 
                 dayBooks.Sort(new ReportComparer());
             }
