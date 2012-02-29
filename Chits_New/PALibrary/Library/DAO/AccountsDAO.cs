@@ -261,6 +261,13 @@ namespace PALibrary.Library.DAO
                 credit = credit + interestPaidOpening.Debit;
             }
 
+            DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING_CASH);
+            if (chitCommOpening != null)
+            {
+                debit = debit + chitCommOpening.Credit;
+                credit = credit + chitCommOpening.Debit;
+            }
+
             DayBookInfo dayBook = null;
             if (credit > debit)
             {
@@ -684,16 +691,16 @@ namespace PALibrary.Library.DAO
                 }
             }
 
-            //DayBookInfo chitComm = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
-            //foreach (DayBookInfo tb in trialBalance)
-            //{
-            //    if (tb.Particulars.Equals("INDIRECT INCOMES"))
-            //    {
-            //        tb.Credit = tb.Credit + chitComm.Credit;
-            //        tb.Debit = tb.Debit + chitComm.Debit;
-            //        break;
-            //    }
-            //}
+            DayBookInfo chitComm = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo tb in trialBalance)
+            {
+                if (tb.Particulars.Equals("INDIRECT INCOMES"))
+                {
+                    tb.Credit = tb.Credit + chitComm.Credit;
+                    tb.Debit = tb.Debit + chitComm.Debit;
+                    break;
+                }
+            }
 
             decimal debit = 0;
             decimal credit = 0;
@@ -815,8 +822,6 @@ namespace PALibrary.Library.DAO
             trialDetails.Add(detail);
 
             DayBookInfo chitOpening = GetChitsOpeniningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
-            DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
-
             detail = new DayBookInfo();
             detail.Particulars = "CHITS";
             detail.Narration = "CURRENT ASSETS";
@@ -824,11 +829,12 @@ namespace PALibrary.Library.DAO
             detail.Credit = chitOpening.Debit;
             trialDetails.Add(detail);
 
+            DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
             detail = new DayBookInfo();
             detail.Particulars = DBConstant.CHIT_COMMISSION_LEDGER;
-            detail.Narration = "CURRENT ASSETS";
-            detail.Debit = chitCommOpening.Credit;
-            detail.Credit = chitCommOpening.Debit;
+            detail.Narration = "INDIRECT INCOMES";
+            detail.Debit = chitCommOpening.Debit;
+            detail.Credit = chitCommOpening.Credit;
             trialDetails.Add(detail);
 
             DayBookInfo interests = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
