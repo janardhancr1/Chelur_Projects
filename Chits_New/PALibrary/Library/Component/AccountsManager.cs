@@ -174,6 +174,14 @@ namespace PALibrary.Library.Component
                 if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
                     details.Add(day);
             }
+
+            dayBooks = LedgersDAO.GetChitCommissionLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
             details.Sort(new ReportComparer());
 
             List<DayBookInfo> monthlySummary = GetMonthlySummary(details);
