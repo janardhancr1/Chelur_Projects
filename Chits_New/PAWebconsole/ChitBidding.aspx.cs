@@ -77,6 +77,7 @@ public partial class ChitBidding : System.Web.UI.Page
 
     protected void Add_Click(object sender, EventArgs e)
     {
+        message.Text = "";
         ChitsBiddingInfo chitBidding = new ChitsBiddingInfo();
         chitBidding.ChitNO = ChitNO.Value;
         chitBidding.PaidDate = DateTime.ParseExact(PaidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -88,12 +89,21 @@ public partial class ChitBidding : System.Web.UI.Page
 
         try
         {
-            ChitsBiddingManager.AddChitsBiddingInfo(chitBidding);
+            int cnt = ChitsBiddingManager.SearchChitsBiddingInfoCount(chitBidding.ChitNO, 0, 0, new DateTime(), new DateTime(), chitBidding.CustomerID, 0, -1, 0);
+            if (cnt == 0)
+            {
+                ChitsBiddingManager.AddChitsBiddingInfo(chitBidding);
+                Response.Redirect("ChitBidding.aspx?chitNO=" + ChitNO.Value);
+            }
+            else
+            {
+                message.Text = "Already Bidded";
+            }
         }
         catch (PAException ex)
         {
             throw ex;
         }
-        Response.Redirect("ChitBidding.aspx?chitNO=" + ChitNO.Value);
+        
     }
 }

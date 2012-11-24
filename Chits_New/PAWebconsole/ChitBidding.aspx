@@ -96,7 +96,8 @@
                         <td>
                             &nbsp;</td>
                         <td>
-                            <asp:Button ID="AddButton" Text="Add" OnClick="Add_Click" runat="server" /></td>
+                            <asp:Button ID="AddButton" Text="Add" OnClick="Add_Click" runat="server" />
+                            <asp:Label ID="message" runat="server" ForeColor="red"></asp:Label></td>
                     </tr>
                 </table>
             </td>
@@ -131,8 +132,11 @@
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
                         <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
-                        <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
-                            DataNavigateUrlFormatString="ChitBidding.aspx?chitNO={0}&transid={1}" />
+                        <asp:TemplateField ItemStyle-HorizontalAlign="center">
+                            <ItemTemplate>
+                                <a onclick="javascript:return confirm('Are you sure to Delete?');" style="color:Red" href="ChitBidding.aspx?chitNO=<%#Eval("ChitNO")%>&transid=<%#Eval("RecordID")%>">Delete</a>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
                     <AlternatingRowStyle BackColor="Beige" />
