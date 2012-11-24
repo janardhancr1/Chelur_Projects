@@ -31,6 +31,8 @@ namespace PALibrary.Library.Model
         public const string QUERY_SELECT = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
         public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
 
+        public const string QUERY_SELECT_COMPANYBIDDING = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Customer_ID=0";
+
         public const string PARAM_FROM_DATE = "@fromDate";
         public const string PARAM_TO_DATE = "@toDate";
         public const string QUERY_SELECT_OPENING = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Paid_Date<" + PARAM_PAID_DATE + " AND Customer_ID>0";

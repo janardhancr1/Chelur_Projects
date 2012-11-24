@@ -288,6 +288,35 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos()
+        {
+            List<ChitsBiddingInfo> chitsBiddingInfos = new List<ChitsBiddingInfo>();
+            IDataReader reader = null;
+            try
+            {
+                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsBiddingInfo.QUERY_SELECT_COMPANYBIDDING, null);
+                while (reader.Read())
+                {
+                    ChitsBiddingInfo chitsBiddingInfo = new ChitsBiddingInfo();
+                    chitsBiddingInfo.ReadValues(reader);
+                   
+                    chitsBiddingInfo.CustomerName = "Company Bidding";
+                    chitsBiddingInfo.CustomerAddress = "";
+                    
+                    chitsBiddingInfos.Add(chitsBiddingInfo);
+                }
+                return chitsBiddingInfos;
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
         public static List<ChitsBiddingInfo> GetChitsBiddingInfos(DateTime paidDate)
         {
             List<ChitsBiddingInfo> chitsBiddingInfos = new List<ChitsBiddingInfo>();
