@@ -291,5 +291,26 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static List<ChitsInfo> GetChitsMonhlyDueStatement()
+        {
+            List<ChitsInfo> chitsInfos = GetChitsInfos();
+
+            foreach (ChitsInfo chitInfo in chitsInfos)
+            {
+                int currentInstallment = ChitsBiddingDAO.GetLastBiddingInstallment(chitInfo.ChitNO);
+                List<ChitsBiddingInfo> lastBidding = ChitsBiddingDAO.SearchChitsBiddingInfo(ChitsBiddingDAO.SearchConditions(chitInfo.ChitNO, currentInstallment - 1, 0, new DateTime(), new DateTime(), 0, 0), -1);
+                if (lastBidding.Count > 0)
+                {
+                    decimal comm = chitInfo.ChitAmount * chitInfo.ChitCommission / 100;
+                    decimal leftAmount = lastBidding[0].LeftAmount - comm;
+                    decimal installAmount = (chitInfo.InstallmentAmount - (leftAmount / chitInfo.NoInstallments));
+                    chitInfo.InstallmentAmount = installAmount;
+                    chitInfo.NoInstallments = currentInstallment;
+                }
+            }
+
+            return chitsInfos;
+        }
+
     }
 }
