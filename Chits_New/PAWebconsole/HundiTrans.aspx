@@ -141,9 +141,11 @@
                             HeaderStyle-HorizontalAlign="Right" />
                         <asp:BoundField HeaderText="Balance" DataField="Balance" SortExpression="Balance"
                             ItemStyle-HorizontalAlign="Right" HeaderStyle-HorizontalAlign="Right" />
-                        <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="HlLoanno,RecordID"
-                            DataNavigateUrlFormatString="HundiTrans.aspx?HlLoanno={0}&transid={1}" ItemStyle-Width="50px"
-                            ItemStyle-HorizontalAlign="Right" />
+                        <asp:TemplateField ItemStyle-HorizontalAlign="center">
+                            <ItemTemplate>
+                                <a onclick="javascript:return confirm('Are you sure to Delete?');" style="color:Red" href="HundiTrans.aspx?HlLoanno=<%#Eval("HlLoanno")%>&transid=<%#Eval("RecordID")%>">Delete</a>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                      <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
                     <AlternatingRowStyle BackColor="Beige" />

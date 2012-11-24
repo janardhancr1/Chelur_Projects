@@ -30,6 +30,11 @@ namespace PALibrary.Library.Model
         public const string QUERY_SELECT = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
         public const string QUERY_SELECT_ALL = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME;
 
+        public const string PARAM_FROM_DATE = "@fromDate";
+        public const string PARAM_TO_DATE = "@toDate";
+        public const string QUERY_REPORT_ON_CLOSED = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME + " WHERE Bid_Date>=" + PARAM_FROM_DATE + " AND Bid_Date<=" + PARAM_TO_DATE + " AND closed=" + PARAM_CLOSED;
+        public const string QUERY_REPORT_ALL = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME + " WHERE Bid_Date>=" + PARAM_FROM_DATE + " AND Bid_Date<=" + PARAM_TO_DATE;
+
         private string chitNO;
         private string chitName;
         private decimal chitAmount;

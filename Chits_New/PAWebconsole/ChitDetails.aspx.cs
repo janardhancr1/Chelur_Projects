@@ -130,6 +130,7 @@ public partial class ChitDetails : System.Web.UI.Page
 
     protected void Add_Click(object sender, EventArgs e)
     {
+        message.Text = "";
         ChitsTransInfo chitTrans = new ChitsTransInfo();
         chitTrans.ChitNO = ChitNO.Value;
         chitTrans.Date = DateTime.ParseExact(PaidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -139,12 +140,21 @@ public partial class ChitDetails : System.Web.UI.Page
 
         try
         {
-            ChitsTransManager.AddChitsTransInfo(chitTrans);
+            int cnt = ChitsTransManager.SearchChitsTransInfoCount(chitTrans.ChitNO, chitTrans.CustomerID, chitTrans.InstallmentNO, 0, new DateTime(), -1, 0);
+            if (cnt == 0)
+            {
+                ChitsTransManager.AddChitsTransInfo(chitTrans);
+                Response.Redirect("ChitDetails.aspx?chitNO=" + ChitNO.Value);
+            }
+            else
+            {
+                message.Text = "Already Paid";
+            }
         }
         catch (PAException ex)
         {
             throw ex;
         }
-        Response.Redirect("ChitDetails.aspx?chitNO=" + ChitNO.Value);
+        
     }
 }

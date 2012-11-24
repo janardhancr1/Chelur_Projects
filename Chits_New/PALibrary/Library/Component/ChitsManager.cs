@@ -44,5 +44,9 @@ namespace PALibrary.Library.Component
             return ChitsDAO.GetChitsInfos();
         }
 
+        public static List<ChitsInfo> GetChitsInfos(DateTime fromDate, DateTime toDate, string closed)
+        {
+            return ChitsDAO.GetChitsInfos(fromDate, toDate, closed);
+        }
     }
 }

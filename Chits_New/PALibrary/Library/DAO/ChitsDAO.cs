@@ -254,5 +254,42 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static List<ChitsInfo> GetChitsInfos(DateTime fromDate, DateTime toDate, string closed)
+        {
+            List<ChitsInfo> chitsInfos = new List<ChitsInfo>();
+            IDataReader reader = null;
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ChitsInfo.PARAM_FROM_DATE, fromDate));
+                parameters.Add(DBManager.GetParameter(ChitsInfo.PARAM_TO_DATE, toDate));
+                parameters.Add(DBManager.GetParameter(ChitsInfo.PARAM_CLOSED, closed));
+
+                string query = "";
+                if (closed.Equals(DBConstant.TYPE_CLOSED) || closed.Equals(DBConstant.TYPE_PENDING))
+                    query = ChitsInfo.QUERY_REPORT_ON_CLOSED;
+                else if (closed.Equals(DBConstant.TYPE_ALL))
+                    query = ChitsInfo.QUERY_REPORT_ALL;
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
+                while (reader.Read())
+                {
+                    ChitsInfo chitsInfo = new ChitsInfo();
+                    chitsInfo.ReadValues(reader);
+
+                    chitsInfos.Add(chitsInfo);
+                }
+                return chitsInfos;
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
     }
 }

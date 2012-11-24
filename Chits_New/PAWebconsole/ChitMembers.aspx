@@ -75,8 +75,11 @@
                         <asp:BoundField DataField="CustomerAddress" HeaderText="Customer Address" SortExpression="CustomerAddress" />
                         <asp:HyperLinkField Text="View Account" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,CustomerID"
                             DataNavigateUrlFormatString="ChitAccount.aspx?chitNO={0}&customerID={1}" />
-                        <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="ChitNO,RecordID"
-                            DataNavigateUrlFormatString="ChitMembers.aspx?chitNO={0}&transid={1}" />
+                        <asp:TemplateField ItemStyle-HorizontalAlign="center">
+                            <ItemTemplate>
+                                <a onclick="javascript:return confirm('Are you sure to Delete?');" style="color:Red" href="ChitMembers.aspx?chitNO=<%#Eval("ChitNO")%>&transid=<%#Eval("RecordID")%>">Delete</a>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />
                     <AlternatingRowStyle BackColor="Beige" />
