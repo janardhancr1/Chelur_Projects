@@ -55,6 +55,7 @@ public partial class AddChits : System.Web.UI.Page
                         InstallmentAmount.Text = chitsInfo.InstallmentAmount.ToString();
                         NoInstallments.Text = chitsInfo.NoInstallments.ToString();
                         ChitCommission.Text = chitsInfo.ChitCommission.ToString();
+                        StartDate.Value = chitsInfo.ChitStartDate.ToString("dd/MM/yyyy");
                     }
                 }
             }
@@ -72,6 +73,7 @@ public partial class AddChits : System.Web.UI.Page
         if (InstallmentAmount.Text.Trim().Length > 0) chitsInfo.InstallmentAmount = Convert.ToDecimal(InstallmentAmount.Text);
         if (NoInstallments.Text.Trim().Length > 0) chitsInfo.NoInstallments = Convert.ToDecimal(NoInstallments.Text);
         if (ChitCommission.Text.Trim().Length > 0) chitsInfo.ChitCommission = Convert.ToDecimal(ChitCommission.Text);
+        chitsInfo.ChitStartDate = DateTime.ParseExact(StartDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         chitsInfo.ClosedType = DBConstant.TYPE_PENDING;
 
         try

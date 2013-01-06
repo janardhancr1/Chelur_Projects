@@ -90,7 +90,7 @@ public partial class ChitBidding : System.Web.UI.Page
         try
         {
             int cnt = ChitsBiddingManager.SearchChitsBiddingInfoCount(chitBidding.ChitNO, 0, 0, new DateTime(), new DateTime(), chitBidding.CustomerID, 0, -1, 0);
-            if (cnt == 0)
+            if (cnt == 0 || chitBidding.CustomerID == 0)
             {
                 ChitsBiddingManager.AddChitsBiddingInfo(chitBidding);
                 Response.Redirect("ChitBidding.aspx?chitNO=" + ChitNO.Value);

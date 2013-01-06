@@ -29,7 +29,7 @@ namespace PALibrary.Library.Model
         public const string QUERY_MAX_INSTALLMENT = "SELECT MAX(Installment_No) FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
 
         public const string QUERY_SELECT = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Record_ID=" + PARAM_RECORD_ID;
-        public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
+        public const string QUERY_SELECT_ALL = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO + " ORDER BY Installment_No";
 
         public const string QUERY_SELECT_COMPANYBIDDING = "SELECT Record_ID,Chit_No,Installment_No,Paid_Amount,Bid_Date,Paid_Date,Customer_ID,Left_Amount FROM " + TABLE_NAME + " WHERE Customer_ID=0";
 

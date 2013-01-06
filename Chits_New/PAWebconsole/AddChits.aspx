@@ -61,6 +61,15 @@
                     Display="Dynamic">*</asp:RequiredFieldValidator></td>
         </tr>
         <tr>
+            <td>
+                Start Date</td>
+            <td>
+                <input type="text" id="StartDate" runat="server" onfocus="showCalendarControl(this);"
+                    readonly />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="StartDate"
+                    Display="Dynamic">*</asp:RequiredFieldValidator></td>
+        </tr>
+        <tr>
             <td colspan="2" align="center">
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="SingleParagraph"
                     HeaderText="Please fill all required values." />

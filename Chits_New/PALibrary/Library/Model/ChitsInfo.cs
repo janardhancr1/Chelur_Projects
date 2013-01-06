@@ -16,24 +16,25 @@ namespace PALibrary.Library.Model
         public const string PARAM_INSTALLMENT_AMOUNT = DBConstant.DB_PARAM + "Installment_Amount";
         public const string PARAM_NO_INSTALLMENTS = DBConstant.DB_PARAM + "No_Installments";
         public const string PARAM_CHIT_COMMISSION = DBConstant.DB_PARAM + "Chit_Commission";
+        public const string PARAM_CHIT_STARTDATE = DBConstant.DB_PARAM + "Start_Date";
         public const string PARAM_CLOSED = DBConstant.DB_PARAM + "Closed";
 
         public const string TABLE_NAME = "chits";
 
-        public const string QUERY_INSERT = "INSERT INTO " + TABLE_NAME + "(Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission, Closed) VALUES (" + PARAM_CHIT_NO + "," + PARAM_CHIT_NAME + "," + PARAM_CHIT_AMOUNT + "," + PARAM_BID_DATE + "," + PARAM_INSTALLMENT_AMOUNT + "," + PARAM_NO_INSTALLMENTS + "," + PARAM_CHIT_COMMISSION + "," + PARAM_CLOSED + ")";
-        public const string QUERY_UPDATE = "UPDATE " + TABLE_NAME + " SET Chit_Name=" + PARAM_CHIT_NAME + ",Chit_Amount=" + PARAM_CHIT_AMOUNT + ",Bid_Date=" + PARAM_BID_DATE + ",Installment_Amount=" + PARAM_INSTALLMENT_AMOUNT + ",No_Installments=" + PARAM_NO_INSTALLMENTS + ",Chit_Commission=" + PARAM_CHIT_COMMISSION + ",Closed=" + PARAM_CLOSED + " WHERE Chit_No=" + PARAM_CHIT_NO;
+        public const string QUERY_INSERT = "INSERT INTO " + TABLE_NAME + "(Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed) VALUES (" + PARAM_CHIT_NO + "," + PARAM_CHIT_NAME + "," + PARAM_CHIT_AMOUNT + "," + PARAM_BID_DATE + "," + PARAM_INSTALLMENT_AMOUNT + "," + PARAM_NO_INSTALLMENTS + "," + PARAM_CHIT_COMMISSION + "," + PARAM_CHIT_STARTDATE + "," + PARAM_CLOSED + ")";
+        public const string QUERY_UPDATE = "UPDATE " + TABLE_NAME + " SET Chit_Name=" + PARAM_CHIT_NAME + ",Chit_Amount=" + PARAM_CHIT_AMOUNT + ",Bid_Date=" + PARAM_BID_DATE + ",Installment_Amount=" + PARAM_INSTALLMENT_AMOUNT + ",No_Installments=" + PARAM_NO_INSTALLMENTS + ",Chit_Commission=" + PARAM_CHIT_COMMISSION + ",Start_Date=" + PARAM_CHIT_STARTDATE +  ",Closed=" + PARAM_CLOSED + " WHERE Chit_No=" + PARAM_CHIT_NO;
         public const string QUERY_DELETE = "DELETE FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
 
-        public const string QUERY_SEARCH = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME;
+        public const string QUERY_SEARCH = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed FROM " + TABLE_NAME;
         public const string QUERY_COUNT = "SELECT Count(*) FROM " + TABLE_NAME;
 
-        public const string QUERY_SELECT = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
-        public const string QUERY_SELECT_ALL = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME;
+        public const string QUERY_SELECT = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
+        public const string QUERY_SELECT_ALL = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed FROM " + TABLE_NAME;
 
         public const string PARAM_FROM_DATE = "@fromDate";
         public const string PARAM_TO_DATE = "@toDate";
-        public const string QUERY_REPORT_ON_CLOSED = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME + " WHERE Bid_Date>=" + PARAM_FROM_DATE + " AND Bid_Date<=" + PARAM_TO_DATE + " AND closed=" + PARAM_CLOSED;
-        public const string QUERY_REPORT_ALL = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Closed FROM " + TABLE_NAME + " WHERE Bid_Date>=" + PARAM_FROM_DATE + " AND Bid_Date<=" + PARAM_TO_DATE;
+        public const string QUERY_REPORT_ON_CLOSED = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed FROM " + TABLE_NAME + " WHERE Bid_Date>=" + PARAM_FROM_DATE + " AND Bid_Date<=" + PARAM_TO_DATE + " AND closed=" + PARAM_CLOSED;
+        public const string QUERY_REPORT_ALL = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed FROM " + TABLE_NAME + " WHERE Bid_Date>=" + PARAM_FROM_DATE + " AND Bid_Date<=" + PARAM_TO_DATE;
 
         private string chitNO;
         private string chitName;
@@ -42,6 +43,7 @@ namespace PALibrary.Library.Model
         private decimal installmentAmount;
         private decimal noInstallments;
         private decimal chitCommission;
+        private DateTime chitStartDate;
         private string closed;
 
         public string ChitNO
@@ -86,6 +88,12 @@ namespace PALibrary.Library.Model
             set { chitCommission = value; }
         }
 
+        public DateTime ChitStartDate
+        {
+            get { return chitStartDate; }
+            set { chitStartDate = value; }
+        }
+
         public string ClosedType
         {
             get { return closed; }
@@ -104,6 +112,7 @@ namespace PALibrary.Library.Model
             parameters.Add(DBManager.GetParameter(PARAM_INSTALLMENT_AMOUNT, installmentAmount));
             parameters.Add(DBManager.GetParameter(PARAM_NO_INSTALLMENTS, noInstallments));
             parameters.Add(DBManager.GetParameter(PARAM_CHIT_COMMISSION, chitCommission));
+            parameters.Add(DBManager.GetParameter(PARAM_CHIT_STARTDATE, chitStartDate));
             parameters.Add(DBManager.GetParameter(PARAM_CLOSED, closed));
 
             return parameters;
@@ -134,6 +143,9 @@ namespace PALibrary.Library.Model
                         break;
                     case "Chit_Commission":
                         chitCommission = DBUtils.ConvertDecimal(reader["Chit_Commission"]);
+                        break;
+                    case "Start_Date":
+                        chitStartDate = DBUtils.ConvertDate(reader["Start_Date"]);
                         break;
                     case "Closed":
                         closed = DBUtils.ConvertString(reader["Closed"]);
