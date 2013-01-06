@@ -272,6 +272,7 @@ namespace PALibrary.Library.DAO
                         chitsBiddingInfo.CustomerName = "Company Bidding";
                         chitsBiddingInfo.CustomerAddress = "";
                     }
+                    chitsBiddingInfo.ChitName = ChitsDAO.GetChitsInfo(chitNO).ChitName;
 
 
                     chitsBiddingInfos.Add(chitsBiddingInfo);
@@ -288,13 +289,17 @@ namespace PALibrary.Library.DAO
             }
         }
 
-        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos()
+        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos(DateTime fromDate, DateTime toDate)
         {
             List<ChitsBiddingInfo> chitsBiddingInfos = new List<ChitsBiddingInfo>();
             IDataReader reader = null;
             try
             {
-                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsBiddingInfo.QUERY_SELECT_COMPANYBIDDING, null);
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_FROM_DATE, fromDate));
+                parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_TO_DATE, toDate));
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsBiddingInfo.QUERY_SELECT_COMPANYBIDDING + " AND Bid_Date >= " + ChitsBiddingInfo.PARAM_FROM_DATE + " AND Bid_Date<= " + ChitsBiddingInfo.PARAM_TO_DATE, parameters);
                 while (reader.Read())
                 {
                     ChitsBiddingInfo chitsBiddingInfo = new ChitsBiddingInfo();
@@ -303,6 +308,40 @@ namespace PALibrary.Library.DAO
                     chitsBiddingInfo.CustomerName = "Company Bidding";
                     chitsBiddingInfo.CustomerAddress = "";
                     
+                    chitsBiddingInfos.Add(chitsBiddingInfo);
+                }
+                return chitsBiddingInfos;
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
+        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos(string chitNO)
+        {
+            List<ChitsBiddingInfo> chitsBiddingInfos = new List<ChitsBiddingInfo>();
+            IDataReader reader = null;
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_CHIT_NO, chitNO));
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, ChitsBiddingInfo.QUERY_SELECT_COMPANYBIDDING + " AND Chit_No=" + ChitsBiddingInfo.PARAM_CHIT_NO, parameters);
+                while (reader.Read())
+                {
+                    ChitsBiddingInfo chitsBiddingInfo = new ChitsBiddingInfo();
+                    chitsBiddingInfo.ReadValues(reader);
+
+                    chitsBiddingInfo.CustomerName = "Company Bidding";
+                    chitsBiddingInfo.CustomerAddress = "";
+
+                    chitsBiddingInfo.ChitName = ChitsDAO.GetChitsInfo(chitNO).ChitName;
+
                     chitsBiddingInfos.Add(chitsBiddingInfo);
                 }
                 return chitsBiddingInfos;

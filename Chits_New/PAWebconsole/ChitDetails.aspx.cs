@@ -141,7 +141,8 @@ public partial class ChitDetails : System.Web.UI.Page
         try
         {
             int cnt = ChitsTransManager.SearchChitsTransInfoCount(chitTrans.ChitNO, chitTrans.CustomerID, chitTrans.InstallmentNO, 0, new DateTime(), -1, 0);
-            if (cnt == 0)
+            int tcnt = ChitsParticipateManager.SearchChitsParticipateInfoCount(0, chitTrans.ChitNO, chitTrans.CustomerID, -1, 0);
+            if (cnt == 0 || cnt < tcnt)
             {
                 ChitsTransManager.AddChitsTransInfo(chitTrans);
                 Response.Redirect("ChitDetails.aspx?chitNO=" + ChitNO.Value);

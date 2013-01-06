@@ -55,10 +55,11 @@ public partial class ViewChits : System.Web.UI.Page
                 cell.InnerText = "Customer Name";
                 row.Cells.Add(cell);
 
+                DateTime stratMonth = chitsInfo.ChitStartDate.AddMonths(-1);
                 for (int i = 1; i < totalInstallments; i++)
                 {
                     cell = new HtmlTableCell();
-                    cell.InnerText = i.ToString();
+                    cell.InnerText = i.ToString() + "(" + chitsInfo.BidDate + "/" + stratMonth.AddMonths(i).Month + ")";
                     row.Cells.Add(cell);
                 }
 

@@ -5,31 +5,31 @@
 <script language="Javascript">
      function openReport(type)
        {
-            if(type == 1)
+            var fromDate = document.getElementById('<%= FromDate.ClientID %>').value;
+            var toDate = document.getElementById('<%= ToDate.ClientID %>').value;
+            var closed = document.getElementById('<%= ClosedType.ClientID %>').value;
+            if(fromDate == "" || toDate == "")
             {
-                var fromDate = document.getElementById('<%= FromDate.ClientID %>').value;
-                var toDate = document.getElementById('<%= ToDate.ClientID %>').value;
-                var closed = document.getElementById('<%= ClosedType.ClientID %>').value;
-                if(fromDate == "" || toDate == "")
-                {
-                    alert("Please select the period");
-                }
-                else
-                {             
+                alert("Please select the period");
+            }
+            else
+            {      
+                if(type == 1)
+                {       
                     var win = window.open('PrintChitsReport.aspx?fromdate=' + fromDate + '&todate=' + toDate + '&closed=' + closed, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
                     win.focus();
                 }
-           }
-           else if(type == 2)
-           {
-                var win = window.open('PrintChitMonthlyStmt.aspx', 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
-                win.focus();
-           }
-           else if(type == 3)
-           {
-                var win = window.open('PrintCompanyBidding.aspx', 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
-                win.focus();
-           }
+               else if(type == 2)
+               {
+                    var win = window.open('PrintChitMonthlyStmt.aspx?fromdate=' + fromDate + '&todate=' + toDate, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
+                    win.focus();
+               }
+               else if(type == 3)
+               {
+                    var win = window.open('PrintCompanyBidding.aspx?fromdate=' + fromDate + '&todate=' + toDate, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
+                    win.focus();
+               }
+            }
        }
        
        
@@ -56,15 +56,16 @@
                 </asp:DropDownList>
             </td>
             <td width="20%">
-                <input type="button" value="Print" onclick="javascript:openReport(1);" />
-                <input type="button" value="Close" onclick="window.location.href='Chits.aspx';" />
+                
             </td>
         </tr>
         <tr>
-            <td colspan="6"><a href="javascript:void(0);" onclick= "javascript:openReport(2);">Monthly Due Statement</a></td>
-        </tr>
-        <tr>
-            <td colspan="6"><a href="javascript:void(0);" onclick= "javascript:openReport(3);">Company Bidding Statement</a></td>
+            <td colspan="6">
+                <input type="button" value="Print Chits Report" onclick="javascript:openReport(1);" />
+                <input type="button" value="Print Monthly Due Statement" onclick="javascript:openReport(2);" />
+                <input type="button" value="Print Company Bidding Statement" onclick="javascript:openReport(3);" />
+                <input type="button" value="Close" onclick="window.location.href='Chits.aspx';" />
+            </td>
         </tr>
         <tr class="nav_header">
             <td colspan="6">

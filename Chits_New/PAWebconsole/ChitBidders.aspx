@@ -2,6 +2,14 @@
     CodeFile="ChitBidders.aspx.cs" Inherits="ChitBidders" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script language="Javascript">
+       function openReport()
+       {
+            var chitNo = document.getElementById('<%= ChitNO.ClientID %>').value;
+            var win = window.open('PrintChitCompBidding.aspx?chitNo=' + chitNo, 'RepoWind', 'top=100,left=250,height=600,width=600,status=yes,resizable=yes');
+            win.focus();
+        }
+    </script>
     <div id="content" class="nav_header" runat="server">
         Chit Bidders</div>
     <table width="100%">
@@ -50,6 +58,9 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
+                <% if(Request.Params["t"].Equals("cbid")) { %>
+                    <input type="button" value="Print" onclick="javascript:openReport();" />
+                <% } %>
                 <input type="button" value="Close" id="CloseButton" runat="Server" />
             </td>
         </tr>

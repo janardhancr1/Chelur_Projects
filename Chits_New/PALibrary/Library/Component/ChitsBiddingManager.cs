@@ -49,9 +49,14 @@ namespace PALibrary.Library.Component
             return ChitsBiddingDAO.GetChitsBiddingInfos(chitNO);
         }
 
-        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos()
+        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos(DateTime fromDate, DateTime toDate)
         {
-            return ChitsBiddingDAO.GetChitsCompanyBiddingInfos();
+            return ChitsBiddingDAO.GetChitsCompanyBiddingInfos(fromDate, toDate);
+        }
+
+        public static List<ChitsBiddingInfo> GetChitsCompanyBiddingInfos(string chitNO)
+        {
+            return ChitsBiddingDAO.GetChitsCompanyBiddingInfos(chitNO);
         }
 
     }

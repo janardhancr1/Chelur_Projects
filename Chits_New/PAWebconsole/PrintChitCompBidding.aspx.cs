@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using System.Globalization;
 using System.Configuration;
 using System.Collections;
 using System.Web;
@@ -12,7 +11,7 @@ using System.Web.UI.HtmlControls;
 
 using PALibrary.Library.Model;
 
-public partial class PrintCompanyBidding : System.Web.UI.Page
+public partial class PrintChitCompBidding : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,17 +22,12 @@ public partial class PrintCompanyBidding : System.Web.UI.Page
         }
         else
         {
-            if (Request.Params["fromdate"] != null)
+            if (Request.Params["chitNo"] != null)
             {
-                FromDate.Value = Request.Params["fromdate"];
-            }
-            if (Request.Params["todate"] != null)
-            {
-                ToDate.Value = Request.Params["todate"];
+                ChitNo.Value = Request.Params["chitNo"];
             }
 
-            ObjectDataSource1.SelectParameters[0].DefaultValue = DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
-            ObjectDataSource1.SelectParameters[1].DefaultValue = DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
+            ObjectDataSource1.SelectParameters[0].DefaultValue = ChitNo.Value;
 
             if (!Page.IsPostBack)
             {
