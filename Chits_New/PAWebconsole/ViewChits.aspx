@@ -67,6 +67,8 @@
         </tr>
         <tr>
             <td colspan="3" align="center">
+                <asp:Button ID="CloseButton" runat="server" Text="Close this Chit" OnClick="Close_Click" 
+                    OnClientClick="javascript:return confirm('Are you sure to Close?');" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Delete" CssClass="button" OnClick="Delete_Click"
                     OnClientClick="javascript:return confirm('Are you sure to Delete?');" />
                 <asp:Button ID="PrintButton" runat="server" Text="Print" CssClass="button" OnClick="Print_Click" />

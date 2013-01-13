@@ -24,6 +24,7 @@ namespace PALibrary.Library.Model
         public const string QUERY_INSERT = "INSERT INTO " + TABLE_NAME + "(Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed) VALUES (" + PARAM_CHIT_NO + "," + PARAM_CHIT_NAME + "," + PARAM_CHIT_AMOUNT + "," + PARAM_BID_DATE + "," + PARAM_INSTALLMENT_AMOUNT + "," + PARAM_NO_INSTALLMENTS + "," + PARAM_CHIT_COMMISSION + "," + PARAM_CHIT_STARTDATE + "," + PARAM_CLOSED + ")";
         public const string QUERY_UPDATE = "UPDATE " + TABLE_NAME + " SET Chit_Name=" + PARAM_CHIT_NAME + ",Chit_Amount=" + PARAM_CHIT_AMOUNT + ",Bid_Date=" + PARAM_BID_DATE + ",Installment_Amount=" + PARAM_INSTALLMENT_AMOUNT + ",No_Installments=" + PARAM_NO_INSTALLMENTS + ",Chit_Commission=" + PARAM_CHIT_COMMISSION + ",Start_Date=" + PARAM_CHIT_STARTDATE +  ",Closed=" + PARAM_CLOSED + " WHERE Chit_No=" + PARAM_CHIT_NO;
         public const string QUERY_DELETE = "DELETE FROM " + TABLE_NAME + " WHERE Chit_No=" + PARAM_CHIT_NO;
+        public const string QUERY_CLOSE = "UPDATE " + TABLE_NAME + " SET Closed='y' WHERE Chit_No=" + PARAM_CHIT_NO;
 
         public const string QUERY_SEARCH = "SELECT Chit_No,Chit_Name,Chit_Amount,Bid_Date,Installment_Amount,No_Installments,Chit_Commission,Start_Date,Closed FROM " + TABLE_NAME;
         public const string QUERY_COUNT = "SELECT Count(*) FROM " + TABLE_NAME;

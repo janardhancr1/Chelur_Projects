@@ -11,6 +11,7 @@ namespace PALibrary.Library.Model
         private string customerAddress;
         private int installmentNO;
         private decimal installmentAmount;
+        private decimal discountAmount;
         private DateTime paidDate;
         private DateTime bidDate;
         private decimal paidAmount;
@@ -43,6 +44,12 @@ namespace PALibrary.Library.Model
         {
             get { return installmentAmount; }
             set { installmentAmount = value; }
+        }
+
+        public decimal DiscountAmount
+        {
+            get { return discountAmount; }
+            set { discountAmount = value; }
         }
 
         public decimal PaidAmount

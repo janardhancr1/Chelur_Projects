@@ -138,7 +138,7 @@
                   <ReportItems>
                     <Textbox Name="textbox7">
                       <rd:DefaultName>textbox7</rd:DefaultName>
-                      <ZIndex>9</ZIndex>
+                      <ZIndex>11</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -165,7 +165,7 @@
                   <ReportItems>
                     <Textbox Name="textbox8">
                       <rd:DefaultName>textbox8</rd:DefaultName>
-                      <ZIndex>8</ZIndex>
+                      <ZIndex>10</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -183,9 +183,29 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
+                    <Textbox Name="textbox17">
+                      <rd:DefaultName>textbox17</rd:DefaultName>
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=CDec(Sum(Fields!DiscountAmount.Value)).ToString("#0.00")</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
                     <Textbox Name="textbox9">
                       <rd:DefaultName>textbox9</rd:DefaultName>
-                      <ZIndex>7</ZIndex>
+                      <ZIndex>8</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -212,7 +232,7 @@
                   <ReportItems>
                     <Textbox Name="textbox12">
                       <rd:DefaultName>textbox12</rd:DefaultName>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>7</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -239,7 +259,7 @@
                   <ReportItems>
                     <Textbox Name="textbox15">
                       <rd:DefaultName>textbox15</rd:DefaultName>
-                      <ZIndex>5</ZIndex>
+                      <ZIndex>6</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -259,10 +279,10 @@
             </TableRow>
           </TableRows>
         </Footer>
-        <Left>0.75in</Left>
+        <Left>0.25in</Left>
         <DataSetName>ChitsReportInfo</DataSetName>
         <Top>1.375in</Top>
-        <Width>6.33599in</Width>
+        <Width>7.836in</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -271,7 +291,7 @@
                   <ReportItems>
                     <Textbox Name="InstallmentNO">
                       <rd:DefaultName>InstallmentNO</rd:DefaultName>
-                      <ZIndex>4</ZIndex>
+                      <ZIndex>5</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -298,7 +318,7 @@
                   <ReportItems>
                     <Textbox Name="InstallmentAmount_1">
                       <rd:DefaultName>InstallmentAmount_1</rd:DefaultName>
-                      <ZIndex>3</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -311,6 +331,26 @@
                       </Style>
                       <CanGrow>true</CanGrow>
                       <Value>=IIf(Fields!InstallmentAmount.Value = "0", "", CDec(Fields!InstallmentAmount.Value).ToString("#0.00"))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="DiscountAmount">
+                      <rd:DefaultName>DiscountAmount</rd:DefaultName>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIf(Fields!DiscountAmount.Value = "0", "", CDec(Fields!DiscountAmount.Value).ToString("#0.00"))</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -398,7 +438,7 @@
                   <ReportItems>
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
-                      <ZIndex>14</ZIndex>
+                      <ZIndex>17</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Bottom>Solid</Bottom>
@@ -428,7 +468,7 @@
                   <ReportItems>
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
-                      <ZIndex>13</ZIndex>
+                      <ZIndex>16</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Bottom>Solid</Bottom>
@@ -453,9 +493,36 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
+                    <Textbox Name="textbox14">
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Default>Solid</Default>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Discount Amount</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
                     <Textbox Name="textbox4">
                       <rd:DefaultName>textbox4</rd:DefaultName>
-                      <ZIndex>12</ZIndex>
+                      <ZIndex>14</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Bottom>Solid</Bottom>
@@ -484,7 +551,7 @@
                   <ReportItems>
                     <Textbox Name="textbox10">
                       <rd:DefaultName>textbox10</rd:DefaultName>
-                      <ZIndex>11</ZIndex>
+                      <ZIndex>13</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Bottom>Solid</Bottom>
@@ -514,7 +581,7 @@
                   <ReportItems>
                     <Textbox Name="textbox13">
                       <rd:DefaultName>textbox13</rd:DefaultName>
-                      <ZIndex>10</ZIndex>
+                      <ZIndex>12</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Bottom>Solid</Bottom>
@@ -544,6 +611,9 @@
         <TableColumns>
           <TableColumn>
             <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
             <Width>1.5in</Width>
@@ -609,6 +679,10 @@
         <Field Name="PaidDate">
           <rd:TypeName>System.DateTime</rd:TypeName>
           <DataField>PaidDate</DataField>
+        </Field>
+        <Field Name="DiscountAmount">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>DiscountAmount</DataField>
         </Field>
       </Fields>
     </DataSet>
