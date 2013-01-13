@@ -136,6 +136,7 @@ public partial class ChitDetails : System.Web.UI.Page
         chitTrans.Date = DateTime.ParseExact(PaidDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         chitTrans.InstallmentNO = Convert.ToInt32(InstallmentNo.SelectedValue);
         chitTrans.InstallmentAmount = Convert.ToInt32(InstallmentAmount.Value);
+        chitTrans.DiscountAmount = Convert.ToInt32(DiscountAmount.Value);
         chitTrans.CustomerID = Convert.ToInt32(Customer.SelectedValue);
 
         try

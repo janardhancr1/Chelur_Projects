@@ -38,6 +38,7 @@ public partial class Chits : System.Web.UI.Page
                 item = new ListItem();
                 item.Value = DBConstant.TYPE_PENDING;
                 item.Text = "Pending";
+                item.Selected = true;
                 ClosedType.Items.Add(item);
 
                 item = new ListItem();

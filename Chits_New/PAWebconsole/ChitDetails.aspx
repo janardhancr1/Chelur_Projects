@@ -85,6 +85,16 @@
                     </tr>
                     <tr>
                         <td>
+                            Discount Amount
+                        </td>
+                        <td>
+                            <input type="text" id="DiscountAmount" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DiscountAmount"
+                                Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             &nbsp;</td>
                         <td>
                             <asp:Button ID="AddButton" Text="Add" OnClick="Add_Click" runat="server" />

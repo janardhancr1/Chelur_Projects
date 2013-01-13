@@ -38,6 +38,7 @@ namespace PALibrary.Library.Component
                         {
                             chitReport.InstallmentAmount = trans[0].InstallmentAmount;
                             chitReport.PaidDate = trans[0].Date;
+                            chitReport.DiscountAmount = trans[0].DiscountAmount;
                             paidTotal += trans[0].InstallmentAmount;
                         }
 

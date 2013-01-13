@@ -51,6 +51,7 @@ public partial class ChitAccount : System.Web.UI.Page
                             CustomerAddress.Value = customers[0].CustomerAddress;
 
                             decimal paidTotal = 0;
+                            decimal discountTotal = 0;
                             decimal bidTotal = 0;
 
                             HtmlTableRow row = null;
@@ -72,6 +73,17 @@ public partial class ChitAccount : System.Web.UI.Page
                                 {
                                     cell.InnerText = trans[0].InstallmentAmount.ToString();
                                     paidTotal += trans[0].InstallmentAmount;
+                                }
+                                else
+                                    cell.InnerText = "";
+                                row.Cells.Add(cell);
+
+                                cell = new HtmlTableCell();
+                                cell.Align = "right";
+                                if (trans.Count > 0)
+                                {
+                                    cell.InnerText = trans[0].DiscountAmount.ToString();
+                                    discountTotal += trans[0].DiscountAmount;
                                 }
                                 else
                                     cell.InnerText = "";
@@ -113,7 +125,7 @@ public partial class ChitAccount : System.Web.UI.Page
 
                             cell = new HtmlTableCell();
                             cell.InnerHtml = "<hr/>";
-                            cell.ColSpan = 5;
+                            cell.ColSpan = 6;
                             row.Cells.Add(cell);
 
                             MembersTable.Rows.Add(row);
@@ -127,6 +139,11 @@ public partial class ChitAccount : System.Web.UI.Page
                             cell = new HtmlTableCell();
                             cell.Align = "right";
                             cell.InnerText = paidTotal.ToString();
+                            row.Cells.Add(cell);
+
+                            cell = new HtmlTableCell();
+                            cell.Align = "right";
+                            cell.InnerText = discountTotal.ToString();
                             row.Cells.Add(cell);
 
                             cell = new HtmlTableCell();

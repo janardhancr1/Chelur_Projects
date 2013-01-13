@@ -68,6 +68,34 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static void CloseChitsInfo(string chitNO)
+        {
+            IDbConnection connection = null;
+            try
+            {
+                connection = DBManager.GetConnection();
+                connection.Open();
+
+                IDbTransaction transaction = connection.BeginTransaction();
+
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                parameters.Add(DBManager.GetParameter(ChitsInfo.PARAM_CHIT_NO, chitNO));
+
+                SQLHelper.ExecuteNonQuery(transaction, CommandType.Text, ChitsInfo.QUERY_CLOSE, parameters);
+
+                transaction.Commit();
+                transaction.Dispose();
+            }
+            catch (PAException ex)
+            {
+                throw new PAException(ex.Message);
+            }
+            finally
+            {
+                DBUtils.CloseConnection(connection);
+            }
+        }
+
         public static SearchHelper SearchConditions(string chitNO, string chitName, decimal chitAmount, int bidDate, decimal installmentAmount, decimal noInstallments, string closed)
         {
             try

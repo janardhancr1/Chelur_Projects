@@ -107,6 +107,19 @@ public partial class ViewChits : System.Web.UI.Page
         }
     }
 
+    public void Close_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            ChitsManager.CloseChitsInfo(ChitNO.Text);
+            Response.Redirect("Chits.aspx");
+        }
+        catch (PAException pe)
+        {
+            throw new PAException(pe.Message);
+        }
+    }
+
     public void Print_Click(object sender, EventArgs e)
     {
         Response.Clear();
