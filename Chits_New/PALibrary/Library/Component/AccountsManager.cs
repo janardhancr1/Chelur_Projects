@@ -120,6 +120,16 @@ namespace PALibrary.Library.Component
             return AccountsDAO.GetChitCommissionOpeningBalance(toDate, ledgerName, type);
         }
 
+        public static DayBookInfo GetChitDiscountOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return ChitsTransDAO.GetOpeningDiscount(toDate, ledgerName, type);
+        }
+
+        public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            return ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
+        }
+
         #endregion
 
         #region Monthly Summary
@@ -155,6 +165,13 @@ namespace PALibrary.Library.Component
             }
 
             dayBooks = LedgersDAO.GetChitLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
+            dayBooks = LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo day in dayBooks)
             {
                 if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
@@ -298,12 +315,12 @@ namespace PALibrary.Library.Component
                     }
                     break;
 
-                //case 9:
-                //    details = ledgerDao.GetCustomerLedger(fromDate, toDate, ledgerName, compID);
-                //    break;
-                //case 10:
-                //    details = voucherDao.GetVoucherDetails(fromDate, toDate, ledgerName);
-                //    break;
+                case 8:
+                    details = LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, type);
+                    break;
+                case 9:
+                    details = LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, type);
+                    break;
                 //case 13:
                 //    details = ledgerDao.GetAuctionProfitLedger(fromDate, toDate);
                 //    List<DayBookInfo> auctionProfitVouchers = voucherDao.GetVoucherDetails(fromDate, toDate, DBConstant.AUCTION_PROFIT_LEDGER);

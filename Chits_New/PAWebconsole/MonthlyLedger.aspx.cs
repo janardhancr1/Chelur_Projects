@@ -70,33 +70,14 @@ public partial class MonthlyLedger : System.Web.UI.Page
                         monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD, 7);
                         break;
                     case "8":
-                        //LedgerName.Text = "Interest Paid Ledger";
-                        //openingBalance = accountManager.GetInterestPaidOpeningBalance(appConstants.FinYearStart,
-                        //                                                              DBConstant.INTEREST_PAID_LEDGER,
-                        //                                                              DBConstant.ACCOUNT_OPENING);
-                        //monthlySummary = accountManager.GetMonthlySummary(appConstants.FinYearStart,
-                        //                                                  appConstants.FinYearEnd,
-                        //                                                  DBConstant.INTEREST_PAID_LEDGER,
-                        //                                                  company.CompID, DBConstant.ACCOUNT_PERIOD, 8);
+                        LedgerName.Text = "Chit Discount Ledger";
+                        openingBalance = AccountsManager.GetChitDiscountOpeningBalance(appConstants.FinYearStart, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+                        monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD, 8);
                         break;
                     case "9":
-                        //if (Request.Params["ledgerid"] != null)
-                        //{
-                        //    LedgerID.Value = Request.Params["ledgerid"].ToString();
-                        //    CustomerManager custManager = new CustomerManager();
-                        //    CustomerInfo customer = custManager.GetCustomer(Convert.ToInt32(LedgerID.Value));
-                        //    LedgerName.Text = customer.CustomerName;
-                        //    openingBalance = accountManager.GetCustomerOpeningBalance(appConstants.FinYearStart,
-                        //                                                              appConstants.FinYearEnd,
-                        //                                                              customer.CustomerName,
-                        //                                                              company.CompID,
-                        //                                                              DBConstant.
-                        //                                                                  ACCOUNT_OPENING_CUSTOMER);
-                        //    monthlySummary = accountManager.GetMonthlySummary(appConstants.FinYearStart,
-                        //                                                      appConstants.FinYearEnd,
-                        //                                                      customer.CustomerName, company.CompID,
-                        //                                                      DBConstant.ACCOUNT_LEDGER, 9);
-                        //}
+                        LedgerName.Text = "Company Bidding Ledger";
+                        openingBalance = AccountsManager.GetCompBiddingOpeningBalance(appConstants.FinYearStart, DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_OPENING);
+                        monthlySummary = AccountsManager.GetMonthlySummary(appConstants.FinYearStart, appConstants.FinYearEnd, DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_PERIOD, 9);
                         break;
                     case "10":
                         //if (Request.Params["ledgerid"] != null)
@@ -112,7 +93,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
                         //                                                      10);
                         //}
                         break;
-                    case "13":
+                    case "11":
                         //LedgerName.Text = "Auction Profit Ledger";
                         //openingBalance = accountManager.GetAuctionProfitOpeningBalance(appConstants.FinYearStart);
                         //monthlySummary = accountManager.GetMonthlySummary(appConstants.FinYearStart,
@@ -130,7 +111,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
     {
         if (openingBalance != null)
         {
-            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("13"))
+            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("9"))
             {
                 if (openingBalance.Credit > 0)
                 {
@@ -163,7 +144,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
 
         if (openingBalance != null)
         {
-            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("13"))
+            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("9"))
             {
                 credit = credit + openingBalance.Credit;
                 debit = debit + openingBalance.Debit;
@@ -214,7 +195,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
 
     public void Details_Click(object sender, EventArgs e)
     {
-        if (Ledger.Value.Equals("9") || Ledger.Value.Equals("10"))
+        if (Ledger.Value.Equals("10") || Ledger.Value.Equals("11"))
             Response.Redirect("ViewDetails.aspx?type=" + Ledger.Value + "&ledgerid=" + LedgerID.Value);
         else
             Response.Redirect("ViewDetails.aspx?type=" + Ledger.Value);

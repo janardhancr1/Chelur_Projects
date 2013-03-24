@@ -10,7 +10,6 @@
     </DataSource>
   </DataSources>
   <BottomMargin>1in</BottomMargin>
-  <RightMargin>1in</RightMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -333,7 +332,6 @@
     <Height>2in</Height>
   </Body>
   <rd:ReportID>2e2d1c1e-f667-46cf-bd63-01b3a82523a8</rd:ReportID>
-  <LeftMargin>1in</LeftMargin>
   <DataSets>
     <DataSet Name="ChitsInfo">
       <rd:DataSetInfo>
@@ -382,6 +380,7 @@
       </Fields>
     </DataSet>
   </DataSets>
+  <Code />
   <Width>8.5in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>

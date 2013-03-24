@@ -13,10 +13,13 @@ public partial class PAMaster : System.Web.UI.MasterPage
             CurrentDate.Text = "CurrentDate : " + appConstants.CurrentDate.ToString("dd/MM/yyyy");
             DayBookInfo closingBalance = AccountsManager.GetCashBookOpeningBalance(appConstants.CurrentDate.AddDays(1));
             if (closingBalance != null)
-                if (closingBalance.Debit >= 0)
-                    CashInHand.Text = closingBalance.Debit.ToString("#0.00");
+                if (closingBalance.Debit > 0)
+                    CashInHand.Text = closingBalance.Debit.ToString("#0.00") + " Dr";
+                else if(closingBalance.Credit > 0)
+                    CashInHand.Text = closingBalance.Credit.ToString("#0.00") + " Cr";
                 else
-                    CashInHand.Text = " -" + closingBalance.Credit.ToString("#0.00");
+                    CashInHand.Text = closingBalance.Debit.ToString("#0.00") + " Dr";
+
         }
         else
         {

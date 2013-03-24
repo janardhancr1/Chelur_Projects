@@ -247,6 +247,13 @@ namespace PALibrary.Library.DAO
                 debit = debit + chitsOpening.Debit;
             }
 
+            DayBookInfo compBiddingOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
+            if (compBiddingOpening != null)
+            {
+                credit = credit + compBiddingOpening.Credit;
+                debit = debit + compBiddingOpening.Debit;
+            }
+
             DayBookInfo interestOpening = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING_CASH);
             if (interestOpening != null)
             {
@@ -669,6 +676,17 @@ namespace PALibrary.Library.DAO
                 }
             }
 
+            DayBookInfo compBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo tb in trialBalance)
+            {
+                if (tb.Particulars.Equals("CURRENT ASSETS"))
+                {
+                    tb.Credit = tb.Credit + compBidOpening.Debit;
+                    tb.Debit = tb.Debit + compBidOpening.Credit;
+                    break;
+                }
+            }
+
             DayBookInfo interests = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo tb in trialBalance)
             {
@@ -827,6 +845,14 @@ namespace PALibrary.Library.DAO
             detail.Narration = "CURRENT ASSETS";
             detail.Debit = chitOpening.Credit;
             detail.Credit = chitOpening.Debit;
+            trialDetails.Add(detail);
+
+            DayBookInfo chitBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
+            detail = new DayBookInfo();
+            detail.Particulars = "COMPANY BIDDING";
+            detail.Narration = "CURRENT ASSETS";
+            detail.Debit = chitBidOpening.Credit;
+            detail.Credit = chitBidOpening.Debit;
             trialDetails.Add(detail);
 
             DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
@@ -1085,6 +1111,7 @@ namespace PALibrary.Library.DAO
             return dayBook;
         }
 
+
         public static DayBookInfo GetChitCommissionOpeningBalance(DateTime toDate, string ledgerName, int type)
         {
             decimal credit = 0;
@@ -1128,5 +1155,51 @@ namespace PALibrary.Library.DAO
             }
             return dayBook;
         }
+
+
+        public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            decimal credit = 0;
+            decimal debit = 0;
+
+            //LedgersInfo interestLedger = LedgersDAO.GetLedgersInfo(ledgerName);
+            //if (interestLedger != null)
+            //{
+            //    if (type == DBConstant.ACCOUNT_OPENING)
+            //    {
+            //        if (interestLedger.BalanceType.Equals("Cr"))
+            //            credit = interestLedger.OpeningBalance;
+            //        else if (interestLedger.BalanceType.Equals("Dr"))
+            //            debit = interestLedger.OpeningBalance;
+
+            //        DayBookInfo voucherOpening = VouchersDAO.GetOpeningVoucher(toDate, interestLedger.LedgerID);
+            //        if (voucherOpening != null)
+            //        {
+            //            debit = debit + voucherOpening.Debit;
+            //            credit = credit + voucherOpening.Credit;
+            //        }
+            //    }
+            //}
+
+            //Chit Bid
+            DayBookInfo openingBalance = ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
+            if (openingBalance != null)
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            DayBookInfo dayBook = new DayBookInfo();
+            if (credit > debit)
+            {
+                dayBook.Credit = credit - debit;
+            }
+            else if (debit > credit)
+            {
+                dayBook.Debit = debit - credit;
+            }
+            return dayBook;
+        }
+
     }
 }

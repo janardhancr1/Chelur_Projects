@@ -329,5 +329,87 @@ namespace PALibrary.Library.DAO
             }
         }
 
+
+        public static DayBookInfo GetOpeningDiscount(DateTime toDate, string ledgerName, int type)
+        {
+            DayBookInfo openingBalance = new DayBookInfo();
+            openingBalance.Debit = 0;
+            openingBalance.Credit = 0;
+            IDataReader reader = null;
+            try
+            {
+                string query = "";
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+
+                if (type == DBConstant.ACCOUNT_OPENING)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_DATE, toDate));
+
+                    query = ChitsTransInfo.QUERY_SELECT_DISCOUNT_OPENING;
+                }
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
+                while (reader.Read())
+                {
+                    openingBalance.Particulars = DBConstant.CHITS_DISCOUNT;
+                    openingBalance.Debit = DBUtils.ConvertDecimal(reader["Amount"]);
+                }
+
+                return openingBalance;
+            }
+            catch (PAException pe)
+            {
+                throw new PAException(pe.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
+        public static List<ChitsTransInfo> GetChitDiscounts(DateTime fromDate, DateTime toDate, string customerName, int type)
+        {
+            List<ChitsTransInfo> trans = new List<ChitsTransInfo>();
+            IDataReader reader = null;
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                string query = "";
+
+                if (type == DBConstant.ACCOUNT_PERIOD)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_FROM_DATE, fromDate));
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_TO_DATE, toDate));
+
+                    query = ChitsTransInfo.QUERY_SELECT_DISCOUNT_PERIOD;
+                }
+                else if (type == DBConstant.ACCOUNT_LEDGER)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_FROM_DATE, fromDate));
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_TO_DATE, toDate));
+
+                    query = ChitsTransInfo.QUERY_SELECT_DISCOUNT_PERIOD;
+                }
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
+                while (reader.Read())
+                {
+                    ChitsTransInfo tran = new ChitsTransInfo();
+                    tran.ReadValues(reader);
+
+                    trans.Add(tran);
+                }
+                return trans;
+            }
+            catch (PAException pe)
+            {
+                throw new PAException(pe.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
     }
 }
