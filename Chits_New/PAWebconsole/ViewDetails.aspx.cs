@@ -103,6 +103,18 @@ public partial class ViewDetails : System.Web.UI.Page
                     dayBooks = LedgersManager.GetChitCommissionLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                       DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD);
                     break;
+                case "8":
+                    LedgerName.Text = "Chit Discount Ledger";
+                    openingBalance = AccountsManager.GetChitDiscountOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitDiscountLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    break;
+                case "9":
+                    LedgerName.Text = "Company Bidding Ledger";
+                    openingBalance = AccountsManager.GetCompBiddingOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetCompBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    break;
             }
 
         }

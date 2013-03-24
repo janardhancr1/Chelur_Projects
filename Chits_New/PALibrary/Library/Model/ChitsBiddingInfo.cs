@@ -40,6 +40,8 @@ namespace PALibrary.Library.Model
         public const string QUERY_SELECT_UPTO = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,b.Customer_ID,Left_Amount,c.Chit_Name,cu.Customer_Name FROM " + TABLE_NAME + " b, chits c, customers cu WHERE b.Chit_No=c.Chit_No AND b.Customer_id = cu.Customer_id AND Paid_Date<" + PARAM_PAID_DATE;
         //public const string QUERY_SELECT_LEDGER = "SELECT Hl_loanno,Loan_amount,Loan_date,Pay_mode,Bank_id,Cheque_no,c.customer_name FROM " + TABLE_NAME + " d, customers c WHERE d.customer_id=c.customer_id AND loan_date>=" + PARAM_FROM_DATE + " AND loan_date<=" + PARAM_TO_DATE + " AND c.customer_name=" + PARAM_CUSTOMER_NAME + " ORDER BY loan_date";
 
+        public const string QUERY_SELECT_OPENING_COMPBID = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Paid_Date<" + PARAM_PAID_DATE + " AND Customer_ID=0";
+        public const string QUERY_SELECT_PERIOD_COMPBID = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,Left_Amount,c.Chit_Name FROM " + TABLE_NAME + " b, chits c WHERE b.Chit_No=c.Chit_No AND Paid_Date>=" + PARAM_FROM_DATE + " AND Paid_Date<=" + PARAM_TO_DATE + " AND b.Customer_ID=0 ORDER BY Paid_Date";
 
         private int recordID;
         private string chitNO;

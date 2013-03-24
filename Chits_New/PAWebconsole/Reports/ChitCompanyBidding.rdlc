@@ -10,7 +10,6 @@
     </DataSource>
   </DataSources>
   <BottomMargin>1in</BottomMargin>
-  <RightMargin>1in</RightMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
@@ -473,7 +472,6 @@
     <Height>2in</Height>
   </Body>
   <rd:ReportID>36916b5c-e6ce-4e08-9dd6-16286464158d</rd:ReportID>
-  <LeftMargin>1in</LeftMargin>
   <DataSets>
     <DataSet Name="ChitsBiddingInfo">
       <rd:DataSetInfo>
@@ -533,6 +531,7 @@
       </Fields>
     </DataSet>
   </DataSets>
+  <Code />
   <Width>8.5in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>

@@ -471,5 +471,85 @@ namespace PALibrary.Library.DAO
             }
         }
 
+        public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            DayBookInfo openingBalance = new DayBookInfo();
+            openingBalance.Debit = 0;
+            openingBalance.Credit = 0;
+            IDataReader reader = null;
+            try
+            {
+                string query = "";
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+
+                if (type == DBConstant.ACCOUNT_OPENING)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, toDate));
+
+                    query = ChitsBiddingInfo.QUERY_SELECT_OPENING_COMPBID;
+                }
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
+                while (reader.Read())
+                {
+                    openingBalance.Particulars = DBConstant.COMP_BIDDING;
+                    openingBalance.Credit = DBUtils.ConvertDecimal(reader["Amount"]);
+                }
+
+                return openingBalance;
+            }
+            catch (PAException pe)
+            {
+                throw new PAException(pe.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
+
+        public static List<ChitsBiddingInfo> GetCompBids(DateTime fromDate, DateTime toDate, string customerName, int type)
+        {
+            List<ChitsBiddingInfo> bids = new List<ChitsBiddingInfo>();
+            IDataReader reader = null;
+            try
+            {
+                List<IDbDataParameter> parameters = new List<IDbDataParameter>();
+                string query = "";
+
+                if (type == DBConstant.ACCOUNT_PERIOD)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_FROM_DATE, fromDate));
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_TO_DATE, toDate));
+
+                    query = ChitsBiddingInfo.QUERY_SELECT_PERIOD_COMPBID;
+                }
+                else if (type == DBConstant.ACCOUNT_LEDGER)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_FROM_DATE, fromDate));
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_TO_DATE, toDate));
+
+                    query = ChitsBiddingInfo.QUERY_SELECT_PERIOD_COMPBID;
+                }
+
+                reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
+                while (reader.Read())
+                {
+                    ChitsBiddingInfo bid = new ChitsBiddingInfo();
+                    bid.ReadValues(reader);
+
+                    bids.Add(bid);
+                }
+                return bids;
+            }
+            catch (PAException pe)
+            {
+                throw new PAException(pe.Message);
+            }
+            finally
+            {
+                DBUtils.CloseReader(reader);
+            }
+        }
     }
 }

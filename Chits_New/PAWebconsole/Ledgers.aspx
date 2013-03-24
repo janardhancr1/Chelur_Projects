@@ -34,7 +34,19 @@
             <td>
                 &nbsp;</td>
             <td>
+                <a href="MonthlyLedger.aspx?type=9" class="acolor"><b>Company Bidding Ledger</b></a></td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td>
                 <a href="MonthlyLedger.aspx?type=7" class="acolor"><b>Chits Commission Ledger</b></a></td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td>
+                <a href="MonthlyLedger.aspx?type=8" class="acolor"><b>Chits Discount Ledger</b></a></td>
         </tr>
          <tr>
             <td width="10%">

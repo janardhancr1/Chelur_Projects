@@ -642,7 +642,64 @@ namespace PALibrary.Library.DAO
 
             return dayBooks;
         }
-        
+
+        public static List<DayBookInfo> GetChitDiscountLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            List<DayBookInfo> dayBooks = new List<DayBookInfo>();
+            DayBookInfo dayBook = null;
+
+            //Chits Bids
+            List<ChitsTransInfo> trans = ChitsTransDAO.GetChitDiscounts(fromDate, toDate, ledgerName, type);
+            foreach (ChitsTransInfo tran in trans)
+            {
+                if (tran.DiscountAmount > 0)
+                {
+                    dayBook = new DayBookInfo();
+                    dayBook.CurrentDate = tran.Date;
+                    dayBook.Particulars = tran.ChitNO;
+                    dayBook.VoucherType = DBConstant.CHITS_DISCOUNT;
+                    dayBook.VoucherNo = tran.RecordID;
+                    dayBook.Debit = tran.DiscountAmount;
+                    dayBook.Credit = 0;
+                    dayBook.Narration = tran.ChitName;
+                    dayBook.FromLedger = DBConstant.CASH_LEDGER;
+                    dayBook.ToLedger = DBConstant.CHIT_DISCOUNT_LEDGER;
+
+                    dayBooks.Add(dayBook);
+                }
+            }
+
+            return dayBooks;
+        }
+
+        public static List<DayBookInfo> GetCompBiddingLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            List<DayBookInfo> dayBooks = new List<DayBookInfo>();
+            DayBookInfo dayBook = null;
+
+            //Chits Bids
+            List<ChitsBiddingInfo> bids = ChitsBiddingDAO.GetCompBids(fromDate, toDate, ledgerName, type);
+            foreach (ChitsBiddingInfo bid in bids)
+            {
+                if (bid.PaidAmount > 0)
+                {
+                    dayBook = new DayBookInfo();
+                    dayBook.CurrentDate = bid.BidDate;
+                    dayBook.Particulars = bid.ChitNO;
+                    dayBook.VoucherType = DBConstant.COMP_BIDDING;
+                    dayBook.VoucherNo = bid.RecordID;
+                    dayBook.Debit = bid.PaidAmount;
+                    dayBook.Credit = 0;
+                    dayBook.Narration = bid.ChitName;
+                    dayBook.FromLedger = DBConstant.CASH_LEDGER;
+                    dayBook.ToLedger = DBConstant.COMPANY_BIDDING_LEDGER;
+
+                    dayBooks.Add(dayBook);
+                }
+            }
+
+            return dayBooks;
+        }
 
         #endregion
     }

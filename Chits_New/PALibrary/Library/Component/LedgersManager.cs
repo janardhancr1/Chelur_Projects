@@ -106,6 +106,16 @@ namespace PALibrary.Library.Component
             return LedgersDAO.GetChitCommissionLedger(fromDate, toDate, ledgerName, type);
         }
 
+        public static List<DayBookInfo> GetChitDiscountLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            return LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, type);
+        }
+
+        public static List<DayBookInfo> GetCompBiddingLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            return LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, type);
+        }
+
         #endregion
     }
 
