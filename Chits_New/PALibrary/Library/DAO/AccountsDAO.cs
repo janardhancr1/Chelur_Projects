@@ -254,6 +254,13 @@ namespace PALibrary.Library.DAO
                 debit = debit + compBiddingOpening.Debit;
             }
 
+            DayBookInfo discountOpening = GetChitDiscountOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
+            if (discountOpening != null)
+            {
+                credit = credit + discountOpening.Credit;
+                debit = debit + discountOpening.Debit;
+            }
+
             DayBookInfo interestOpening = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING_CASH);
             if (interestOpening != null)
             {
@@ -1183,6 +1190,50 @@ namespace PALibrary.Library.DAO
 
             //Chit Bid
             DayBookInfo openingBalance = ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
+            if (openingBalance != null)
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            DayBookInfo dayBook = new DayBookInfo();
+            if (credit > debit)
+            {
+                dayBook.Credit = credit - debit;
+            }
+            else if (debit > credit)
+            {
+                dayBook.Debit = debit - credit;
+            }
+            return dayBook;
+        }
+
+        public static DayBookInfo GetChitDiscountOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            decimal credit = 0;
+            decimal debit = 0;
+
+            //LedgersInfo interestLedger = LedgersDAO.GetLedgersInfo(ledgerName);
+            //if (interestLedger != null)
+            //{
+            //    if (type == DBConstant.ACCOUNT_OPENING)
+            //    {
+            //        if (interestLedger.BalanceType.Equals("Cr"))
+            //            credit = interestLedger.OpeningBalance;
+            //        else if (interestLedger.BalanceType.Equals("Dr"))
+            //            debit = interestLedger.OpeningBalance;
+
+            //        DayBookInfo voucherOpening = VouchersDAO.GetOpeningVoucher(toDate, interestLedger.LedgerID);
+            //        if (voucherOpening != null)
+            //        {
+            //            debit = debit + voucherOpening.Debit;
+            //            credit = credit + voucherOpening.Credit;
+            //        }
+            //    }
+            //}
+
+            //Chit Discount
+            DayBookInfo openingBalance = ChitsTransDAO.GetOpeningDiscount(toDate, ledgerName, type);
             if (openingBalance != null)
             {
                 credit = credit + openingBalance.Credit;
