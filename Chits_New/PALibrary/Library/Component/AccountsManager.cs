@@ -122,7 +122,7 @@ namespace PALibrary.Library.Component
 
         public static DayBookInfo GetChitDiscountOpeningBalance(DateTime toDate, string ledgerName, int type)
         {
-            return ChitsTransDAO.GetOpeningDiscount(toDate, ledgerName, type);
+            return AccountsDAO.GetChitDiscountOpeningBalance(toDate, ledgerName, type);
         }
 
         public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
@@ -172,6 +172,13 @@ namespace PALibrary.Library.Component
             }
 
             dayBooks = LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo day in dayBooks)
+            {
+                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+                    details.Add(day);
+            }
+
+            dayBooks = LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo day in dayBooks)
             {
                 if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
