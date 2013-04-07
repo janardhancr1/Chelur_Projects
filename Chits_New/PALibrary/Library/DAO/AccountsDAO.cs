@@ -247,18 +247,18 @@ namespace PALibrary.Library.DAO
                 debit = debit + chitsOpening.Debit;
             }
 
-            DayBookInfo compBiddingOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
-            if (compBiddingOpening != null)
-            {
-                credit = credit + compBiddingOpening.Credit;
-                debit = debit + compBiddingOpening.Debit;
-            }
+            //DayBookInfo compBiddingOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
+            //if (compBiddingOpening != null)
+            //{
+            //    credit = credit + compBiddingOpening.Credit;
+            //    debit = debit + compBiddingOpening.Debit;
+            //}
 
             DayBookInfo discountOpening = GetChitDiscountOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
             if (discountOpening != null)
             {
-                credit = credit + discountOpening.Credit;
-                debit = debit + discountOpening.Debit;
+                credit = credit + discountOpening.Debit;
+                debit = debit + discountOpening.Credit;
             }
 
             DayBookInfo interestOpening = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING_CASH);
@@ -683,16 +683,16 @@ namespace PALibrary.Library.DAO
                 }
             }
 
-            DayBookInfo compBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
-            foreach (DayBookInfo tb in trialBalance)
-            {
-                if (tb.Particulars.Equals("CURRENT ASSETS"))
-                {
-                    tb.Credit = tb.Credit + compBidOpening.Debit;
-                    tb.Debit = tb.Debit + compBidOpening.Credit;
-                    break;
-                }
-            }
+            //DayBookInfo compBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
+            //foreach (DayBookInfo tb in trialBalance)
+            //{
+            //    if (tb.Particulars.Equals("CURRENT ASSETS"))
+            //    {
+            //        tb.Credit = tb.Credit + compBidOpening.Debit;
+            //        tb.Debit = tb.Debit + compBidOpening.Credit;
+            //        break;
+            //    }
+            //}
 
             DayBookInfo interests = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo tb in trialBalance)
@@ -712,6 +712,17 @@ namespace PALibrary.Library.DAO
                 {
                     tb.Credit = tb.Credit + interestPaids.Credit;
                     tb.Debit = tb.Debit + interestPaids.Debit;
+                    break;
+                }
+            }
+
+            DayBookInfo discountLedger = GetChitDiscountOpeningBalance(toDate, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo tb in trialBalance)
+            {
+                if (tb.Particulars.Equals("INDIRECT EXPENSES"))
+                {
+                    tb.Credit = tb.Credit + discountLedger.Credit;
+                    tb.Debit = tb.Debit + discountLedger.Debit;
                     break;
                 }
             }
@@ -854,13 +865,13 @@ namespace PALibrary.Library.DAO
             detail.Credit = chitOpening.Debit;
             trialDetails.Add(detail);
 
-            DayBookInfo chitBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
-            detail = new DayBookInfo();
-            detail.Particulars = "COMPANY BIDDING";
-            detail.Narration = "CURRENT ASSETS";
-            detail.Debit = chitBidOpening.Credit;
-            detail.Credit = chitBidOpening.Debit;
-            trialDetails.Add(detail);
+            //DayBookInfo chitBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
+            //detail = new DayBookInfo();
+            //detail.Particulars = "COMPANY BIDDING";
+            //detail.Narration = "CURRENT ASSETS";
+            //detail.Debit = chitBidOpening.Credit;
+            //detail.Credit = chitBidOpening.Debit;
+            //trialDetails.Add(detail);
 
             DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
             detail = new DayBookInfo();
@@ -884,6 +895,14 @@ namespace PALibrary.Library.DAO
             detail.Narration = "INDIRECT EXPENSES";
             detail.Debit = interestPaids.Debit;
             detail.Credit = interestPaids.Credit;
+            trialDetails.Add(detail);
+
+            DayBookInfo discountLedger = GetChitDiscountOpeningBalance(toDate, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+            detail = new DayBookInfo();
+            detail.Particulars = DBConstant.CHIT_DISCOUNT_LEDGER;
+            detail.Narration = "INDIRECT EXPENSES";
+            detail.Debit = discountLedger.Debit;
+            detail.Credit = discountLedger.Credit;
             trialDetails.Add(detail);
 
             return trialDetails;

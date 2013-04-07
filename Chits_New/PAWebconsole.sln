@@ -1,8 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\PAWebconsole\", "PAWebconsole\", "{606F9AF7-5A93-46DA-BC8E-EC329065F895}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PAWebconsole", "PAWebconsole\", "{606F9AF7-5A93-46DA-BC8E-EC329065F895}"
 	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
 		ProjectReferences = "{4A553A1B-6A2A-4E00-82DC-3FD189AC0E16}|PALibrary.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/PAWebconsole"
 		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\Chelur_Projects\Chits_New\PAWebconsole\"

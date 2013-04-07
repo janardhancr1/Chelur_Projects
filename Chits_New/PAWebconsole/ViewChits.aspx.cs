@@ -28,7 +28,7 @@ public partial class ViewChits : System.Web.UI.Page
                 Link2.Attributes.Remove("href");
                 Link2.Attributes.Add("href", "ChitBidding.aspx?chitNO=" + ChitNO.Text);
                 Link3.Attributes.Remove("href");
-                Link3.Attributes.Add("href", "ChitBidders.aspx?chitNO=" + ChitNO.Text + "&t=cbid");
+                Link3.Attributes.Add("href", "CompanyBidding.aspx?chitNO=" + ChitNO.Text);
                 Link4.Attributes.Remove("href");
                 Link4.Attributes.Add("href", "ChitMembers.aspx?chitNO=" + ChitNO.Text);
                 //DeleteButton.Visible = true;

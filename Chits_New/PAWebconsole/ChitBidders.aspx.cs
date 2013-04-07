@@ -44,119 +44,57 @@ public partial class ChitBidders : System.Web.UI.Page
                     HtmlTableRow row = null;
                     HtmlTableCell cell = null;
 
-                    if (Request.Params["t"].ToString().Equals("cbid"))
+
+                    List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
+                    foreach (ChitsParticipateInfo customer in customers)
                     {
-                        CloseButton.Attributes.Remove("onclick");
-                        CloseButton.Attributes.Add("onclick", "window.location.href='ViewChits.aspx?chitNO=" + ChitNO.Value + "';");
-                        decimal total = 0;
-                        trans = ChitsBiddingManager.GetChitsBiddingInfos(ChitNO.Value);
-                        foreach (ChitsBiddingInfo chitBid in trans)
+
+                        trans = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), customer.CustomerID, 0, -1, 0);
+
+                        if (trans.Count > 0 && Request.Params["t"].ToString().Equals("bid"))
                         {
-                            if (chitBid.CustomerID == 0)
-                            {
-                                row = new HtmlTableRow();
+                            row = new HtmlTableRow();
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = "Company Bidding";
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerName;
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = "-";
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerAddress;
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = chitBid.InstallmentNO.ToString();
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].InstallmentNO.ToString();
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = chitBid.BidDate.ToString("dd/MM/yyyy");
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].BidDate.ToString("dd/MM/yyyy");
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = chitBid.PaidDate.ToString("dd/MM/yyyy");
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].PaidDate.ToString("dd/MM/yyyy");
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = chitBid.PaidAmount.ToString();
-                                total += chitBid.PaidAmount;
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = trans[0].PaidAmount.ToString();
+                            row.Cells.Add(cell);
 
-                                MembersTable.Rows.Add(row);
-                            }
+                            MembersTable.Rows.Add(row);
                         }
 
-                        row = new HtmlTableRow();
-                        cell = new HtmlTableCell();
-                        cell.ColSpan = 6;
-                        cell.InnerHtml = "<hr />";
-                        row.Cells.Add(cell);
-                        MembersTable.Rows.Add(row);
-
-                        row = new HtmlTableRow();
-                        cell = new HtmlTableCell();
-                        cell.ColSpan = 5;
-                        cell.InnerText = "Total :";
-                        row.Cells.Add(cell);
-
-                        cell = new HtmlTableCell();
-                        cell.InnerText = total.ToString();
-                        row.Cells.Add(cell);
-
-                        MembersTable.Rows.Add(row);
-                    }
-                    else
-                    {
-                        List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
-                        foreach (ChitsParticipateInfo customer in customers)
+                        if (trans.Count == 0 && Request.Params["t"].ToString().Equals("unbid"))
                         {
+                            row = new HtmlTableRow();
 
-                            trans = ChitsBiddingManager.SearchChitsBiddingInfo(ChitNO.Value, 0, 0, new DateTime(), new DateTime(), customer.CustomerID, 0, -1, 0);
-                            
-                            if (trans.Count > 0 && Request.Params["t"].ToString().Equals("bid"))
-                            {
-                                row = new HtmlTableRow();
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerName;
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = customer.CustomerName;
-                                row.Cells.Add(cell);
+                            cell = new HtmlTableCell();
+                            cell.InnerText = customer.CustomerAddress;
+                            row.Cells.Add(cell);
 
-                                cell = new HtmlTableCell();
-                                cell.InnerText = customer.CustomerAddress;
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = trans[0].InstallmentNO.ToString();
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = trans[0].BidDate.ToString("dd/MM/yyyy");
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = trans[0].PaidDate.ToString("dd/MM/yyyy");
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = trans[0].PaidAmount.ToString();
-                                row.Cells.Add(cell);
-
-                                MembersTable.Rows.Add(row);
-                            }
-
-                            if (trans.Count == 0 && Request.Params["t"].ToString().Equals("unbid"))
-                            {
-                                row = new HtmlTableRow();
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = customer.CustomerName;
-                                row.Cells.Add(cell);
-
-                                cell = new HtmlTableCell();
-                                cell.InnerText = customer.CustomerAddress;
-                                row.Cells.Add(cell);
-
-                                MembersTable.Rows.Add(row);
-                            }
+                            MembersTable.Rows.Add(row);
                         }
                     }
                 }
