@@ -405,7 +405,7 @@ namespace PALibrary.Library.DAO
                 {
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, toDate));
 
-                    query = ChitsBiddingInfo.QUERY_SELECT_OPENING;
+                    query = ChitsBiddingInfo.QUERY_SELECT_OPENING_ALL;
                 }
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
@@ -441,14 +441,14 @@ namespace PALibrary.Library.DAO
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_FROM_DATE, fromDate));
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_TO_DATE, toDate));
 
-                    query = ChitsBiddingInfo.QUERY_SELECT_PERIOD;
+                    query = ChitsBiddingInfo.QUERY_SELECT_PERIOD_ALL;
                 }
                 else if (type == DBConstant.ACCOUNT_LEDGER)
                 {
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_FROM_DATE, fromDate));
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_TO_DATE, toDate));
 
-                    query = ChitsBiddingInfo.QUERY_SELECT_PERIOD;
+                    query = ChitsBiddingInfo.QUERY_SELECT_PERIOD_ALL;
                 }
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
@@ -456,6 +456,11 @@ namespace PALibrary.Library.DAO
                 {
                     ChitsBiddingInfo bid = new ChitsBiddingInfo();
                     bid.ReadValues(reader);
+
+                    if (bid.CustomerID > 0)
+                        bid.CustomerName = CustomerDAO.GetCustomerInfo(bid.CustomerID).CustomerName;
+                    else
+                        bid.CustomerName = DBConstant.COMPANY_BIDDING_LEDGER;
 
                     bids.Add(bid);
                 }

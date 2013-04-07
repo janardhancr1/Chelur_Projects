@@ -171,12 +171,12 @@ namespace PALibrary.Library.Component
                     details.Add(day);
             }
 
-            dayBooks = LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
-            foreach (DayBookInfo day in dayBooks)
-            {
-                if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
-                    details.Add(day);
-            }
+            //dayBooks = LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            //foreach (DayBookInfo day in dayBooks)
+            //{
+            //    if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
+            //        details.Add(day);
+            //}
 
             dayBooks = LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo day in dayBooks)
