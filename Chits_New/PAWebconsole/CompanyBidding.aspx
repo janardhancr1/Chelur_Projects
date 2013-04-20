@@ -13,7 +13,7 @@
         Company Bidding</div>
     <table width="100%">
         <tr>
-            <td width="50%">
+            <td width="50%" valign="top">
                 <table width="100%">
                     <tr>
                         <td>
@@ -55,6 +55,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Installment No</td>
+                        <td>
+                            <asp:DropDownList ID="InstallmentNo" runat="server" Width="153px">
+                                <asp:ListItem Value="">--Select--</asp:ListItem>
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="InstallmentNo"
+                                Display="Dynamic">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             Customer
                         </td>
@@ -66,15 +76,23 @@
                                 Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
+                    
                     <tr>
                         <td>
                             Amount
                         </td>
                         <td>
-                            <input type="text" id="BidAmount" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);" />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="BidAmount"
+                            <input type="text" id="PaidAmount" runat="Server" maxlength="10" onkeypress="javascript:onlyDigits(this);" />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="PaidAmount"
                                 Display="Dynamic">*</asp:RequiredFieldValidator>
                         </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td>
+                            <asp:Button ID="AddButton" Text="Add" OnClick="Add_Click" runat="server" />
+                            <asp:Label ID="message" runat="server" ForeColor="red"></asp:Label></td>
                     </tr>
                 </table>
             </td>
@@ -92,9 +110,6 @@
                             CustomerName
                         </th>
                         <th align="left">
-                            CustomerAddress
-                        </th>
-                        <th align="left">
                             Installment No
                         </th>
                         <th align="left">
@@ -103,9 +118,27 @@
                         <th align="left">
                             Paid Date
                         </th>
-                        <th align="left">
+                        <th align="right">
                             Bid Amount
                         </th>
+                    </tr>
+                </table>
+                <hr />
+                <table width="100%" id="CompBidding" runat="server">
+                    <tr class="nav_header">
+                        <th align="left">
+                            CustomerName
+                        </th>
+                        <th align="left">
+                            Installment No
+                        </th>
+                        <th align="left">
+                            Paid Date
+                        </th>
+                        <th align="right">
+                            Paid Amount
+                        </th>
+                        <th>&nbsp;</th>
                     </tr>
                 </table>
             </td>

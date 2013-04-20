@@ -127,7 +127,7 @@ namespace PALibrary.Library.Component
 
         public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
         {
-            return ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
+            return AccountsDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
         }
 
         #endregion

@@ -1,0 +1,9 @@
+﻿CREATE TABLE `chits_company_bidding` (
+  `Record_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Chit_No` varchar(10) DEFAULT NULL,
+  `Installment_No` int(11) DEFAULT NULL,
+  `Paid_Amount` float DEFAULT NULL,
+  `Paid_Date` datetime DEFAULT NULL,
+  `Customer_Id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Record_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
