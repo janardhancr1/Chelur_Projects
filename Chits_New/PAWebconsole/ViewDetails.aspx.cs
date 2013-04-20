@@ -150,9 +150,9 @@ public partial class ViewDetails : System.Web.UI.Page
                                                                       DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
                 dayBooks.AddRange(chitDiscounts);
 
-                //List<DayBookInfo> chitCompanyBidding = LedgersManager.GetCompBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                //                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_PERIOD);
-                //dayBooks.AddRange(chitCompanyBidding);
+                List<DayBookInfo> chitCompanyBidding = LedgersManager.GetCompanyBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                dayBooks.AddRange(chitCompanyBidding);
 
                 List<DayBookInfo> interestColleted = LedgersManager.GetInterestLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                   DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture));

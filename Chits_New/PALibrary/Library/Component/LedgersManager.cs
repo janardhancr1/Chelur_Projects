@@ -116,6 +116,11 @@ namespace PALibrary.Library.Component
             return LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, type);
         }
 
+        public static List<DayBookInfo> GetCompanyBiddingLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            return LedgersDAO.GetCompanyBiddingLedger(fromDate, toDate, ledgerName, type);
+        }
+
         #endregion
     }
 

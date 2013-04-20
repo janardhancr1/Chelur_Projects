@@ -1183,49 +1183,49 @@ namespace PALibrary.Library.DAO
         }
 
 
-        public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
-        {
-            decimal credit = 0;
-            decimal debit = 0;
+        //public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
+        //{
+        //    decimal credit = 0;
+        //    decimal debit = 0;
 
-            //LedgersInfo interestLedger = LedgersDAO.GetLedgersInfo(ledgerName);
-            //if (interestLedger != null)
-            //{
-            //    if (type == DBConstant.ACCOUNT_OPENING)
-            //    {
-            //        if (interestLedger.BalanceType.Equals("Cr"))
-            //            credit = interestLedger.OpeningBalance;
-            //        else if (interestLedger.BalanceType.Equals("Dr"))
-            //            debit = interestLedger.OpeningBalance;
+        //    //LedgersInfo interestLedger = LedgersDAO.GetLedgersInfo(ledgerName);
+        //    //if (interestLedger != null)
+        //    //{
+        //    //    if (type == DBConstant.ACCOUNT_OPENING)
+        //    //    {
+        //    //        if (interestLedger.BalanceType.Equals("Cr"))
+        //    //            credit = interestLedger.OpeningBalance;
+        //    //        else if (interestLedger.BalanceType.Equals("Dr"))
+        //    //            debit = interestLedger.OpeningBalance;
 
-            //        DayBookInfo voucherOpening = VouchersDAO.GetOpeningVoucher(toDate, interestLedger.LedgerID);
-            //        if (voucherOpening != null)
-            //        {
-            //            debit = debit + voucherOpening.Debit;
-            //            credit = credit + voucherOpening.Credit;
-            //        }
-            //    }
-            //}
+        //    //        DayBookInfo voucherOpening = VouchersDAO.GetOpeningVoucher(toDate, interestLedger.LedgerID);
+        //    //        if (voucherOpening != null)
+        //    //        {
+        //    //            debit = debit + voucherOpening.Debit;
+        //    //            credit = credit + voucherOpening.Credit;
+        //    //        }
+        //    //    }
+        //    //}
 
-            //Chit Bid
-            DayBookInfo openingBalance = ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
-            if (openingBalance != null)
-            {
-                credit = credit + openingBalance.Credit;
-                debit = debit + openingBalance.Debit;
-            }
+        //    //Chit Bid
+        //    DayBookInfo openingBalance = ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
+        //    if (openingBalance != null)
+        //    {
+        //        credit = credit + openingBalance.Credit;
+        //        debit = debit + openingBalance.Debit;
+        //    }
 
-            DayBookInfo dayBook = new DayBookInfo();
-            if (credit > debit)
-            {
-                dayBook.Credit = credit - debit;
-            }
-            else if (debit > credit)
-            {
-                dayBook.Debit = debit - credit;
-            }
-            return dayBook;
-        }
+        //    DayBookInfo dayBook = new DayBookInfo();
+        //    if (credit > debit)
+        //    {
+        //        dayBook.Credit = credit - debit;
+        //    }
+        //    else if (debit > credit)
+        //    {
+        //        dayBook.Debit = debit - credit;
+        //    }
+        //    return dayBook;
+        //}
 
         public static DayBookInfo GetChitDiscountOpeningBalance(DateTime toDate, string ledgerName, int type)
         {
@@ -1253,6 +1253,37 @@ namespace PALibrary.Library.DAO
 
             //Chit Discount
             DayBookInfo openingBalance = ChitsTransDAO.GetOpeningDiscount(toDate, ledgerName, type);
+            if (openingBalance != null)
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            DayBookInfo dayBook = new DayBookInfo();
+            if (credit > debit)
+            {
+                dayBook.Credit = credit - debit;
+            }
+            else if (debit > credit)
+            {
+                dayBook.Debit = debit - credit;
+            }
+            return dayBook;
+        }
+
+        public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
+        {
+            decimal credit = 0;
+            decimal debit = 0;
+
+            DayBookInfo openingBalance = ChitsBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
+            if (openingBalance != null)
+            {
+                credit = credit + openingBalance.Credit;
+                debit = debit + openingBalance.Debit;
+            }
+
+            DayBookInfo compOpenBalance = ChitsCompanyBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
             if (openingBalance != null)
             {
                 credit = credit + openingBalance.Credit;

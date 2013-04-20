@@ -45,6 +45,7 @@
     <Compile Include="Library\Component\AccountsManager.cs" />
     <Compile Include="Library\Component\ATKTManager.cs" />
     <Compile Include="Library\Component\ChitsBiddingManager.cs" />
+    <Compile Include="Library\Component\ChitsCompanyBiddingManager.cs" />
     <Compile Include="Library\Component\ChitsManager.cs" />
     <Compile Include="Library\Component\ChitsParticipateManager.cs" />
     <Compile Include="Library\Component\ChitsReportManager.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Library\DAO\AccountsDAO.cs" />
     <Compile Include="Library\DAO\ATKTDAO.cs" />
     <Compile Include="Library\DAO\ChitsBiddingDAO.cs" />
+    <Compile Include="Library\DAO\ChitsCompanyBiddingDAO.cs" />
     <Compile Include="Library\DAO\ChitsDAO.cs" />
     <Compile Include="Library\DAO\ChitsParticipateDAO.cs" />
     <Compile Include="Library\DAO\ChitsTransDAO.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Library\Exception\PAException.cs" />
     <Compile Include="Library\Model\ATKTInfo.cs" />
     <Compile Include="Library\Model\ChitsBiddingInfo.cs" />
+    <Compile Include="Library\Model\ChitsCompanyBiddingInfo.cs" />
     <Compile Include="Library\Model\ChitsInfo.cs" />
     <Compile Include="Library\Model\ChitsParticipateInfo.cs" />
     <Compile Include="Library\Model\ChitsReportInfo.cs" />

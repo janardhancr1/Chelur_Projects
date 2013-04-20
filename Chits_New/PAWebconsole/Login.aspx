@@ -34,25 +34,25 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td align="left">
                                 UserName</td>
                             <td>
-                                <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="UserName" runat="server" Width="140px"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="UserName">*</asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td align="left">
                                 Password</td>
                             <td>
-                                <asp:TextBox ID="Password" runat="server" TextMode="Password" Width="150px"></asp:TextBox>
+                                <asp:TextBox ID="Password" runat="server" TextMode="Password" Width="140px"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Password">*</asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td align="left">
                                 Date</td>
                             <td>
                                 <input type="text" id="CurrentDate" runat="server" onfocus="showCalendarControl(this);"
-                                    readonly />
+                                    readonly style="width:140px;" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="CurrentDate">*</asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>

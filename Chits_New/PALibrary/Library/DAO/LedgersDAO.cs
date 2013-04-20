@@ -698,6 +698,56 @@ namespace PALibrary.Library.DAO
                 }
             }
 
+            //Chits Bids
+            List<ChitsCompanyBiddingInfo> compBids = ChitsCompanyBiddingDAO.GetCompBids(fromDate, toDate, ledgerName, type);
+            foreach (ChitsCompanyBiddingInfo bid in compBids)
+            {
+                if (bid.PaidAmount > 0)
+                {
+                    dayBook = new DayBookInfo();
+                    dayBook.CurrentDate = bid.PaidDate;
+                    dayBook.Particulars = bid.ChitNO;
+                    dayBook.VoucherType = DBConstant.COMP_BIDDING;
+                    dayBook.VoucherNo = bid.RecordID;
+                    dayBook.Credit = bid.PaidAmount;
+                    dayBook.Debit = 0;
+                    dayBook.Narration = ChitsDAO.GetChitsInfo(bid.ChitNO).ChitName;
+                    dayBook.FromLedger = DBConstant.COMPANY_BIDDING_LEDGER;
+                    dayBook.ToLedger = DBConstant.CASH_LEDGER;
+
+                    dayBooks.Add(dayBook);
+                }
+            }
+
+            return dayBooks;
+        }
+
+        public static List<DayBookInfo> GetCompanyBiddingLedger(DateTime fromDate, DateTime toDate, string ledgerName, int type)
+        {
+            List<DayBookInfo> dayBooks = new List<DayBookInfo>();
+            DayBookInfo dayBook = null;
+
+            //Chits Bids
+            List<ChitsCompanyBiddingInfo> compBids = ChitsCompanyBiddingDAO.GetCompBids(fromDate, toDate, ledgerName, type);
+            foreach (ChitsCompanyBiddingInfo bid in compBids)
+            {
+                if (bid.PaidAmount > 0)
+                {
+                    dayBook = new DayBookInfo();
+                    dayBook.CurrentDate = bid.PaidDate;
+                    dayBook.Particulars = bid.ChitNO;
+                    dayBook.VoucherType = DBConstant.COMP_BIDDING;
+                    dayBook.VoucherNo = bid.RecordID;
+                    dayBook.Credit = bid.PaidAmount;
+                    dayBook.Debit = 0;
+                    dayBook.Narration = ChitsDAO.GetChitsInfo(bid.ChitNO).ChitName;
+                    dayBook.FromLedger = DBConstant.COMPANY_BIDDING_LEDGER;
+                    dayBook.ToLedger = DBConstant.CASH_LEDGER;
+
+                    dayBooks.Add(dayBook);
+                }
+            }
+
             return dayBooks;
         }
 
