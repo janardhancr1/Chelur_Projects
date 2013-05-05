@@ -352,7 +352,7 @@ namespace PALibrary.Library.DAO
                 while (reader.Read())
                 {
                     openingBalance.Particulars = DBConstant.CHITS_DISCOUNT;
-                    openingBalance.Credit = DBUtils.ConvertDecimal(reader["Amount"]);
+                    openingBalance.Debit = DBUtils.ConvertDecimal(reader["Amount"]);
                 }
 
                 return openingBalance;

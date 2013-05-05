@@ -101,13 +101,20 @@ public partial class ChitAccount : System.Web.UI.Page
 
                                 cell = new HtmlTableCell();
                                 cell.Align = "right";
+                                cell.InnerText = "";
                                 if (bid.Count > 0)
                                 {
                                     cell.InnerText = bid[0].PaidAmount.ToString();
                                     bidTotal += bid[0].PaidAmount;
                                 }
-                                else
-                                    cell.InnerText = "";
+
+                                List<ChitsCompanyBiddingInfo> compBids = ChitsCompanyBiddingManager.SearchChitsCompanyBiddingInfo(0, ChitNO.Value, i, 0, new DateTime(), customerID, -1, 0);
+                                if (compBids.Count > 0)
+                                {
+                                    cell.InnerText = compBids[0].PaidAmount.ToString();
+                                    bidTotal += compBids[0].PaidAmount;
+                                }
+                                    
                                 row.Cells.Add(cell);
 
                                 cell = new HtmlTableCell();
