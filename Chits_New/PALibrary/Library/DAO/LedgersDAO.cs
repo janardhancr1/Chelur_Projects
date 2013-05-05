@@ -727,6 +727,29 @@ namespace PALibrary.Library.DAO
             List<DayBookInfo> dayBooks = new List<DayBookInfo>();
             DayBookInfo dayBook = null;
 
+
+            //Chits Bids
+            List<ChitsBiddingInfo> bids = ChitsBiddingDAO.GetChitBids(fromDate, toDate, ledgerName, type);
+            foreach (ChitsBiddingInfo bid in bids)
+            {
+                if (bid.CustomerID == 0)
+                {
+                    dayBook = new DayBookInfo();
+                    dayBook.CurrentDate = bid.PaidDate;
+                    dayBook.Particulars = bid.ChitNO;
+                    dayBook.VoucherType = DBConstant.COMP_BIDDING;
+                    dayBook.VoucherNo = bid.RecordID;
+                    dayBook.Debit = bid.PaidAmount;
+                    dayBook.Credit = 0;
+                    dayBook.Narration = bid.ChitName;
+                    dayBook.FromLedger = DBConstant.CASH_LEDGER;
+                    dayBook.ToLedger = bid.ChitName;
+
+                    dayBooks.Add(dayBook);
+                }
+               
+            }
+
             //Chits Bids
             List<ChitsCompanyBiddingInfo> compBids = ChitsCompanyBiddingDAO.GetCompBids(fromDate, toDate, ledgerName, type);
             foreach (ChitsCompanyBiddingInfo bid in compBids)

@@ -247,12 +247,12 @@ namespace PALibrary.Library.DAO
                 debit = debit + chitsOpening.Debit;
             }
 
-            //DayBookInfo compBiddingOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
-            //if (compBiddingOpening != null)
-            //{
-            //    credit = credit + compBiddingOpening.Credit;
-            //    debit = debit + compBiddingOpening.Debit;
-            //}
+            DayBookInfo compBiddingOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
+            if (compBiddingOpening != null)
+            {
+                credit = credit + compBiddingOpening.Credit;
+                debit = debit + compBiddingOpening.Debit;
+            }
 
             DayBookInfo discountOpening = GetChitDiscountOpeningBalance(toDate, DBConstant.CASH_LEDGER, DBConstant.ACCOUNT_OPENING);
             if (discountOpening != null)
@@ -1284,10 +1284,10 @@ namespace PALibrary.Library.DAO
             }
 
             DayBookInfo compOpenBalance = ChitsCompanyBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
-            if (openingBalance != null)
+            if (compOpenBalance != null)
             {
-                credit = credit + openingBalance.Credit;
-                debit = debit + openingBalance.Debit;
+                credit = credit + compOpenBalance.Credit;
+                debit = debit + compOpenBalance.Debit;
             }
 
             DayBookInfo dayBook = new DayBookInfo();
