@@ -158,6 +158,30 @@ public partial class CompanyBidding : System.Web.UI.Page
 
                     CompBidding.Rows.Add(row);
 
+                    row = new HtmlTableRow();
+                    cell = new HtmlTableCell();
+                    cell.ColSpan = 5;
+                    cell.InnerHtml = "<hr />";
+                    row.Cells.Add(cell);
+                    CompBidding.Rows.Add(row);
+
+                    row = new HtmlTableRow();
+                    cell = new HtmlTableCell();
+                    cell.ColSpan = 3;
+                    cell.InnerText = "Grand Total :";
+                    row.Cells.Add(cell);
+
+                    cell = new HtmlTableCell();
+                    cell.InnerHtml = "&nbsp;";
+                    row.Cells.Add(cell);
+
+                    cell = new HtmlTableCell();
+                    cell.InnerText = (total - paidTotal).ToString();
+                    cell.Align = "right";
+                    row.Cells.Add(cell);
+                    
+                    CompBidding.Rows.Add(row);
+
                     List<ChitsParticipateInfo> customers = ChitsParticipateManager.GetChitsParticipateInfos(ChitNO.Value);
                     foreach (ChitsParticipateInfo customer in customers)
                     {

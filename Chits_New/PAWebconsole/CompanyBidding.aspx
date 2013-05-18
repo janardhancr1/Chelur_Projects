@@ -106,19 +106,19 @@
             <td colspan="2">
                 <table width="100%" id="MembersTable" runat="server">
                     <tr class="nav_header">
-                        <th align="left">
+                        <th align="left" width="40%">
                             CustomerName
                         </th>
-                        <th align="left">
+                        <th align="left" width="15%">
                             Installment No
                         </th>
-                        <th align="left">
+                        <th align="left" width="15%">
                             Bid Date
                         </th>
-                        <th align="left">
+                        <th align="left" width="15%">
                             Paid Date
                         </th>
-                        <th align="right">
+                        <th align="right" width="15%">
                             Bid Amount
                         </th>
                     </tr>
@@ -126,19 +126,19 @@
                 <hr />
                 <table width="100%" id="CompBidding" runat="server">
                     <tr class="nav_header">
-                        <th align="left">
+                        <th align="left" width="40%">
                             CustomerName
                         </th>
-                        <th align="left">
+                        <th align="left" width="15%">
                             Installment No
                         </th>
-                        <th align="left">
+                        <th align="left" width="15%">
                             Paid Date
                         </th>
-                        <th align="right">
+                        <th align="right" width="15%">
                             Paid Amount
                         </th>
-                        <th>&nbsp;</th>
+                        <th width="15%">&nbsp;</th>
                     </tr>
                 </table>
             </td>

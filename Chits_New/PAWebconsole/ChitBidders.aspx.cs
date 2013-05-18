@@ -84,17 +84,21 @@ public partial class ChitBidders : System.Web.UI.Page
 
                         if (trans.Count == 0 && Request.Params["t"].ToString().Equals("unbid"))
                         {
-                            row = new HtmlTableRow();
+                            int compBidCnt = ChitsCompanyBiddingManager.SearchChitsCompanyBiddingInfoCount(0, ChitNO.Value, 0, 0, new DateTime(), customer.CustomerID, -1, 0);
+                            if (compBidCnt == 0)
+                            {
+                                row = new HtmlTableRow();
 
-                            cell = new HtmlTableCell();
-                            cell.InnerText = customer.CustomerName;
-                            row.Cells.Add(cell);
+                                cell = new HtmlTableCell();
+                                cell.InnerText = customer.CustomerName;
+                                row.Cells.Add(cell);
 
-                            cell = new HtmlTableCell();
-                            cell.InnerText = customer.CustomerAddress;
-                            row.Cells.Add(cell);
+                                cell = new HtmlTableCell();
+                                cell.InnerText = customer.CustomerAddress;
+                                row.Cells.Add(cell);
 
-                            MembersTable.Rows.Add(row);
+                                MembersTable.Rows.Add(row);
+                            }
                         }
                     }
                 }

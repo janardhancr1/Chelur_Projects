@@ -683,16 +683,16 @@ namespace PALibrary.Library.DAO
                 }
             }
 
-            //DayBookInfo compBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
-            //foreach (DayBookInfo tb in trialBalance)
-            //{
-            //    if (tb.Particulars.Equals("CURRENT ASSETS"))
-            //    {
-            //        tb.Credit = tb.Credit + compBidOpening.Debit;
-            //        tb.Debit = tb.Debit + compBidOpening.Credit;
-            //        break;
-            //    }
-            //}
+            DayBookInfo compBidOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_OPENING);
+            foreach (DayBookInfo tb in trialBalance)
+            {
+                if (tb.Particulars.Equals("CURRENT ASSETS"))
+                {
+                    tb.Credit = tb.Credit + compBidOpening.Debit;
+                    tb.Debit = tb.Debit + compBidOpening.Credit;
+                    break;
+                }
+            }
 
             DayBookInfo interests = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo tb in trialBalance)
@@ -865,13 +865,13 @@ namespace PALibrary.Library.DAO
             detail.Credit = chitOpening.Debit;
             trialDetails.Add(detail);
 
-            //DayBookInfo chitBidOpening = GetCompBiddingOpeningBalance(toDate, "CHIT", DBConstant.ACCOUNT_OPENING);
-            //detail = new DayBookInfo();
-            //detail.Particulars = "COMPANY BIDDING";
-            //detail.Narration = "CURRENT ASSETS";
-            //detail.Debit = chitBidOpening.Credit;
-            //detail.Credit = chitBidOpening.Debit;
-            //trialDetails.Add(detail);
+            DayBookInfo chitBidOpening = GetCompBiddingOpeningBalance(toDate, DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_OPENING);
+            detail = new DayBookInfo();
+            detail.Particulars = "COMPANY BIDDING";
+            detail.Narration = "CURRENT ASSETS";
+            detail.Debit = chitBidOpening.Credit;
+            detail.Credit = chitBidOpening.Debit;
+            trialDetails.Add(detail);
 
             DayBookInfo chitCommOpening = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
             detail = new DayBookInfo();
