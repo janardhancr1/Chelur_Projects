@@ -372,8 +372,11 @@ namespace PALibrary.Library.DAO
                     chitsBiddingInfo.ReadValues(reader);
 
                     CustomerInfo customer = CustomerDAO.GetCustomerInfo(chitsBiddingInfo.CustomerID);
-                    chitsBiddingInfo.CustomerName = customer.CustomerName;
-                    chitsBiddingInfo.CustomerAddress = customer.FullAddress;
+                    if (customer != null)
+                    {
+                        chitsBiddingInfo.CustomerName = customer.CustomerName;
+                        chitsBiddingInfo.CustomerAddress = customer.FullAddress;
+                    }
 
                     chitsBiddingInfos.Add(chitsBiddingInfo);
                 }
@@ -412,7 +415,7 @@ namespace PALibrary.Library.DAO
                 while (reader.Read())
                 {
                     openingBalance.Particulars = DBConstant.CHITS_BIDDING;
-                    openingBalance.Credit = DBUtils.ConvertDecimal(reader["Amount"]);
+                    openingBalance.Debit = DBUtils.ConvertDecimal(reader["Amount"]);
                 }
 
                 return openingBalance;

@@ -111,7 +111,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
     {
         if (openingBalance != null)
         {
-            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("9") || type.Equals("8"))
+            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("9"))
             {
                 if (openingBalance.Credit > 0)
                 {
@@ -126,11 +126,11 @@ public partial class MonthlyLedger : System.Web.UI.Page
             {
                 if (openingBalance.Credit > 0)
                 {
-                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Credit.ToString("#0.00") + " Cr";
+                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Credit.ToString("#0.00") + " Dr";
                 }
                 else if (openingBalance.Debit > 0)
                 {
-                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Debit.ToString("#0.00") + " Dr";
+                    DetailsTable.Rows[1].Cells[3].InnerText = openingBalance.Debit.ToString("#0.00") + " Cr";
                 }
             }
         }
@@ -144,7 +144,7 @@ public partial class MonthlyLedger : System.Web.UI.Page
 
         if (openingBalance != null)
         {
-            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("9") || type.Equals("8"))
+            if (type.Equals("3") || type.Equals("5") || type.Equals("6") || type.Equals("9"))
             {
                 credit = credit + openingBalance.Credit;
                 debit = debit + openingBalance.Debit;

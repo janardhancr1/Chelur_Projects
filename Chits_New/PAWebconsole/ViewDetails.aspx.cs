@@ -112,7 +112,7 @@ public partial class ViewDetails : System.Web.UI.Page
                 case "9":
                     LedgerName.Text = "Company Bidding Ledger";
                     openingBalance = AccountsManager.GetCompBiddingOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetCompBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    dayBooks = LedgersManager.GetCompanyBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
                                                                       DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
                     break;
             }
@@ -187,7 +187,7 @@ public partial class ViewDetails : System.Web.UI.Page
 
         if (openingBalance != null)
         {
-            if (LedgerType.Value == "1" || LedgerType.Value == "2")
+            if (LedgerType.Value == "1" || LedgerType.Value == "3" || LedgerType.Value == "8" || LedgerType.Value == "4")
             {
                 if (openingBalance.Credit > 0)
                 {
@@ -217,6 +217,7 @@ public partial class ViewDetails : System.Web.UI.Page
 
     protected void Display(List<DayBookInfo> dayBooks)
     {
+        dayBooks.Sort(new ReportComparer());
         decimal credit = 0;
         decimal debit = 0;
         HtmlTableRow row;
