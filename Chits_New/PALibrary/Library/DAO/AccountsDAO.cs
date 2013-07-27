@@ -1118,13 +1118,14 @@ namespace PALibrary.Library.DAO
                 debit = debit + openingBalance.Debit;
             }
 
-            openingBalance = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, type);
+            //Company Bidding 
+            openingBalance = ChitsCompanyBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
             if (openingBalance != null)
             {
-                credit = credit + openingBalance.Credit;
-                debit = debit + openingBalance.Debit;
+                credit = credit + openingBalance.Debit; //change for only this
+                debit = debit + openingBalance.Credit;
             }
-
+            
             DayBookInfo dayBook = new DayBookInfo();
             if (credit > debit)
             {

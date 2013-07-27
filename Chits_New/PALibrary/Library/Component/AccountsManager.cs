@@ -326,7 +326,7 @@ namespace PALibrary.Library.Component
                     details = LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, type);
                     break;
                 case 9:
-                    details = LedgersDAO.GetCompBiddingLedger(fromDate, toDate, ledgerName, type);
+                    details = LedgersDAO.GetCompanyBiddingLedger(fromDate, toDate, ledgerName, type);
                     break;
                 //case 13:
                 //    details = ledgerDao.GetAuctionProfitLedger(fromDate, toDate);
