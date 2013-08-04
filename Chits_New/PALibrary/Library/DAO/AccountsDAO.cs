@@ -877,8 +877,8 @@ namespace PALibrary.Library.DAO
             detail = new DayBookInfo();
             detail.Particulars = DBConstant.CHIT_COMMISSION_LEDGER;
             detail.Narration = "INDIRECT INCOMES";
-            detail.Debit = chitCommOpening.Debit;
-            detail.Credit = chitCommOpening.Credit;
+            detail.Debit = chitCommOpening.Credit;
+            detail.Credit = chitCommOpening.Debit;
             trialDetails.Add(detail);
 
             DayBookInfo interests = GetInterestOpeningBalance(toDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
@@ -901,8 +901,8 @@ namespace PALibrary.Library.DAO
             detail = new DayBookInfo();
             detail.Particulars = DBConstant.CHIT_DISCOUNT_LEDGER;
             detail.Narration = "INDIRECT EXPENSES";
-            detail.Debit = discountLedger.Debit;
-            detail.Credit = discountLedger.Credit;
+            detail.Debit = discountLedger.Credit;
+            detail.Credit = discountLedger.Debit;
             trialDetails.Add(detail);
 
             return trialDetails;
