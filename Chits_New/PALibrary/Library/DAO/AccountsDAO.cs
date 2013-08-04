@@ -1122,8 +1122,8 @@ namespace PALibrary.Library.DAO
             openingBalance = ChitsCompanyBiddingDAO.GetCompBiddingOpeningBalance(toDate, ledgerName, type);
             if (openingBalance != null)
             {
-                credit = credit + openingBalance.Debit; //change for only this
-                debit = debit + openingBalance.Credit;
+                credit = credit + openingBalance.Credit; //change for only this
+                debit = debit + openingBalance.Debit;
             }
             
             DayBookInfo dayBook = new DayBookInfo();
@@ -1168,7 +1168,7 @@ namespace PALibrary.Library.DAO
             {
                 ChitsInfo chitInfo = ChitsDAO.GetChitsInfo(chitBid.ChitNO);
                 decimal chitCommission = chitInfo.ChitAmount * chitInfo.ChitCommission / 100;
-                credit = credit + chitCommission;
+                debit = debit + chitCommission;
             }
 
             DayBookInfo dayBook = new DayBookInfo();
