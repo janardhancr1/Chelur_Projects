@@ -187,7 +187,7 @@ public partial class ViewDetails : System.Web.UI.Page
 
         if (openingBalance != null)
         {
-            if (LedgerType.Value == "1" || LedgerType.Value == "3" || LedgerType.Value == "8" || LedgerType.Value == "4")
+            if (LedgerType.Value == "1" || LedgerType.Value == "3" || LedgerType.Value == "9" || LedgerType.Value == "4" || LedgerType.Value == "8")
             {
                 if (openingBalance.Credit > 0)
                 {
