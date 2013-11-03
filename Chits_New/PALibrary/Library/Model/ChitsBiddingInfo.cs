@@ -38,7 +38,7 @@ namespace PALibrary.Library.Model
         public const string QUERY_SELECT_OPENING = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Paid_Date<" + PARAM_PAID_DATE + " AND Customer_ID>0";
         public const string QUERY_SELECT_PERIOD = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,b.Customer_ID,Left_Amount,c.Chit_Name,cu.Customer_Name FROM " + TABLE_NAME + " b, chits c, customers cu WHERE b.Chit_No=c.Chit_No AND b.Customer_id = cu.Customer_id AND Paid_Date>=" + PARAM_FROM_DATE + " AND Paid_Date<=" + PARAM_TO_DATE + " ORDER BY Paid_Date";
 
-        public const string QUERY_SELECT_OPENING_ALL = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Customer_ID>0 AND Paid_Date<" + PARAM_PAID_DATE;
+        public const string QUERY_SELECT_OPENING_ALL = "SELECT Sum(Paid_Amount) AS Amount FROM " + TABLE_NAME + " WHERE Paid_Date<" + PARAM_PAID_DATE;
         public const string QUERY_SELECT_PERIOD_ALL = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,b.Customer_ID,Left_Amount,c.Chit_Name FROM " + TABLE_NAME + " b, chits c WHERE b.Chit_No=c.Chit_No AND Paid_Date>=" + PARAM_FROM_DATE + " AND Paid_Date<=" + PARAM_TO_DATE + " ORDER BY Paid_Date";
 
         public const string QUERY_SELECT_UPTO = "SELECT Record_ID,b.Chit_No,Installment_No,Paid_Amount,b.Bid_Date,Paid_Date,b.Customer_ID,Left_Amount,c.Chit_Name FROM " + TABLE_NAME + " b, chits c WHERE b.Chit_No=c.Chit_No AND Paid_Date<" + PARAM_PAID_DATE;

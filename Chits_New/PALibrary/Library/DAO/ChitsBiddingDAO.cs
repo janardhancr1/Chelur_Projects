@@ -410,6 +410,12 @@ namespace PALibrary.Library.DAO
 
                     query = ChitsBiddingInfo.QUERY_SELECT_OPENING_ALL;
                 }
+                else if (type == DBConstant.ACCOUNT_OPENING_CASH)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, toDate));
+
+                    query = ChitsBiddingInfo.QUERY_SELECT_OPENING_ALL;
+                }
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
                 while (reader.Read())
@@ -491,6 +497,12 @@ namespace PALibrary.Library.DAO
                 List<IDbDataParameter> parameters = new List<IDbDataParameter>();
 
                 if (type == DBConstant.ACCOUNT_OPENING)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, toDate));
+
+                    query = ChitsBiddingInfo.QUERY_SELECT_OPENING_COMPBID;
+                }
+                else if (type == DBConstant.ACCOUNT_OPENING_CASH)
                 {
                     parameters.Add(DBManager.GetParameter(ChitsBiddingInfo.PARAM_PAID_DATE, toDate));
 

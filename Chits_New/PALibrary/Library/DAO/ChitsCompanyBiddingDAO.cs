@@ -262,6 +262,12 @@ namespace PALibrary.Library.DAO
 
                     query = ChitsCompanyBiddingInfo.QUERY_SELECT_OPENING_COMPBID;
                 }
+                else if (type == DBConstant.ACCOUNT_OPENING_CASH)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsCompanyBiddingInfo.PARAM_PAID_DATE, toDate));
+
+                    query = ChitsCompanyBiddingInfo.QUERY_SELECT_OPENING_COMPBID;
+                }
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
                 while (reader.Read())

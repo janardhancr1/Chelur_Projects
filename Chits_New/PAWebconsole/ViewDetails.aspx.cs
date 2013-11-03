@@ -111,9 +111,9 @@ public partial class ViewDetails : System.Web.UI.Page
                     break;
                 case "9":
                     LedgerName.Text = "Company Bidding Ledger";
-                    openingBalance = AccountsManager.GetCompBiddingOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    openingBalance = AccountsManager.GetCompBiddingOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_OPENING);
                     dayBooks = LedgersManager.GetCompanyBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_PERIOD);
                     break;
             }
 
@@ -187,7 +187,7 @@ public partial class ViewDetails : System.Web.UI.Page
 
         if (openingBalance != null)
         {
-            if (LedgerType.Value == "1" || LedgerType.Value == "3" || LedgerType.Value == "9" || LedgerType.Value == "4" || LedgerType.Value == "8" || LedgerType.Value == "7")
+            if (LedgerType.Value == "1" || LedgerType.Value == "3" || LedgerType.Value == "9" || LedgerType.Value == "4")
             {
                 if (openingBalance.Credit > 0)
                 {
