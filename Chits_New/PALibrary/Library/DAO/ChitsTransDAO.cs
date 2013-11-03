@@ -265,6 +265,12 @@ namespace PALibrary.Library.DAO
 
                     query = ChitsTransInfo.QUERY_SELECT_OPENING;
                 }
+                else if (type == DBConstant.ACCOUNT_OPENING_CASH)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_DATE, toDate));
+
+                    query = ChitsTransInfo.QUERY_SELECT_OPENING;
+                }
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
                 while (reader.Read())
@@ -347,12 +353,18 @@ namespace PALibrary.Library.DAO
 
                     query = ChitsTransInfo.QUERY_SELECT_DISCOUNT_OPENING;
                 }
+                else if (type == DBConstant.ACCOUNT_OPENING_CASH)
+                {
+                    parameters.Add(DBManager.GetParameter(ChitsTransInfo.PARAM_DATE, toDate));
+
+                    query = ChitsTransInfo.QUERY_SELECT_DISCOUNT_OPENING;
+                }
 
                 reader = SQLHelper.ExecuteReader(CommandType.Text, query, parameters);
                 while (reader.Read())
                 {
                     openingBalance.Particulars = DBConstant.CHITS_DISCOUNT;
-                    openingBalance.Credit = DBUtils.ConvertDecimal(reader["Amount"]);
+                    openingBalance.Debit = DBUtils.ConvertDecimal(reader["Amount"]);
                 }
 
                 return openingBalance;

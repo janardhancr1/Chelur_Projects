@@ -142,8 +142,8 @@ namespace PALibrary.Library.Component
             {
                 details = AccountsDAO.GetVoucherDetails(fromDate, toDate, ledger.LedgerID);
             }
-
-            List<DayBookInfo> dayBooks = LedgersDAO.GetHundiLoanLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            List<DayBookInfo> dayBooks;
+            dayBooks = LedgersDAO.GetHundiLoanLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             foreach (DayBookInfo day in dayBooks)
             {
                 if (day.FromLedger.Equals(DBConstant.CASH_LEDGER) || day.ToLedger.Equals(DBConstant.CASH_LEDGER))
@@ -311,15 +311,6 @@ namespace PALibrary.Library.Component
                     break;
                 case 7:
                     details = LedgersDAO.GetChitCommissionLedger(fromDate, toDate, ledgerName, type);
-                    LedgersInfo chitCommLedger = LedgersDAO.GetLedgersInfo(ledgerName);
-                    if (chitCommLedger != null)
-                    {
-                        List<DayBookInfo> interestVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, chitCommLedger.LedgerID);
-                        foreach (DayBookInfo voucher in interestVouchers)
-                        {
-                            details.Add(voucher);
-                        }
-                    }
                     break;
 
                 case 8:

@@ -339,6 +339,12 @@ namespace PALibrary.Library.DAO
 
                     query = FixedDepositInfo.QUERY_SELECT_OPENING;
                 }
+                else if (type == DBConstant.ACCOUNT_OPENING_CASH)
+                {
+                    parameters.Add(DBManager.GetParameter(FixedDepositInfo.PARAM_START_DATE, toDate));
+
+                    query = FixedDepositInfo.QUERY_SELECT_OPENING;
+                }
                 else if (type == DBConstant.ACCOUNT_OPENING_CUSTOMER)
                 {
                     parameters.Add(DBManager.GetParameter(FixedDepositInfo.PARAM_START_DATE, toDate));
