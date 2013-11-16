@@ -30,6 +30,7 @@ namespace PALibrary.Library.Utils
         public const string CASH_LEDGER = "Cash";
         public const string INTEREST_LEDGER = "Interest";
         public const string INTEREST_PAID_LEDGER = "Interest Paid";
+        public const string CHITS_LEDGER = "Chits";
         public const string CHIT_COMMISSION_LEDGER = "Chits Commission";
         public const string CHIT_DISCOUNT_LEDGER = "Chits Discount";
         public const string COMPANY_BIDDING_LEDGER = "Company Bidding";

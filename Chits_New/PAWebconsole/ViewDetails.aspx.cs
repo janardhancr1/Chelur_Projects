@@ -82,8 +82,8 @@ public partial class ViewDetails : System.Web.UI.Page
                     break;
                 case "4":
                     LedgerName.Text = "Chits Ledger";
-                    openingBalance = AccountsManager.GetChitsOpeniningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "CHIT", DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetChitLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "CHIT", DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetChitsOpeniningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_PERIOD);
                     break;
                 case "5":
                     LedgerName.Text = "Interest Collected Ledger";
