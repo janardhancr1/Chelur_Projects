@@ -641,13 +641,6 @@ namespace PALibrary.Library.DAO
                     dayBooks.Add(dayBook);
             }
 
-            LedgersInfo chitCommLedger = LedgersDAO.GetLedgersInfo(ledgerName);
-            if (chitCommLedger != null)
-            {
-                List<DayBookInfo> commVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, chitCommLedger.LedgerID);
-                dayBooks.AddRange(commVouchers);
-            }
-
             return dayBooks;
         }
 
@@ -777,13 +770,6 @@ namespace PALibrary.Library.DAO
 
                     dayBooks.Add(dayBook);
                 }
-            }
-
-            LedgersInfo chitCommLedger = LedgersDAO.GetLedgersInfo(ledgerName);
-            if (chitCommLedger != null)
-            {
-                List<DayBookInfo> commVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, chitCommLedger.LedgerID);
-                dayBooks.AddRange(commVouchers);
             }
 
             return dayBooks;
