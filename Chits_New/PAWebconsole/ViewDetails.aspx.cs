@@ -58,63 +58,70 @@ public partial class ViewDetails : System.Web.UI.Page
         DayBookInfo openingBalance = new DayBookInfo();
         List<DayBookInfo> dayBooks = new List<DayBookInfo>();
 
+        LedgersInfo voucherLedger = null;
+
+        DateTime fromDate = DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+        DateTime toDate = DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
         if (Request.Params["type"] != null)
         {
             switch (LedgerType.Value)
             {
                 case "1":
                     LedgerName.Text = "Hundi Loan Ledger";
-                    openingBalance = AccountsManager.GetHundiLoanOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "HL", DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetHundiLoanLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "HL", DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetHundiLoanOpeningBalance(fromDate, "HL", DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetHundiLoanLedger(fromDate, toDate, "HL", DBConstant.ACCOUNT_PERIOD);
                     break;
                 case "2":
                     LedgerName.Text = "Fixed Deposit Ledger";
-                    openingBalance = AccountsManager.GetFixedDepositOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "FD", DBConstant.ACCOUNT_OPENING);
+                    openingBalance = AccountsManager.GetFixedDepositOpeningBalance(fromDate, "FD", DBConstant.ACCOUNT_OPENING);
                     openingBalance.SwapOpeningBalance();
-                    dayBooks = LedgersManager.GetFixedDespositLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "FD", DBConstant.ACCOUNT_PERIOD);
+                    dayBooks = LedgersManager.GetFixedDespositLedger(fromDate, toDate, "FD", DBConstant.ACCOUNT_PERIOD);
                     break;
                 case "3":
                     LedgerName.Text = "ATKT Ledger";
-                    openingBalance = AccountsManager.GetATKTOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "ATKT", DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetATKTLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), "ATKT", DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetATKTOpeningBalance(fromDate, "ATKT", DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetATKTLedger(fromDate, toDate, "ATKT", DBConstant.ACCOUNT_PERIOD);
                     break;
                 case "4":
                     LedgerName.Text = "Chits Ledger";
-                    openingBalance = AccountsManager.GetChitsOpeniningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetChitLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetChitsOpeniningBalance(fromDate, DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitLedger(fromDate, toDate, DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    voucherLedger = LedgersManager.GetLedgersInfo(DBConstant.CHITS_LEDGER);
                     break;
                 case "5":
                     LedgerName.Text = "Interest Collected Ledger";
-                    openingBalance = AccountsManager.GetInterestOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetInterestLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                    openingBalance = AccountsManager.GetInterestOpeningBalance(fromDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetInterestLedger(fromDate, toDate);
                     break;
                 case "6":
                     LedgerName.Text = "Interest Paid Ledger";
-                    openingBalance = AccountsManager.GetInterestPaidOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetInterestPaidLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+                    openingBalance = AccountsManager.GetInterestPaidOpeningBalance(fromDate, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetInterestPaidLedger(fromDate, toDate);
                     break;
                 case "7":
                     LedgerName.Text = "Chit Commission Ledger";
-                    openingBalance = AccountsManager.GetChitCommissionOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetChitCommissionLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetChitCommissionOpeningBalance(fromDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitCommissionLedger(fromDate, toDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    voucherLedger = LedgersManager.GetLedgersInfo(DBConstant.CHIT_COMMISSION_LEDGER);
                     break;
                 case "8":
                     LedgerName.Text = "Chit Discount Ledger";
-                    openingBalance = AccountsManager.GetChitDiscountOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetChitDiscountLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetChitDiscountOpeningBalance(fromDate, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetChitDiscountLedger(fromDate, toDate, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    voucherLedger = LedgersManager.GetLedgersInfo(DBConstant.CHIT_DISCOUNT_LEDGER);
                     break;
                 case "9":
                     LedgerName.Text = "Company Bidding Ledger";
-                    openingBalance = AccountsManager.GetCompBiddingOpeningBalance(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_OPENING);
-                    dayBooks = LedgersManager.GetCompanyBiddingLedger(DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                                                                      DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture), DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    openingBalance = AccountsManager.GetCompBiddingOpeningBalance(fromDate, DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_OPENING);
+                    dayBooks = LedgersManager.GetCompanyBiddingLedger(fromDate, toDate, DBConstant.COMPANY_BIDDING_LEDGER, DBConstant.ACCOUNT_PERIOD);
+                    voucherLedger = LedgersManager.GetLedgersInfo(DBConstant.COMPANY_BIDDING_LEDGER);
                     break;
+            }
+            if (voucherLedger != null)
+            {
+                List<DayBookInfo> commVouchers = AccountsManager.GetVoucherDetails(fromDate, toDate, voucherLedger.LedgerID);
+                dayBooks.AddRange(commVouchers);
             }
 
         }

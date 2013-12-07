@@ -267,6 +267,7 @@ namespace PALibrary.Library.Component
             //LedgerDAO ledgerDao = new LedgerDAO();
             //VoucherDAO voucherDao = new VoucherDAO();
             List<DayBookInfo> details = null;
+            LedgersInfo currentLedger = LedgersDAO.GetLedgersInfo(ledgerName);
             switch (ledger)
             {
                 case 1:
@@ -283,36 +284,13 @@ namespace PALibrary.Library.Component
                     break;
                 case 5:
                     details = LedgersDAO.GetInterestLedger(fromDate, toDate);
-                    LedgersInfo interestLeger = LedgersDAO.GetLedgersInfo(ledgerName);
-                    if (interestLeger != null)
-                    {
-                        List<DayBookInfo> interestVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, interestLeger.LedgerID);
-                        foreach (DayBookInfo voucher in interestVouchers)
-                        {
-                            details.Add(voucher);
-                        }
-                    }
                     break;
                 case 6:
                     details = LedgersDAO.GetInterestPaidLedger(fromDate, toDate);
-                    if (type == DBConstant.ACCOUNT_OPENING)
-                        type = DBConstant.ACCOUNT_OPENING_CUSTOMER;
-                    else if (type == DBConstant.ACCOUNT_PERIOD)
-                        type = DBConstant.ACCOUNT_LEDGER;
-                    LedgersInfo interestPaidLeger = LedgersDAO.GetLedgersInfo(ledgerName);
-                    if (interestPaidLeger != null)
-                    {
-                        List<DayBookInfo> interestPaidVouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, interestPaidLeger.LedgerID);
-                        foreach (DayBookInfo voucher in interestPaidVouchers)
-                        {
-                            details.Add(voucher);
-                        }
-                    }
                     break;
                 case 7:
                     details = LedgersDAO.GetChitCommissionLedger(fromDate, toDate, ledgerName, type);
                     break;
-
                 case 8:
                     details = LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, type);
                     break;
@@ -329,12 +307,26 @@ namespace PALibrary.Library.Component
                 //    break;
 
             }
+
+            // Add vouchers entries
+
+            if (currentLedger != null)
+            {
+                List<DayBookInfo> vouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, currentLedger.LedgerID);
+                details.AddRange(vouchers);
+            }
+
             if (details != null)
             {
                 details.Sort(new ReportComparer());
             }
             List<DayBookInfo> monthlySummary = GetLedgerMonthlySummary(details);
             return monthlySummary;
+        }
+
+        public static List<DayBookInfo> GetVoucherDetails(DateTime fromDate, DateTime toDate, int ledgerID)
+        {
+            return AccountsDAO.GetVoucherDetails(fromDate, toDate, ledgerID);
         }
 
         private static List<DayBookInfo> GetMonthlySummary(IEnumerable<DayBookInfo> details)

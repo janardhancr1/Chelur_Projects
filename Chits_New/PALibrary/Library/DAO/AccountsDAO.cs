@@ -1147,7 +1147,7 @@ namespace PALibrary.Library.DAO
             }
 
             //Chit commission 
-            openingBalance = GetChitCommissionOpeningBalance(toDate, DBConstant.CHIT_COMMISSION_LEDGER, type);
+            openingBalance = GetChitCommissionOpeningBalanceNoVoucher(toDate, DBConstant.CHIT_COMMISSION_LEDGER, type);
             if (openingBalance != null)
             {
                 credit = credit + openingBalance.Credit;
@@ -1211,6 +1211,30 @@ namespace PALibrary.Library.DAO
             return dayBook;
         }
 
+        public static DayBookInfo GetChitCommissionOpeningBalanceNoVoucher(DateTime toDate, string ledgerName, int type)
+        {
+            decimal credit = 0;
+            decimal debit = 0;
+
+            List<ChitsBiddingInfo> chitBids = ChitsBiddingDAO.GetChitsBiddingInfos(toDate);
+            foreach (ChitsBiddingInfo chitBid in chitBids)
+            {
+                ChitsInfo chitInfo = ChitsDAO.GetChitsInfo(chitBid.ChitNO);
+                decimal chitCommission = chitInfo.ChitAmount * chitInfo.ChitCommission / 100;
+                credit = credit + chitCommission;
+            }
+
+            DayBookInfo dayBook = new DayBookInfo();
+            if (credit > debit)
+            {
+                dayBook.Credit = credit - debit;
+            }
+            else if (debit > credit)
+            {
+                dayBook.Debit = debit - credit;
+            }
+            return dayBook;
+        }
 
         //public static DayBookInfo GetCompBiddingOpeningBalance(DateTime toDate, string ledgerName, int type)
         //{
