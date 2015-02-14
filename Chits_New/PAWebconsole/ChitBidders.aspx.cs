@@ -32,6 +32,7 @@ public partial class ChitBidders : System.Web.UI.Page
                 {
                     ChitNO.Value = Request.Params["chitNO"];
                     CloseButton.Attributes.Add("onclick", "window.location.href='ChitDetails.aspx?chitNO=" + ChitNO.Value + "';");
+                    PrintType.Value = Request.Params["t"].ToString().Equals("bid") ? DBConstant.CHIT_BIDDER : DBConstant.CHIT_UNBIDDER;
 
                     ChitsInfo chitsInfo = ChitsManager.GetChitsInfo(ChitNO.Value);
                     if (chitsInfo != null)

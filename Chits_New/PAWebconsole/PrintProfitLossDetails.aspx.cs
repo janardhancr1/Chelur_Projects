@@ -41,9 +41,9 @@ public partial class PrintProfitLossDetails : System.Web.UI.Page
                     FromDate.Value = Request.Params["fromdate"];
                 }
 
-                //ObjectDataSource3.SelectParameters[0].DefaultValue = FromDate.Value;
-                //ObjectDataSource3.SelectParameters[1].DefaultValue = ToDate.Value;
-                //ObjectDataSource3.SelectParameters[2].DefaultValue = "Profit&Loss";
+                ObjectDataSource2.SelectParameters[0].DefaultValue = FromDate.Value;
+                ObjectDataSource2.SelectParameters[1].DefaultValue = ToDate.Value;
+                ObjectDataSource2.SelectParameters[2].DefaultValue = "Profit&Loss";
 
                 //ObjectDataSource2.SelectParameters[0].DefaultValue = CompID.Value;
 

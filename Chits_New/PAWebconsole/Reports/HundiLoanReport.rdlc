@@ -15,6 +15,70 @@
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <Body>
     <ReportItems>
+      <Textbox Name="textbox20">
+        <Left>2in</Left>
+        <Top>0.5in</Top>
+        <rd:DefaultName>textbox20</rd:DefaultName>
+        <ZIndex>5</ZIndex>
+        <Width>0.375in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>To:</Value>
+      </Textbox>
+      <Textbox Name="textbox19">
+        <Left>0.125in</Left>
+        <Top>0.5in</Top>
+        <rd:DefaultName>textbox19</rd:DefaultName>
+        <ZIndex>4</ZIndex>
+        <Width>0.5in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>From :</Value>
+      </Textbox>
+      <Textbox Name="ToDate">
+        <Left>2.375in</Left>
+        <Top>0.5in</Top>
+        <rd:DefaultName>ToDate</rd:DefaultName>
+        <ZIndex>3</ZIndex>
+        <Width>1in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=CDate(First(Fields!ToDate.Value, "LedgerDate")).ToString("dd/MM/yyyy")</Value>
+      </Textbox>
+      <Textbox Name="FromDate">
+        <Left>0.625in</Left>
+        <Top>0.5in</Top>
+        <rd:DefaultName>FromDate</rd:DefaultName>
+        <ZIndex>2</ZIndex>
+        <Width>1.125in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=CDate(First(Fields!FromDate.Value, "LedgerDate")).ToString("dd/MM/yyyy")</Value>
+      </Textbox>
       <Textbox Name="textbox18">
         <Left>2.5in</Left>
         <Top>0.125in</Top>
@@ -45,8 +109,23 @@
                       <rd:DefaultName>textbox7</rd:DefaultName>
                       <ZIndex>15</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Left>Solid</Left>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                          <Left>1pt</Left>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                          <Left>Black</Left>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -61,8 +140,20 @@
                       <rd:DefaultName>textbox8</rd:DefaultName>
                       <ZIndex>14</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -77,8 +168,20 @@
                       <rd:DefaultName>textbox9</rd:DefaultName>
                       <ZIndex>13</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -89,17 +192,32 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox6">
-                      <rd:DefaultName>textbox6</rd:DefaultName>
+                    <Textbox Name="textbox21">
+                      <rd:DefaultName>textbox21</rd:DefaultName>
                       <ZIndex>12</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Top>Solid</Top>
+                          <Right>Solid</Right>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Top>1pt</Top>
+                          <Right>1pt</Right>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Top>Black</Top>
+                          <Right>Black</Right>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>Total</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -109,13 +227,25 @@
                       <rd:DefaultName>textbox11</rd:DefaultName>
                       <ZIndex>11</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Left>Solid</Left>
+                          <Right>Solid</Right>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>1pt</Left>
+                          <Right>1pt</Right>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Left>Black</Left>
+                          <Right>Black</Right>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=sum(Fields!LoanAmount.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -125,13 +255,16 @@
                       <rd:DefaultName>textbox13</rd:DefaultName>
                       <ZIndex>10</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingBottom>2pt</PaddingBottom>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>=sum(Fields!Balance.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -141,8 +274,17 @@
                       <rd:DefaultName>textbox16</rd:DefaultName>
                       <ZIndex>9</ZIndex>
                       <Style>
+                        <BorderStyle>
+                          <Left>Solid</Left>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Left>1pt</Left>
+                        </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Left>Black</Left>
+                        </BorderColor>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
@@ -174,7 +316,7 @@
         </Footer>
         <Left>0.09375in</Left>
         <DataSetName>HundiLoanInfo</DataSetName>
-        <Top>0.625in</Top>
+        <Top>0.875in</Top>
         <Width>7.75in</Width>
         <Details>
           <TableRows>
@@ -622,6 +764,32 @@
         <Field Name="BankName">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>BankName</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LedgerDate">
+      <rd:DataSetInfo>
+        <rd:ObjectDataSourceSelectMethod>GetLedgerDate</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>PALibrary.Library.Component.ReportManager, PALibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[PALibrary.Library.Model.LedgerDate] GetLedgerDate(System.DateTime, System.DateTime, System.String)</rd:ObjectDataSourceSelectMethodSignature>
+      </rd:DataSetInfo>
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText />
+        <DataSourceName>DummyDataSource</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="LedgerName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LedgerName</DataField>
+        </Field>
+        <Field Name="FromDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>FromDate</DataField>
+        </Field>
+        <Field Name="ToDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>ToDate</DataField>
         </Field>
       </Fields>
     </DataSet>

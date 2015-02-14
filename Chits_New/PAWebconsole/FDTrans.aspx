@@ -139,7 +139,7 @@
                         <asp:BoundField HeaderText="Amount" DataField="Amount" SortExpression="Amount" />
                         <asp:BoundField HeaderText="Balance" DataField="Balance" SortExpression="Balance" />
                         <asp:HyperLinkField Text="Delete" ControlStyle-ForeColor="Red" DataNavigateUrlFields="FDNO,RecordID"
-                            DataNavigateUrlFormatString="FDrans.aspx?FDNo={0}&transid={1}" ItemStyle-Width="50px"
+                            DataNavigateUrlFormatString="FDTrans.aspx?FDNo={0}&transid={1}" ItemStyle-Width="50px"
                             ItemStyle-HorizontalAlign="Right" />
                     </Columns>
                     <HeaderStyle CssClass="nav_header" HorizontalAlign="Left" />

@@ -16,9 +16,18 @@
             <LocalReport ReportPath="Reports\TrailBalance.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="DayBookInfo" />
+                    <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="LedgerDate" />
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
+            <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetLedgerDate"
+                TypeName="PALibrary.Library.Component.ReportManager">
+                <SelectParameters>
+                    <asp:Parameter DefaultValue="" Name="fromDate" Type="DateTime" />
+                    <asp:Parameter DefaultValue="" Name="toDate" Type="DateTime" />
+                    <asp:Parameter DefaultValue="" Name="ledgerName" Type="String" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetTrailBalance"
             TypeName="PALibrary.Library.Component.AccountsManager">
             <SelectParameters>

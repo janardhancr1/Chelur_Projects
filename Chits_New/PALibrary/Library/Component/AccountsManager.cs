@@ -48,6 +48,12 @@ namespace PALibrary.Library.Component
                 dayBooks.Add(day);
             }
 
+            List<DayBookInfo> chits = LedgersDAO.GetChitLedger(fromDate, toDate, DBConstant.CHITS_LEDGER, DBConstant.ACCOUNT_PERIOD);
+            foreach (DayBookInfo day in chits)
+            {
+                dayBooks.Add(day);
+            }
+
             List<DayBookInfo> vouchers = AccountsDAO.GetVoucherDetails(fromDate, toDate, 0);
             foreach (DayBookInfo day in vouchers)
             {
@@ -787,16 +793,18 @@ namespace PALibrary.Library.Component
                 openingBalance = GetFixedDepositOpeningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             else if (type == 3)
                 openingBalance = GetATKTOpeningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
+            else if (type == 4)
+                openingBalance = GetChitsOpeniningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             else if (type == 5)
                 openingBalance = GetInterestOpeningBalance(fromDate, DBConstant.INTEREST_LEDGER, DBConstant.ACCOUNT_OPENING);
             else if (type == 6)
                 openingBalance = GetInterestPaidOpeningBalance(fromDate, DBConstant.INTEREST_PAID_LEDGER, DBConstant.ACCOUNT_OPENING);
             else if (type == 7)
-                openingBalance = GetLedgerOpeningBalance(fromDate, ledgerID);
+                openingBalance = GetChitCommissionOpeningBalance(fromDate, DBConstant.CHIT_COMMISSION_LEDGER, DBConstant.ACCOUNT_OPENING);
             else if (type == 8)
-                openingBalance = GetBankBookOpeningBalance(fromDate, ledgerID);
+                openingBalance = GetChitDiscountOpeningBalance(fromDate, DBConstant.CHIT_DISCOUNT_LEDGER, DBConstant.ACCOUNT_OPENING);
             else if (type == 9)
-                openingBalance = GetCashBookOpeningBalance(fromDate);
+                openingBalance = GetCompBiddingOpeningBalance(fromDate, ledgerName, DBConstant.ACCOUNT_OPENING);
             else
                 openingBalance = GetLedgerOpeningBalance(fromDate, ledgerID);
 
@@ -812,16 +820,18 @@ namespace PALibrary.Library.Component
                 ledgerDetails = LedgersDAO.GetFixedDespositLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
             else if (type == 3)
                 ledgerDetails = LedgersDAO.GetATKTLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
+            else if (type == 4)
+                ledgerDetails = LedgersDAO.GetChitLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
             else if (type == 5)
                 ledgerDetails = LedgersDAO.GetInterestLedger(fromDate, toDate);
             else if (type == 6)
                 ledgerDetails = LedgersDAO.GetInterestPaidLedger(fromDate, toDate);
             else if (type == 7)
-                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
+                ledgerDetails = LedgersDAO.GetChitCommissionLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
             else if (type == 8)
-                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
+                ledgerDetails = LedgersDAO.GetChitDiscountLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
             else if (type == 9)
-                ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
+                ledgerDetails = LedgersDAO.GetCompanyBiddingLedger(fromDate, toDate, ledgerName, DBConstant.ACCOUNT_PERIOD);
             else
                 ledgerDetails = GetLedgerDetails(fromDate, toDate, ledgerID);
 
@@ -868,11 +878,14 @@ namespace PALibrary.Library.Component
             if (openingBalance != null)
             {
                 openingBalance.Particulars = "Opening Balance";
-                if (type != 7 && type != 8 && type != 11 && type != 12 && type != 10)
+                if (type > 0)
                 {
-                    decimal openTemp = openingBalance.Debit;
-                    openingBalance.Debit = openingBalance.Credit;
-                    openingBalance.Credit = openTemp;
+                    if (type != 7 && type != 8 && type != 11 && type != 12 && type != 10)
+                    {
+                        decimal openTemp = openingBalance.Debit;
+                        openingBalance.Debit = openingBalance.Credit;
+                        openingBalance.Credit = openTemp;
+                    }
                 }
                 details.Insert(0, openingBalance);
             }

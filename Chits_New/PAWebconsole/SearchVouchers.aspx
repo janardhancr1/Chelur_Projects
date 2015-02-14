@@ -63,6 +63,7 @@
             <td colspan="2" align="center">
                 <asp:Button ID="SearchButton" runat="server" OnClick="Search_Click" Text="Search"></asp:Button>
                 <input type="button" value="Add New" onclick="window.location.href='AddVouchers.aspx';" />
+                <input type="button" value="Print" onclick="window.location.href='PrintVouchers.aspx';" />
                 <input type="button" value="Close" onclick="window.location.href='HomePage.aspx';" /></td>
         </tr>
         <tr>

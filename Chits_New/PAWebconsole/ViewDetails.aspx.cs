@@ -249,6 +249,11 @@ public partial class ViewDetails : System.Web.UI.Page
 
             cell = new HtmlTableCell();
             cell.InnerText = dayBook.FromLedger.Equals(LedgerName.Text) ? dayBook.ToLedger : dayBook.FromLedger;
+            if (dayBook.FromLedger.Equals(DBConstant.CASH_LEDGER))
+                cell.InnerText = dayBook.ToLedger;
+            else
+                cell.InnerText = dayBook.FromLedger;
+
             if (GetConditon(dayBook))
                 cell.InnerText = dayBook.Debit > 0 ? DBConstant.PARTICULARS_TO + cell.InnerText : DBConstant.PARTICULARS_BY + cell.InnerText;
             else
