@@ -40,6 +40,9 @@ public partial class PrintFixedDepositReport : System.Web.UI.Page
                 OrderBY.Value = Request.Params["sort"];
             }
 
+            ObjectDataSource2.SelectParameters[0].DefaultValue = DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
+            ObjectDataSource2.SelectParameters[1].DefaultValue = DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
+            ObjectDataSource2.SelectParameters[2].DefaultValue = "Fixed Desposit Ledger";
 
             ObjectDataSource1.SelectParameters[0].DefaultValue = DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
             ObjectDataSource1.SelectParameters[1].DefaultValue = DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");

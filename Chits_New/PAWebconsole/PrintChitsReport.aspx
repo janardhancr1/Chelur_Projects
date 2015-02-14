@@ -15,9 +15,18 @@
                 <LocalReport ReportPath="Reports\ChitsReport.rdlc">
                     <DataSources>
                         <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" Name="ChitsInfo" />
+                        <rsweb:ReportDataSource DataSourceId="ObjectDataSource2" Name="LedgerDate" />
                     </DataSources>
                 </LocalReport>
             </rsweb:ReportViewer>
+            <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetLedgerDate"
+                TypeName="PALibrary.Library.Component.ReportManager">
+                <SelectParameters>
+                    <asp:Parameter DefaultValue="" Name="fromDate" Type="DateTime" />
+                    <asp:Parameter DefaultValue="" Name="toDate" Type="DateTime" />
+                    <asp:Parameter DefaultValue="" Name="ledgerName" Type="String" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetChitsInfos"
                 TypeName="PALibrary.Library.Component.ChitsManager">
                 <SelectParameters>

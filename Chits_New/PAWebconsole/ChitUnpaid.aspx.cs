@@ -32,6 +32,7 @@ public partial class ChitUnpaid : System.Web.UI.Page
                 {
                     ChitNO.Value = Request.Params["chitNO"];
                     CloseButton.Attributes.Add("onclick", "window.location.href='ChitDetails.aspx?chitNO=" + ChitNO.Value + "';");
+                    PrintType.Value = DBConstant.CHIT_UNPAID;
 
                     ChitsInfo chitsInfo = ChitsManager.GetChitsInfo(ChitNO.Value);
                     if (chitsInfo != null)

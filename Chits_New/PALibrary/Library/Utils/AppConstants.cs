@@ -72,6 +72,10 @@ namespace PALibrary.Library.Utils
         public const string CHITS_DISCOUNT = "CHITDISCNT";
         public const string COMP_BIDDING = "COMPBID";
 
+        public const string CHIT_UNPAID = "ChitUnPaid";
+        public const string CHIT_BIDDER = "ChitBidders";
+        public const string CHIT_UNBIDDER = "ChitUnBidders";
+
         public const int START_YEAR = 2000;
 
 	    private int userID;

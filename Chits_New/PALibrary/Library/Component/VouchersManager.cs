@@ -49,5 +49,10 @@ namespace PALibrary.Library.Component
             return VouchersDAO.GetVouchersInfos();
         }
 
+        public static List<VouchersInfo> GetVouchersInfos(DateTime fromDate, DateTime toDate)
+        {
+            return VouchersDAO.GetVouchers(fromDate, toDate, 0);
+        }
+
     }
 }

@@ -15,6 +15,70 @@
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <Body>
     <ReportItems>
+      <Textbox Name="textbox18">
+        <Left>1.875in</Left>
+        <Top>0.625in</Top>
+        <rd:DefaultName>textbox18</rd:DefaultName>
+        <ZIndex>5</ZIndex>
+        <Width>0.375in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>To :</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <Left>0.125in</Left>
+        <Top>0.625in</Top>
+        <rd:DefaultName>textbox12</rd:DefaultName>
+        <ZIndex>4</ZIndex>
+        <Width>0.5in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>From :</Value>
+      </Textbox>
+      <Textbox Name="ToDate">
+        <Left>2.25in</Left>
+        <Top>0.625in</Top>
+        <rd:DefaultName>ToDate</rd:DefaultName>
+        <ZIndex>3</ZIndex>
+        <Width>1in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=CDate(First(Fields!ToDate.Value, "LedgerDate")).ToString("dd/MM/yyyy")</Value>
+      </Textbox>
+      <Textbox Name="FromDate">
+        <Left>0.625in</Left>
+        <Top>0.625in</Top>
+        <rd:DefaultName>FromDate</rd:DefaultName>
+        <ZIndex>2</ZIndex>
+        <Width>1in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=CDate(First(Fields!FromDate.Value, "LedgerDate")).ToString("dd/MM/yyyy")</Value>
+      </Textbox>
       <Table Name="table1">
         <Footer>
           <TableRows>
@@ -227,7 +291,7 @@
         </Footer>
         <Left>0.04167in</Left>
         <DataSetName>ATKTInfo</DataSetName>
-        <Top>0.73958in</Top>
+        <Top>1in</Top>
         <ZIndex>1</ZIndex>
         <Width>8.375in</Width>
         <Details>
@@ -717,7 +781,7 @@
         <Value>ATKT Report</Value>
       </Textbox>
     </ReportItems>
-    <Height>1.625in</Height>
+    <Height>1.875in</Height>
   </Body>
   <rd:ReportID>94deac3d-e946-40d4-b8ad-57da3d9dbc73</rd:ReportID>
   <DataSets>
@@ -772,6 +836,32 @@
         <Field Name="ClosedType">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>ClosedType</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LedgerDate">
+      <rd:DataSetInfo>
+        <rd:ObjectDataSourceSelectMethod>GetLedgerDate</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>PALibrary.Library.Component.ReportManager, PALibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[PALibrary.Library.Model.LedgerDate] GetLedgerDate(System.DateTime, System.DateTime, System.String)</rd:ObjectDataSourceSelectMethodSignature>
+      </rd:DataSetInfo>
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText />
+        <DataSourceName>DummyDataSource</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="LedgerName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>LedgerName</DataField>
+        </Field>
+        <Field Name="FromDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>FromDate</DataField>
+        </Field>
+        <Field Name="ToDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>ToDate</DataField>
         </Field>
       </Fields>
     </DataSet>

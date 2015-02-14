@@ -35,7 +35,11 @@ public partial class PrintATKTReport : System.Web.UI.Page
             {
                 ClosedType.Value = Request.Params["closed"];
             }
-            
+
+            ObjectDataSource2.SelectParameters[0].DefaultValue = DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
+            ObjectDataSource2.SelectParameters[1].DefaultValue = DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
+            ObjectDataSource2.SelectParameters[2].DefaultValue = "ATKT Report";
+
             ObjectDataSource1.SelectParameters[0].DefaultValue = DateTime.ParseExact(FromDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
             ObjectDataSource1.SelectParameters[1].DefaultValue = DateTime.ParseExact(ToDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
             ObjectDataSource1.SelectParameters[2].DefaultValue = ClosedType.Value;

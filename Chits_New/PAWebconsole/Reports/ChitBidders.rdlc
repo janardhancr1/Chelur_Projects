@@ -6,51 +6,20 @@
         <ConnectString />
         <DataProvider>SQL</DataProvider>
       </ConnectionProperties>
-      <rd:DataSourceID>b3d51497-6418-4da6-aa47-3f2aeac6fd02</rd:DataSourceID>
+      <rd:DataSourceID>f4de938c-e9bc-4bde-8863-0212ebd05296</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
   <rd:DrawGrid>true</rd:DrawGrid>
   <InteractiveWidth>8.5in</InteractiveWidth>
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <Body>
     <ReportItems>
-      <Textbox Name="textbox13">
-        <Left>1.875in</Left>
-        <Top>0.75in</Top>
-        <rd:DefaultName>textbox13</rd:DefaultName>
-        <ZIndex>5</ZIndex>
-        <Width>0.25in</Width>
-        <Style>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingBottom>2pt</PaddingBottom>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>To :</Value>
-      </Textbox>
-      <Textbox Name="textbox11">
+      <Textbox Name="textbox4">
         <Left>0.125in</Left>
-        <Top>0.75in</Top>
-        <rd:DefaultName>textbox11</rd:DefaultName>
-        <ZIndex>4</ZIndex>
-        <Width>0.5in</Width>
-        <Style>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingBottom>2pt</PaddingBottom>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>From :</Value>
-      </Textbox>
-      <Textbox Name="ToDate">
-        <Left>2.125in</Left>
-        <Top>0.75in</Top>
-        <rd:DefaultName>ToDate</rd:DefaultName>
+        <Top>0.625in</Top>
+        <rd:DefaultName>textbox4</rd:DefaultName>
         <ZIndex>3</ZIndex>
         <Width>1in</Width>
         <Style>
@@ -61,12 +30,12 @@
         </Style>
         <CanGrow>true</CanGrow>
         <Height>0.25in</Height>
-        <Value>=CDate(First(Fields!ToDate.Value, "LedgerDate")).ToString("dd/MM/yyyy")</Value>
+        <Value>Chit Name :</Value>
       </Textbox>
-      <Textbox Name="FromDate">
-        <Left>0.625in</Left>
-        <Top>0.75in</Top>
-        <rd:DefaultName>FromDate</rd:DefaultName>
+      <Textbox Name="LedgerName">
+        <Left>1.125in</Left>
+        <Top>0.625in</Top>
+        <rd:DefaultName>LedgerName</rd:DefaultName>
         <ZIndex>2</ZIndex>
         <Width>1in</Width>
         <Style>
@@ -77,26 +46,7 @@
         </Style>
         <CanGrow>true</CanGrow>
         <Height>0.25in</Height>
-        <Value>=CDate(First(Fields!FromDate.Value, "LedgerDate")).ToString("dd/MM/yyyy")</Value>
-      </Textbox>
-      <Textbox Name="textbox3">
-        <Left>1.625in</Left>
-        <Top>0.25in</Top>
-        <rd:DefaultName>textbox3</rd:DefaultName>
-        <ZIndex>1</ZIndex>
-        <Width>4.625in</Width>
-        <Style>
-          <TextAlign>Center</TextAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingBottom>2pt</PaddingBottom>
-          <FontWeight>700</FontWeight>
-          <TextDecoration>Underline</TextDecoration>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>Chits Details</Value>
+        <Value>=First(Fields!LedgerName.Value, "LedgerDate")</Value>
       </Textbox>
       <Table Name="table1">
         <Footer>
@@ -105,61 +55,9 @@
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox7">
-                      <rd:DefaultName>textbox7</rd:DefaultName>
-                      <ZIndex>9</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                          <Right>Solid</Right>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <BorderWidth>
-                          <Right>1pt</Right>
-                        </BorderWidth>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <BorderColor>
-                          <Right>Black</Right>
-                        </BorderColor>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
                     <Textbox Name="textbox8">
                       <rd:DefaultName>textbox8</rd:DefaultName>
-                      <ZIndex>8</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                          <Right>Solid</Right>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <BorderWidth>
-                          <Right>1pt</Right>
-                        </BorderWidth>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <BorderColor>
-                          <Right>Black</Right>
-                        </BorderColor>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox6">
-                      <rd:DefaultName>textbox6</rd:DefaultName>
-                      <ZIndex>7</ZIndex>
+                      <ZIndex>11</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -185,7 +83,7 @@
                   <ReportItems>
                     <Textbox Name="textbox9">
                       <rd:DefaultName>textbox9</rd:DefaultName>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>10</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -209,9 +107,87 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox12">
-                      <rd:DefaultName>textbox12</rd:DefaultName>
-                      <ZIndex>5</ZIndex>
+                    <Textbox Name="textbox22">
+                      <rd:DefaultName>textbox22</rd:DefaultName>
+                      <ZIndex>9</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox19">
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <ZIndex>8</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox16">
+                      <rd:DefaultName>textbox16</rd:DefaultName>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox13">
+                      <rd:DefaultName>textbox13</rd:DefaultName>
+                      <ZIndex>6</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -231,18 +207,44 @@
             </TableRow>
           </TableRows>
         </Footer>
-        <Left>0.125in</Left>
-        <DataSetName>ChitsInfo</DataSetName>
-        <Top>1.125in</Top>
-        <Width>7.75in</Width>
+        <DataSetName>ChitsReportInfo</DataSetName>
+        <Top>1in</Top>
+        <ZIndex>1</ZIndex>
+        <Width>8.375in</Width>
         <Details>
           <TableRows>
             <TableRow>
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="ChitNO">
-                      <rd:DefaultName>ChitNO</rd:DefaultName>
+                    <Textbox Name="CustomerName">
+                      <rd:DefaultName>CustomerName</rd:DefaultName>
+                      <ZIndex>5</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!CustomerName.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="CustomerAddress">
+                      <rd:DefaultName>CustomerAddress</rd:DefaultName>
                       <ZIndex>4</ZIndex>
                       <Style>
                         <BorderStyle>
@@ -261,41 +263,15 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!ChitNO.Value</Value>
+                      <Value>=Fields!CustomerAddress.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="ChitName">
-                      <rd:DefaultName>ChitName</rd:DefaultName>
+                    <Textbox Name="InstallmentNO">
+                      <rd:DefaultName>InstallmentNO</rd:DefaultName>
                       <ZIndex>3</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Default>Solid</Default>
-                          <Right>Solid</Right>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <BorderWidth>
-                          <Right>1pt</Right>
-                        </BorderWidth>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <BorderColor>
-                          <Right>Black</Right>
-                        </BorderColor>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!ChitName.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="ChitAmount_1">
-                      <rd:DefaultName>ChitAmount_1</rd:DefaultName>
-                      <ZIndex>2</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -314,7 +290,7 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!ChitAmount.Value</Value>
+                      <Value>=IIF(Fields!InstallmentNO.Value = 0, "", Fields!InstallmentNO.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -322,13 +298,12 @@
                   <ReportItems>
                     <Textbox Name="BidDate">
                       <rd:DefaultName>BidDate</rd:DefaultName>
-                      <ZIndex>1</ZIndex>
+                      <ZIndex>2</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
                           <Right>Solid</Right>
                         </BorderStyle>
-                        <TextAlign>Right</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <BorderWidth>
                           <Right>1pt</Right>
@@ -341,14 +316,40 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!BidDate.Value</Value>
+                      <Value>=IIF(Fields!BidDate.Value = "01/01/0001", "", CDate(Fields!BidDate.Value).ToString("dd/MM/yyyy"))</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="InstallmentAmount">
-                      <rd:DefaultName>InstallmentAmount</rd:DefaultName>
+                    <Textbox Name="PaidDate">
+                      <rd:DefaultName>PaidDate</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <BorderColor>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>=IIF(Fields!PaidDate.Value = "01/01/0001", "", CDate(Fields!PaidDate.Value).ToString("dd/MM/yyyy"))</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="PaidAmount">
+                      <rd:DefaultName>PaidAmount</rd:DefaultName>
                       <Style>
                         <BorderStyle>
                           <Default>Solid</Default>
@@ -360,7 +361,7 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!InstallmentAmount.Value</Value>
+                      <Value>=IIF(Fields!PaidAmount.Value = 0, "", Fields!PaidAmount.Value)</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -375,8 +376,99 @@
               <TableCells>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox1">
-                      <rd:DefaultName>textbox1</rd:DefaultName>
+                    <Textbox Name="textbox20">
+                      <rd:DefaultName>textbox20</rd:DefaultName>
+                      <ZIndex>17</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Customer Name</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox3">
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <ZIndex>16</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Customer Address</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox2">
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <ZIndex>15</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <TextAlign>Right</TextAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Installmt NO</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox17">
+                      <rd:DefaultName>textbox17</rd:DefaultName>
                       <ZIndex>14</ZIndex>
                       <Style>
                         <BorderStyle>
@@ -390,95 +482,7 @@
                           <Right>1pt</Right>
                         </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
-                        <BorderColor>
-                          <Bottom>Black</Bottom>
-                          <Right>Black</Right>
-                        </BorderColor>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Chit NO</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox2">
-                      <rd:DefaultName>textbox2</rd:DefaultName>
-                      <ZIndex>13</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Bottom>Solid</Bottom>
-                          <Default>Solid</Default>
-                          <Right>Solid</Right>
-                        </BorderStyle>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <BorderWidth>
-                          <Bottom>1pt</Bottom>
-                          <Right>1pt</Right>
-                        </BorderWidth>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <BorderColor>
-                          <Bottom>Black</Bottom>
-                          <Right>Black</Right>
-                        </BorderColor>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Chit Name</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox4">
-                      <rd:DefaultName>textbox4</rd:DefaultName>
-                      <ZIndex>12</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Bottom>Solid</Bottom>
-                          <Default>Solid</Default>
-                          <Right>Solid</Right>
-                        </BorderStyle>
-                        <TextAlign>Right</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <BorderWidth>
-                          <Bottom>1pt</Bottom>
-                          <Right>1pt</Right>
-                        </BorderWidth>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <BorderColor>
-                          <Bottom>Black</Bottom>
-                          <Right>Black</Right>
-                        </BorderColor>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>Chit Amount</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox5">
-                      <rd:DefaultName>textbox5</rd:DefaultName>
-                      <ZIndex>11</ZIndex>
-                      <Style>
-                        <BorderStyle>
-                          <Bottom>Solid</Bottom>
-                          <Default>Solid</Default>
-                          <Right>Solid</Right>
-                        </BorderStyle>
-                        <TextAlign>Right</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <BorderWidth>
-                          <Bottom>1pt</Bottom>
-                          <Right>1pt</Right>
-                        </BorderWidth>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
                         <BorderColor>
                           <Bottom>Black</Bottom>
                           <Right>Black</Right>
@@ -493,9 +497,39 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="textbox10">
-                      <rd:DefaultName>textbox10</rd:DefaultName>
-                      <ZIndex>10</ZIndex>
+                    <Textbox Name="textbox14">
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <ZIndex>13</ZIndex>
+                      <Style>
+                        <BorderStyle>
+                          <Bottom>Solid</Bottom>
+                          <Default>Solid</Default>
+                          <Right>Solid</Right>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <BorderWidth>
+                          <Bottom>1pt</Bottom>
+                          <Right>1pt</Right>
+                        </BorderWidth>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
+                        <BorderColor>
+                          <Bottom>Black</Bottom>
+                          <Right>Black</Right>
+                        </BorderColor>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value>Paid Date</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox11">
+                      <rd:DefaultName>textbox11</rd:DefaultName>
+                      <ZIndex>12</ZIndex>
                       <Style>
                         <BorderStyle>
                           <Bottom>Solid</Bottom>
@@ -507,6 +541,7 @@
                           <Bottom>1pt</Bottom>
                         </BorderWidth>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <FontWeight>700</FontWeight>
                         <BorderColor>
                           <Bottom>Black</Bottom>
                         </BorderColor>
@@ -514,7 +549,7 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>Installment Amount</Value>
+                      <Value>Bid Amount</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -525,33 +560,53 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>1.125in</Width>
-          </TableColumn>
-          <TableColumn>
             <Width>1.5in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.75in</Width>
+            <Width>2.875in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.75in</Width>
+            <Width>1in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.625in</Width>
+            <Width>1in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.875in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>1.125in</Width>
           </TableColumn>
         </TableColumns>
         <Height>0.75in</Height>
       </Table>
+      <Textbox Name="textbox1">
+        <Top>0.25in</Top>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Style>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <TextDecoration>Underline</TextDecoration>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Chit Bidders/UnBidders</Value>
+      </Textbox>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>1.875in</Height>
   </Body>
-  <rd:ReportID>2e2d1c1e-f667-46cf-bd63-01b3a82523a8</rd:ReportID>
+  <rd:ReportID>100f7403-9b27-444e-9c58-b91a6bd1c574</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
   <DataSets>
-    <DataSet Name="ChitsInfo">
+    <DataSet Name="ChitsReportInfo">
       <rd:DataSetInfo>
-        <rd:ObjectDataSourceSelectMethod>GetChitsInfos</rd:ObjectDataSourceSelectMethod>
-        <rd:ObjectDataSourceType>PALibrary.Library.Component.ChitsManager, PALibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[PALibrary.Library.Model.ChitsInfo] GetChitsInfos(System.DateTime, System.DateTime, System.String)</rd:ObjectDataSourceSelectMethodSignature>
+        <rd:ObjectDataSourceSelectMethod>GetMembers</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>PALibrary.Library.Component.ChitsReportManager, PALibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceSelectMethodSignature>System.Collections.Generic.List`1[PALibrary.Library.Model.ChitsReportInfo] GetMembers(System.String, System.String)</rd:ObjectDataSourceSelectMethodSignature>
       </rd:DataSetInfo>
       <Query>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
@@ -559,37 +614,41 @@
         <DataSourceName>DummyDataSource</DataSourceName>
       </Query>
       <Fields>
-        <Field Name="ChitNO">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>ChitNO</DataField>
-        </Field>
         <Field Name="ChitName">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>ChitName</DataField>
         </Field>
-        <Field Name="ChitAmount">
-          <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>ChitAmount</DataField>
+        <Field Name="CustomerName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>CustomerName</DataField>
         </Field>
-        <Field Name="BidDate">
+        <Field Name="CustomerAddress">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>CustomerAddress</DataField>
+        </Field>
+        <Field Name="InstallmentNO">
           <rd:TypeName>System.Int32</rd:TypeName>
-          <DataField>BidDate</DataField>
+          <DataField>InstallmentNO</DataField>
         </Field>
         <Field Name="InstallmentAmount">
           <rd:TypeName>System.Decimal</rd:TypeName>
           <DataField>InstallmentAmount</DataField>
         </Field>
-        <Field Name="NoInstallments">
+        <Field Name="DiscountAmount">
           <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>NoInstallments</DataField>
+          <DataField>DiscountAmount</DataField>
         </Field>
-        <Field Name="ChitCommission">
+        <Field Name="PaidAmount">
           <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>ChitCommission</DataField>
+          <DataField>PaidAmount</DataField>
         </Field>
-        <Field Name="ClosedType">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>ClosedType</DataField>
+        <Field Name="BidDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>BidDate</DataField>
+        </Field>
+        <Field Name="PaidDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>PaidDate</DataField>
         </Field>
       </Fields>
     </DataSet>
@@ -620,7 +679,6 @@
       </Fields>
     </DataSet>
   </DataSets>
-  <Code />
   <Width>8.5in</Width>
   <InteractiveHeight>11in</InteractiveHeight>
   <Language>en-US</Language>
